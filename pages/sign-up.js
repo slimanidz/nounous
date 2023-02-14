@@ -9,10 +9,8 @@ import Link from "next/link";
 import api from "../services/api";
 import Page from "./components/Page";
 import ImageSrc from "./components/ImageSrc";
-// import validationSchema from "../components/Validateur";
 // import ImageSrc from "../components/ImageSrc";
 // import Page from "../components/Page";
-// import validationSchema from "@/components/Validateur";
 // import Button from "@/components/Button";
 // import Footer from "@/components/Footer";
 // import ImageSrc from "@/components/ImageSrc";
@@ -112,11 +110,7 @@ const SignUp = () => {
             </div>
           ) : null} */}
 
-            <Formik
-              initialValues={initialValues}
-              // validationSchema={validationSchema}
-              onSubmit={handleSubmit}
-            >
+            <Formik initialValues={initialValues} onSubmit={handleSubmit}>
               {(formik) => (
                 <Form>
                   <div className="flex flex-col">

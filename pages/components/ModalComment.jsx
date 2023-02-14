@@ -5,11 +5,6 @@ import React, { useCallback, useEffect, useState } from "react";
 import api from "../../services/api";
 import { useAppContext } from "./AppContext";
 import CommentsGet from "./CommentsGet";
-import validationSchema from "./Validateur";
-// import api from "../services/api";
-// import { useAppContext } from "./AppContext";
-// import CommentsGet from "./CommentsGet";
-// import validationSchema from "./Validateur";
 
 const initialValues = {
   content: "",
@@ -49,11 +44,7 @@ const ModalComments = (props) => {
       >
         <div className="">{children}</div>
         <div>
-          <Formik
-            initialValues={initialValues}
-            // validationSchema={validationSchema}
-            onSubmit={handleSubmit}
-          >
+          <Formik initialValues={initialValues} onSubmit={handleSubmit}>
             <Form className=" flex flex-col items-center gap-3">
               <div className="flex flex-col">
                 {session ? (

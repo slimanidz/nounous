@@ -2,7 +2,6 @@ import React, { useCallback, useState } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import { useRouter } from "next/router.js";
 import { AxiosError } from "axios";
-// import validationSchema1 from "@/components/Validateur1"
 // import Link from "@/components/Link"
 import { BiShowAlt, BiLowVision } from "react-icons/bi";
 
@@ -88,11 +87,7 @@ const SignIn = () => {
               </div>
             ) : null}
 
-            <Formik
-              initialValues={initialValues}
-              // validationSchema={validationSchema1}
-              onSubmit={handleSubmit}
-            >
+            <Formik initialValues={initialValues} onSubmit={handleSubmit}>
               <Form>
                 <div className="flex flex-col">
                   <label>Email or username *:</label>

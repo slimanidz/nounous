@@ -3,7 +3,6 @@ import React, { useCallback } from "react";
 import api from "../../services/api";
 // import api from "../services/api"
 import { useAppContext } from "./AppContext";
-import validationSchema from "./Validateur";
 
 const initialValues = {
   content: "",
@@ -43,11 +42,7 @@ const Message = (props) => {
 
   return (
     <div>
-      <Formik
-        initialValues={initialValues}
-        // validationSchema={validationSchema}
-        onSubmit={handleSubmit}
-      >
+      <Formik initialValues={initialValues} onSubmit={handleSubmit}>
         <Form className="flex flex-col gap-3 justify-center items-center">
           <div className="flex flex-col">
             <label>content **:</label>

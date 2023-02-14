@@ -2,24 +2,13 @@ import React, { useCallback, useEffect, useState } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import { useRouter } from "next/router.js";
 import { AxiosError } from "axios";
-// import Modal from "@/components/Modal.jsx";
-// import Link from "@/components/Link";
-// import api from "@/services/api";
+
 import { BiShowAlt, BiLowVision } from "react-icons/bi";
 import Link from "next/link";
-// import validationSchema from "../components/Validateur";
-// import ServicesNounous from "../components/ServicesNounous";
-// import ImageSrc from "../components/ImageSrc";
-// import Page from "../components/Page";
+
 import api from "../services/api";
-import validationSchema from "./components/Validateur";
 import ImageSrc from "./components/ImageSrc";
 import Page from "./components/Page";
-// import validationSchema from "@/components/Validateur";
-// import Button from "@/components/Button";
-// import Footer from "@/components/Footer";
-// import ImageSrc from "@/components/ImageSrc";
-// import getRandomInt from "@/components/Random";
 
 const initialValues = {
   username: "",
@@ -170,11 +159,7 @@ const SignUpNounous = () => {
             </div>
           ) : null} */}
 
-            <Formik
-              initialValues={initialValues}
-              // validationSchema={validationSchema}
-              onSubmit={handleSubmit}
-            >
+            <Formik initialValues={initialValues} onSubmit={handleSubmit}>
               {(formik) => (
                 <Form className="flex flex-col gap-3">
                   <div className="flex flex-col">

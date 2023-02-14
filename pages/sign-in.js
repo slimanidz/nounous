@@ -105,11 +105,7 @@ const SignIn = () => {
               </div>
             ) : null}
 
-            <Formik
-              initialValues={initialValues}
-              // validationSchema={validationSchema1}
-              onSubmit={handleSubmit}
-            >
+            <Formik initialValues={initialValues} onSubmit={handleSubmit}>
               <Form>
                 <div className="flex flex-col">
                   <label>Email *:</label>
