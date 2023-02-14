@@ -16,7 +16,7 @@ const usersRoutes = async (req, res) => {
   }
 
   if (req.method === "POST") {
-    res.status(200).send({ hello: "slimani" });
+    res.status(200).send({ hello: "Hello" });
   }
 };
 

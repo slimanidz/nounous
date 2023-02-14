@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import api from "../../services/api";
 // import api from "../services/api";
 import { useAppContextNounou } from "./AppContextNounou";
-import { formatLongDateTime } from "./formateurs/FormatDate";
+import formatLongDateTime from "./formateurs/FormatDate";
 
 const MessagesGet = () => {
   const {

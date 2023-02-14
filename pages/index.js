@@ -1,6 +1,5 @@
 import Head from "next/head";
 import Link from "next/link";
-import { useEffect } from "react";
 import styles from "../styles/Home.module.css";
 import { useAppContextNounou } from "./components/AppContextNounou";
 import Header from "./components/Header";

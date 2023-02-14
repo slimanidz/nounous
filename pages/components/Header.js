@@ -1,6 +1,4 @@
 import { useRouter } from "next/router";
-// import { useAppContext } from "./AppContext"
-// import BurgerMenu from "./BurgerMenu"
 import { VscSignOut } from "react-icons/vsc";
 import { AiOutlineUser } from "react-icons/ai";
 import ImageSrc from "./ImageSrc";

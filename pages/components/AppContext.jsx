@@ -13,7 +13,7 @@ const initialState = {
 
 export const useAppContext = () => useContext(AppContext);
 
-export const AppContextProvider = (props) => {
+const AppContextProvider = (props) => {
   const [state, setState] = useState(initialState);
   const updateState = useCallback(
     (newState) =>
@@ -55,3 +55,4 @@ export const AppContextProvider = (props) => {
     />
   );
 };
+export default AppContextProvider;

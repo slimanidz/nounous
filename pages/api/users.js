@@ -1,6 +1,5 @@
 import User from "../../src/api/db/models/User";
 import hashPassword from "../../src/hashPassword";
-// import hashPassword from "../../src/hashPassword";
 
 const usersRoutes = async (req, res) => {
   // if (!auth(req, res)) {
@@ -9,7 +8,6 @@ const usersRoutes = async (req, res) => {
 
   if (req.method === "GET") {
     const users = await User.query();
-    // const users = await db("users");
 
     if (!users) {
       res.status(404).send({ error: "Erreur. Aucun résultat." });
