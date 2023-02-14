@@ -54,7 +54,7 @@ const SignUp = () => {
 
       if (result) {
         // restform();
-        // router.push("/users/sign-in");
+        router.push("/sign-in");
 
         return;
       }

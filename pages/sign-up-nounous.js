@@ -103,7 +103,7 @@ const SignUpNounous = () => {
         service8,
         nounouId,
       });
-      router.push("sign-in-nounous");
+      router.push("/sign-in-nounous");
     },
 
     [router]
