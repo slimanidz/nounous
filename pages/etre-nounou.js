@@ -1,5 +1,4 @@
 import React from "react";
-import ImageSrc from "../components/ImageSrc";
 
 const EtreNounou = () => {
   return (

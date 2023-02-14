@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from "react";
-import api from "../services/api";
-import ImageSrc from "./ImageSrc";
-import Modal from "./Modal";
-import { FaPhone } from "react-icons/fa";
-import { useAppContext } from "./AppContext";
-import Link from "next/link";
+
+import api from "../../services/api";
 
 const ServiceGet = () => {
   const [services, setServices] = useState([]);
