@@ -36,7 +36,7 @@ const ModalComments = (props) => {
       });
     },
 
-    []
+    [nounouId, session.id]
   );
   if (!open) {
     return null;

@@ -21,7 +21,7 @@ const CommentsGet = (props) => {
       setUsers(result);
     }
     fetchData();
-  }, []);
+  }, [nounouId]);
 
   if (!comments) {
     return <p>Loading </p>;

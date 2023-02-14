@@ -1,6 +1,6 @@
-import { Field, Form, Formik } from "formik"
-import React, { useCallback, useState } from "react"
-import api from "../services/api"
+import { Field, Form, Formik } from "formik";
+import React, { useCallback, useState } from "react";
+import api from "../services/api";
 
 const initialValues = {
   name1: false,
@@ -11,31 +11,31 @@ const initialValues = {
   name6: false,
   name7: false,
   name8: false,
-}
+};
 
 const ServicesNounous = (props) => {
   ////////////////////////////////////////////
-  const { nounouId } = props
-  const [checkedValue, setValue] = useState([])
+  const { nounouId } = props;
+  const [checkedValue, setValue] = useState([]);
 
   const hadleChange = (event) => {
-    const { value, checked } = event.target
+    const { value, checked } = event.target;
 
     if (checked) {
-      setValue((pre) => [...pre, value])
+      setValue((pre) => [...pre, value]);
     } else
       setValue((pre) => {
-        return [...pre.filter((skill) => skill !== value)]
-      })
-  }
-  const service1 = checkedValue[0]
-  const service2 = checkedValue[1]
-  const service3 = checkedValue[2]
-  const service4 = checkedValue[3]
-  const service5 = checkedValue[4]
-  const service6 = checkedValue[5]
-  const service7 = checkedValue[6]
-  const service8 = checkedValue[7]
+        return [...pre.filter((skill) => skill !== value)];
+      });
+  };
+  const service1 = checkedValue[0];
+  const service2 = checkedValue[1];
+  const service3 = checkedValue[2];
+  const service4 = checkedValue[3];
+  const service5 = checkedValue[4];
+  const service6 = checkedValue[5];
+  const service7 = checkedValue[6];
+  const service8 = checkedValue[7];
 
   const handleSubmit = useCallback(async () => {
     const {
@@ -50,8 +50,18 @@ const ServicesNounous = (props) => {
       service7,
       service8,
       nounouId,
-    })
-  }, [])
+    });
+  }, [
+    service1,
+    service2,
+    service3,
+    service4,
+    service5,
+    service6,
+    service7,
+    service8,
+    nounouId,
+  ]);
 
   return (
     <div>
@@ -131,7 +141,7 @@ const ServicesNounous = (props) => {
         </Form>
       </Formik>
     </div>
-  )
-}
+  );
+};
 
-export default ServicesNounous
+export default ServicesNounous;

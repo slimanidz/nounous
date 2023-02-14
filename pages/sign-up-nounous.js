@@ -106,7 +106,17 @@ const SignUpNounous = () => {
       router.push("/sign-in-nounous");
     },
 
-    [router]
+    [
+      service1,
+      service2,
+      service3,
+      service4,
+      service5,
+      service6,
+      service7,
+      service8,
+      router,
+    ]
   );
 
   const handleVisionOn = () => {

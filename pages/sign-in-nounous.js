@@ -52,7 +52,7 @@ const SignIn = () => {
         setErrors(["Oops. Something went wrong, please try again."]);
       }
     },
-    [setSessionNounou]
+    [setSessionNounou, router]
   );
 
   const handleVisionOff = () => {

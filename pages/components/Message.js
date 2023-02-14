@@ -39,7 +39,7 @@ const Message = (props) => {
       }
     },
 
-    []
+    [nounouId, session.id]
   );
 
   return (
