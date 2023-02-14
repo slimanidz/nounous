@@ -37,7 +37,7 @@ const ServiceGet = () => {
                   services: {service.service}
                 </span>
                 <span className="px-2  bg-blue-30">
-                  date d'inscription: {service.createdAt}
+                  date d&rsquo;inscription: {service.createdAt}
                 </span>
               </div>
             </div>

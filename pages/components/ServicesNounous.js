@@ -100,7 +100,9 @@ const ServicesNounous = (props) => {
               value="recuperer l'enfant de l'ecole"
               onChange={hadleChange}
             />
-            <span className="px-2">recuperer l'enfant de l'ecole</span>
+            <span className="px-2">
+              recuperer l&rsquo;enfant de l&rsquo;ecole
+            </span>
           </div>
           <div>
             {" "}

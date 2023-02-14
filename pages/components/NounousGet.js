@@ -261,8 +261,8 @@ const NounousGet = () => {
             </div>
             <div className="flex flex-col items-center justify-center gap-5 p-5">
               <p className="text-center">
-                vous n'ete pas connecter, vous deveraiez vous connecter pour
-                contacter les nounous
+                vous n&rsquo; ete pas connecter, vous deveraiez vous connecter
+                pour contacter les nounous
               </p>
               <Link
                 className="bg-blue-600 active:bg-blue-300 rounded-xl p-2 text-white font-bold"

@@ -296,7 +296,7 @@ const SignUpNounous = () => {
                         onChange={hadleChange}
                       />
                       <span className="px-2">
-                        recuperer l'enfant de l'ecole
+                        recuperer l&rsquo;enfant de l&rsquo;ecole
                       </span>
                     </div>
                     <div>
@@ -393,13 +393,13 @@ const SignUpNounous = () => {
                         className="form-check-input"
                       />
                       <label className="form-check-label">
-                        J'ai lu et j'accepte
+                        J&rsquo;ai lu et j&rsquo;accepte
                         <span className="underline decoration-solid">
                           <button
                             className="underline pl-1"
                             // onClick={handleClick}
                           >
-                            les conditions d'utilisation
+                            les conditions d&rsquo;utilisation
                           </button>
                         </span>
                         <span>*</span>
@@ -418,7 +418,7 @@ const SignUpNounous = () => {
                       className="text-center   focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50"
                       disabled={!formik.isValid || formik.isSubmitted}
                     >
-                      S'inscrire
+                      S&rsquo;inscrire
                     </button>
 
                     <Link href="/home" className="hover:underline pt-2">

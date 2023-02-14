@@ -100,7 +100,8 @@ export default function Home() {
             />
             <h1 className="font-bold text-xl">Gratuite</h1>
             <p className="text-center">
-              Se contacter et se rencontrer gratuitement ? Ici c'est possible
+              Se contacter et se rencontrer gratuitement ? Ici c&rsquo; est
+              possible
             </p>
           </div>
         </div>

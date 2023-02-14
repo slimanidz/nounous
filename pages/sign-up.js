@@ -218,13 +218,13 @@ const SignUp = () => {
                         className="form-check-input"
                       />
                       <label className="form-check-label">
-                        J'ai lu et j'accepte
+                        J&rsquo;ai lu et j&rsquo;accepte
                         <span className="underline decoration-solid">
                           <button
                             className="underline pl-1"
                             onClick={handleClick}
                           >
-                            les conditions d'utilisation
+                            les conditions d&rsquo;utilisation
                           </button>
                         </span>
                         <span>*</span>
@@ -244,7 +244,7 @@ const SignUp = () => {
                       className="text-center   focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50"
                       disabled={!formik.isValid || formik.isSubmitted}
                     >
-                      S'inscrire
+                      S&rsquo;inscrire
                     </button>
 
                     <Link href="/" className="hover:underline pt-2">

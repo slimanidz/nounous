@@ -21,8 +21,8 @@ const Conexion = () => {
         <p className=" pb-10 text-center">
           Bienvenu dans votre application NOUNOUS <br /> Pour accéder à toutes
           les fonctionnalités de votre application vous pouvez vous connecter
-          comme utilisateur si vous êtes chercheur d'une nounous, comme vous
-          pouvez vous connecter comme nounous si vous êtes une nounou!{" "}
+          comme utilisateur si vous êtes chercheur d&rsquo; une nounous, comme
+          vous pouvez vous connecter comme nounous si vous êtes une nounou!{" "}
         </p>
         <div className=" flex gap-5 justify-center">
           <div className="w-full flex flex-col items-center text-center gap-10 bg-red-30 ">
