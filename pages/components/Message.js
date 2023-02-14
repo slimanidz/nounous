@@ -17,23 +17,22 @@ const Message = (props) => {
   } = useAppContext();
 
   const handleSubmit = useCallback(
-    async ({ content, restform }) => {
+    async ({ content }, { resetForm }) => {
       const userId = session.id;
       console.log(content, userId);
       if (content === "") {
         return;
       }
       const {
-        data: { count },
+        data: { result },
       } = await api.post("/api/messages", {
         content,
         userId,
         nounouId,
       });
 
-      if (count) {
-        restform();
-        // router.push("/users/sign-in");
+      if (result) {
+        resetForm();
 
         return;
       }

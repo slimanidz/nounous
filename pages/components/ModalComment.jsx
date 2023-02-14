@@ -22,22 +22,20 @@ const ModalComments = (props) => {
   } = useAppContext();
   const nounouId = nounouId1;
 
-  const handleSubmit = useCallback(
-    async ({ content }) => {
-      console.log("hello");
-      const userId = session.id;
-      console.log(content, userId, nounouId);
-      const {
-        data: { result },
-      } = await api.post("/api/comments", {
-        content,
-        userId,
-        nounouId,
-      });
-    },
-
-    [nounouId, session.id]
-  );
+  const handleSubmit = async ({ content }, { resetForm }) => {
+    console.log("hello");
+    console.log(content, nounouId);
+    const {
+      data: { result },
+    } = await api.post("/api/comments", {
+      content,
+      userId: session.id,
+      nounouId,
+    });
+    if (result) {
+      resetForm();
+    }
+  };
   if (!open) {
     return null;
   }

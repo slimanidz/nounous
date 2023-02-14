@@ -157,6 +157,8 @@ const NounousGet = () => {
             <div className="w-full flex border-b-4 border-black rounded-xl">
               <ImageSrc
                 src="/images/nounou1.jpeg"
+                width="200"
+                height={32}
                 className="w-20 h-20 rounded-xl"
                 alt="image"
               />
@@ -220,11 +222,15 @@ const NounousGet = () => {
             <div className="flex flex-col items-center gap-5 mt-20">
               <ImageSrc
                 src="/images/nounou1.jpeg"
+                width="200"
+                height={32}
                 className="w-48 h-15 rounded-xl"
                 alt="nounou"
               />
               <div>
-                <h1>name :{nounou.username}</h1>
+                <h1>
+                  name :<span className="font-bold ">{nounou.username}</span>
+                </h1>
                 <p>localite: {nounou.localite}</p>
                 <p>E-mail: {nounou.email}</p>
                 <div className="flex gap-3">

@@ -8,6 +8,7 @@ import { BiShowAlt, BiLowVision } from "react-icons/bi";
 import Link from "next/link";
 import api from "../services/api";
 import Page from "./components/Page";
+import ImageSrc from "./components/ImageSrc";
 // import validationSchema from "../components/Validateur";
 // import ImageSrc from "../components/ImageSrc";
 // import Page from "../components/Page";
@@ -82,7 +83,13 @@ const SignUp = () => {
       <div className="h-full flex flex-col">
         <div className=" flex flex-col grow items-center bg-gradient-to-b from-gray-100 to-gray-500  ">
           <div className=" py-10">
-            {/* <ImageSrc src="/logo/logo-nounous.png" className="w-48 h-15" /> */}
+            <ImageSrc
+              src="/logo/logo-nounous.png"
+              width="200"
+              height={32}
+              className="w-48 h-15"
+              alt="logo-nounous"
+            />
           </div>
           <div>
             <div className="text-center">

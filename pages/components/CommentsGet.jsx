@@ -30,13 +30,13 @@ const CommentsGet = (props) => {
   return (
     <div>
       <h1 className=" text-3xl font-bold p-3"> Les commentaires:</h1>
-      <ul>
+      <ul className="flex flex-col-reverse">
         {comments.map((comment) => (
           <div key={comment.id} className="flex w-full bg-blue-20">
             <li className="m-2 p-2  bg-red-200 rounded-full flex items-center">
               {users.map((user) =>
                 user.id === comment.userId ? (
-                  <p key={user.id}> {user.username}</p>
+                  <p key={comment.id}> {user.username}</p>
                 ) : null
               )}
             </li>

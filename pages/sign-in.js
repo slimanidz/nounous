@@ -84,7 +84,13 @@ const SignIn = () => {
       <div className="h-full flex flex-col">
         <div className=" grow flex flex-col items-center bg-gradient-to-b from-gray-100 to-gray-500 ">
           <div className=" py-10">
-            <ImageSrc src="/logo/logo-nounous.png" className="w-48 h-15" />
+            <ImageSrc
+              src="/logo/logo-nounous.png"
+              width="200"
+              height={32}
+              className="w-48 h-15"
+              alt="logo-nounous"
+            />
           </div>
           <div className="bg-white p-10  rounded-xl shadow-lg shadow-white">
             <h1 className=" text-center text-4xl font-bold mb-5  bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-900 ">

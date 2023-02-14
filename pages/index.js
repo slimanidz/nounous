@@ -32,11 +32,14 @@ export default function Home() {
         {/* {session ? <p>{session.user.email}</p> : null}
         {session1 ? <p>{session1.nounou.email}</p> : null} */}
         <div className="bg-red-300 relative">
-          {" "}
           <ImageSrc
-            src="images/bg-nounou.webp"
+            src="/images/bg-nounou.webp"
+            width="1500"
+            height="100"
             className="w-full md:h-[500px] "
+            alt="bg-nounou"
           />
+
           <div className="w-full flex items-center justify-center bg-red-20 flex-co gap-  absolute top-[80%]">
             <Link
               href="https://www.service-public.fr/particuliers/vosdroits/F798#:~:text=Pour%20devenir%20assistante%20maternelle%20agr%C3%A9%C3%A9e,sur%20un%20site%20internet%20d%C3%A9di%C3%A9."
@@ -62,21 +65,39 @@ export default function Home() {
         </div>
         <div className="md:flex items-center gap-5 justify-center">
           <div className="md:w-64 md:h-64 m-3 bg-slate-300 border-4 border-slate-400 rounded-xl flex justify-center  gap-2 md:flex-col items-center">
-            <ImageSrc src="logo/logo-nounous1.png" className="w-32 h-20" />
+            <ImageSrc
+              src="/logo/logo-nounous1.png"
+              width="200"
+              height={32}
+              className="w-32 h-20"
+              alt="logo-nounous1"
+            />
             <h1 className="font-bold text-xl">Securiser et efficace</h1>
             <p className="text-center">
               Tous les jours, des centaines de nouvelles annonces.
             </p>
           </div>
           <div className="md:w-64 md:h-64 m-3 bg-slate-300 border-4 border-slate-400 rounded-xl flex justify-center  gap-2 md:flex-col items-center">
-            <ImageSrc src="logo/nounous2.png" className="w-32 h-20" />
+            <ImageSrc
+              src="/logo/nounous2.png"
+              width="200"
+              height={32}
+              className="w-32 h-20"
+              alt="nounous2"
+            />
             <h1 className="font-bold text-xl">Confiance</h1>
             <p className="text-center">
               Profils complets, vérifications, avis : recrutez sereinement.
             </p>
           </div>
           <div className="md:w-64 md:h-64 m-3 bg-slate-300 border-4 border-slate-400 rounded-xl flex justify-center  gap-2 md:flex-col items-center">
-            <ImageSrc src="logo/nounou-free.png" className="w-32 h-20" />
+            <ImageSrc
+              src="/logo/nounou-free.png"
+              width="200"
+              height={32}
+              className="w-32 h-20"
+              alt="nounou-free"
+            />
             <h1 className="font-bold text-xl">Gratuite</h1>
             <p className="text-center">
               Se contacter et se rencontrer gratuitement ? Ici c'est possible

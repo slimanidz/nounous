@@ -138,7 +138,13 @@ const SignUpNounous = () => {
       <div className=" flex flex-col">
         <div className=" flex flex-col grow items-center bg-gradient-to-b from-gray-100 to-gray-500  rounded-md border-2 border-indigo-600 ">
           <div className=" py-10">
-            <ImageSrc src="/logo/logo-nounous.png" className="w-48 h-15" />
+            <ImageSrc
+              src="/logo/logo-nounous.png"
+              width="200"
+              height={32}
+              className="w-48 h-15"
+              alt="logo-nounous"
+            />
           </div>
           <div>
             <div className="text-center">
@@ -410,7 +416,7 @@ const SignUpNounous = () => {
                     <button
                       type="submit"
                       className="text-center   focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50"
-                      // disabled={!formik.isValid || formik.isSubmitted}
+                      disabled={!formik.isValid || formik.isSubmitted}
                     >
                       S'inscrire
                     </button>

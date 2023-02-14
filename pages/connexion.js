@@ -12,7 +12,10 @@ const Conexion = () => {
         <div className=" pt-[10%]  w-full flex justify-center">
           <ImageSrc
             src="/logo/logo-nounous.png"
-            className="w-48 md:w-64 h-32 md:h-48"
+            width="200"
+            height={32}
+            className="w- md:w-64 h- md:h-48"
+            alt="logo-nounous"
           />
         </div>
         <p className=" pb-10 text-center">

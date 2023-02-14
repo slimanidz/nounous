@@ -39,7 +39,13 @@ const Header = () => {
     <header className="flex justify-between">
       {/* <BurgerMenu /> */}
       <div className=" flex justify-center grow p-2">
-        <ImageSrc src="/logo/logo-nounous.png" className="w-32 md:w-48 h-10" />
+        <ImageSrc
+          src="/logo/logo-nounous.png"
+          width="200"
+          height={32}
+          className="w-32 md:w-48 h-10"
+          alt="logo-nounous"
+        />
       </div>
       {session || sessionNounou ? (
         <div className="flex items-center ">
