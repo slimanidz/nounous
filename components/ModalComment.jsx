@@ -2,7 +2,7 @@ const { default: classNames } = require("classnames");
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import Link from "next/link";
 import React, { useCallback, useEffect, useState } from "react";
-import api from "../../services/api";
+import api from "../services/api";
 import { useAppContext } from "./AppContext";
 import CommentsGet from "./CommentsGet";
 

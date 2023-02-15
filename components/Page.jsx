@@ -1,8 +1,8 @@
-import Footer from "./Footer"
-import Header from "./Header"
+import Footer from "./Footer";
+import Header from "./Header";
 
 const Page = (props) => {
-  const { children } = props
+  const { children } = props;
 
   return (
     <div className="h-screen flex flex-col ">
@@ -12,6 +12,6 @@ const Page = (props) => {
 
       <Footer />
     </div>
-  )
-}
-export default Page
+  );
+};
+export default Page;

@@ -7,8 +7,8 @@ import { BiShowAlt, BiLowVision } from "react-icons/bi";
 import Link from "next/link";
 
 import api from "../services/api";
-import ImageSrc from "./components/ImageSrc";
-import Page from "./components/Page";
+import Page from "../components/Page";
+import ImageSrc from "../components/ImageSrc";
 
 const initialValues = {
   username: "",

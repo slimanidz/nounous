@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React from "react";
-import NounousGet from "./components/NounousGet";
+import NounousGet from "../components/NounousGet";
 // import NounousGet from "../components/NounousGet";
 
 const Nounous = () => {

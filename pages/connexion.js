@@ -1,9 +1,7 @@
 import Link from "next/link";
 import React from "react";
-import ImageSrc from "./components/ImageSrc";
-import Page from "./components/Page";
-// import ImageSrc from "../components/ImageSrc"
-// import Page from "../components/Page"
+import ImageSrc from "../components/ImageSrc";
+import Page from "../components/Page";
 
 const Conexion = () => {
   return (

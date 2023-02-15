@@ -5,10 +5,11 @@ import { AxiosError } from "axios";
 import { BiShowAlt, BiLowVision } from "react-icons/bi";
 import api from "../services/api";
 import Link from "next/link";
-import { useAppContext } from "./components/AppContext";
-import Page from "./components/Page";
-import ImageSrc from "./components/ImageSrc";
+
 import { API_STATUS_CONNECT } from "../services/makeApiClient";
+import { useAppContext } from "../components/AppContext";
+import Page from "../components/Page";
+import ImageSrc from "../components/ImageSrc";
 
 const initialValues = {
   email: "",

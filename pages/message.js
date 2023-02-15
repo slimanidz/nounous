@@ -1,5 +1,5 @@
 import React from "react";
-import MessagesGet from "./components/MessagesGet";
+import MessagesGet from "../components/MessagesGet";
 
 const message = () => {
   return (

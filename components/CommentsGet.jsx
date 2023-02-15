@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import api from "../../services/api";
+import api from "../services/api";
+// import api from "../services/api";
 import formatLongDateTime from "./formateurs/FormatDate";
 
 const CommentsGet = (props) => {

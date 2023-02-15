@@ -1,11 +1,12 @@
 import Head from "next/head";
 import Link from "next/link";
+import { useAppContextNounou } from "../components/AppContextNounou";
+import Header from "../components/Header";
+import ImageSrc from "../components/ImageSrc";
+import NounousGet from "../components/NounousGet";
+import Page from "../components/Page";
 import styles from "../styles/Home.module.css";
-import { useAppContextNounou } from "./components/AppContextNounou";
-import Header from "./components/Header";
-import ImageSrc from "./components/ImageSrc";
-import NounousGet from "./components/NounousGet";
-import Page from "./components/Page";
+
 import Nounous from "./nounous";
 
 export default function Home() {

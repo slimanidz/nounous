@@ -11,7 +11,7 @@ import { Field, Form, Formik } from "formik";
 import ModalComments from "./ModalComment";
 import { useAppContextNounou } from "./AppContextNounou";
 import Message from "./Message";
-import api from "../../services/api";
+import api from "../services/api";
 
 const initialValue = {
   adresse: "",

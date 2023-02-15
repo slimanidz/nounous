@@ -7,9 +7,9 @@ import { BiShowAlt, BiLowVision } from "react-icons/bi";
 
 import Link from "next/link";
 import api from "../services/api";
-import { useAppContextNounou } from "./components/AppContextNounou";
-import Page from "./components/Page";
-import ImageSrc from "./components/ImageSrc";
+import { useAppContextNounou } from "../components/AppContextNounou";
+import Page from "../components/Page";
+import ImageSrc from "../components/ImageSrc";
 
 const initialValues = {
   email: "",

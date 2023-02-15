@@ -2,19 +2,12 @@ import React, { useCallback, useState } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import { useRouter } from "next/router.js";
 import { AxiosError } from "axios";
-// import Modal from "@/components/Modal.jsx";
-// import Link from "@/components/Link";
+
 import { BiShowAlt, BiLowVision } from "react-icons/bi";
 import Link from "next/link";
 import api from "../services/api";
-import Page from "./components/Page";
-import ImageSrc from "./components/ImageSrc";
-// import ImageSrc from "../components/ImageSrc";
-// import Page from "../components/Page";
-// import Button from "@/components/Button";
-// import Footer from "@/components/Footer";
-// import ImageSrc from "@/components/ImageSrc";
-// import getRandomInt from "@/components/Random";
+import Page from "../components/Page";
+import ImageSrc from "../components/ImageSrc";
 
 const initialValues = {
   username: "",
