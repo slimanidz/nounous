@@ -23,7 +23,7 @@ const MessagesGet = () => {
       } = await api.get(`/api/messages/${nounouId}`);
       setMessages(result1);
     })();
-  }, [sessionNounou.id]);
+  }, []);
 
   if (!messages) {
     return <p>Loading </p>;

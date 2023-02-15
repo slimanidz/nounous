@@ -18,7 +18,6 @@ const Message = (props) => {
   const handleSubmit = useCallback(
     async ({ content }, { resetForm }) => {
       const userId = session.id;
-      console.log(content, userId);
       if (content === "") {
         return;
       }
@@ -37,7 +36,7 @@ const Message = (props) => {
       }
     },
 
-    [nounouId, session.id]
+    [nounouId]
   );
 
   return (
