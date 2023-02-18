@@ -1,5 +1,5 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import React, { useCallback } from "react";
+import React, { useCallback, useState } from "react";
 import api from "../services/api";
 // import api from "../services/api"
 import { useAppContext } from "./AppContext";
@@ -14,6 +14,7 @@ const Message = (props) => {
   const {
     state: { session },
   } = useAppContext();
+  const [isSended, setIsSended] = useState(false);
 
   const handleSubmit = useCallback(
     async ({ content }, { resetForm }) => {
@@ -31,6 +32,7 @@ const Message = (props) => {
 
       if (result) {
         resetForm();
+        setIsSended(true);
 
         return;
       }
@@ -44,6 +46,12 @@ const Message = (props) => {
       <Formik initialValues={initialValues} onSubmit={handleSubmit}>
         <Form className="flex flex-col gap-3 justify-center items-center">
           <div className="flex flex-col">
+            {isSended ? (
+              <div className="text-xl text-center font-bold">
+                Message envoyer
+              </div>
+            ) : null}
+
             <label>content **:</label>
             <Field
               as="textarea"

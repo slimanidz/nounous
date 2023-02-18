@@ -8,7 +8,6 @@ import { BiRightArrowAlt } from "react-icons/bi";
 import { useAppContext } from "./AppContext";
 import Link from "next/link";
 import { Field, Form, Formik } from "formik";
-import ModalComments from "./ModalComment";
 import { useAppContextNounou } from "./AppContextNounou";
 import Message from "./Message";
 import api from "../services/api";
@@ -21,6 +20,7 @@ const NounousGet = () => {
   const {
     state: { session },
   } = useAppContext();
+  const { setNounouIdC1 } = useAppContext();
   const {
     state: { sessionNounou },
   } = useAppContextNounou();
@@ -32,21 +32,16 @@ const NounousGet = () => {
   const [nounouService, setNounouService] = useState([]);
   const [openModal, setOpenModal] = useState(false);
   const [openModalServices, setOpenModalServices] = useState(false);
-  const [openModalComments, setOpenModalComments] = useState(false);
   const [isActive, setIsActive] = useState(false);
 
   const onClose = () => {
     setOpenModal(false);
     setOpenModalServices(false);
-    setOpenModalComments(false);
   };
 
   const handleClickComment = async (event) => {
     const nounouId = Number(event.currentTarget.getAttribute("data-id"));
-    console.log({ nounouIddd: nounouId });
-    setNounouIdComment(nounouId);
-    console.log({ nounouIdComment: nounouIdComment });
-    setOpenModalComments(true);
+    setNounouIdC1(nounouId);
   };
 
   const handelFilter = useCallback(async ({ adresse }) => {
@@ -100,27 +95,11 @@ const NounousGet = () => {
       )
     );
     setServices(servicefiltre);
-
     setOpenModalServices(true);
     const {
       data: { result },
     } = await api.get(`/api/nounous/${nounouId}`);
     setNounouService(result);
-  };
-
-  const handleClickComment2 = (event) => {
-    const nounouId = Number(event.currentTarget.getAttribute("data-id"));
-    console.log({ nounouIddd: nounouId });
-    setNounouIdComment(nounouId);
-    console.log({ nounouIdComment: nounouIdComment });
-    setOpenModalComments(true);
-    // const {
-    //   data: { result },
-    // } = await api.get(`/nounous/${nounouId}`)
-    // setNounou(result)
-    // setOpenModal(true)
-
-    // setOpenModal(true)
   };
 
   return (
@@ -189,13 +168,14 @@ const NounousGet = () => {
               >
                 services
               </button>
-              <button
+              <Link
+                href="/comments"
                 className="border-b-2 border-black hover:bg-slate-600 hover:text-white rounded-xl px-2"
                 onClick={handleClickComment}
                 data-id={nounou.id}
               >
                 commantaire
-              </button>
+              </Link>
             </div>
           </li>
         ))}
@@ -360,20 +340,6 @@ const NounousGet = () => {
           </div>
         </div>
       </Modal>
-      <ModalComments
-        className=" h-screen bg-slate-50 flex "
-        open={openModalComments}
-        nounouId1={nounouIdComment}
-      >
-        <div className=" flex justify-end ">
-          <button
-            className="p-2 bg-blue-700 active:bg-blue-300 text-white text-3xl font-bold rounded-xl"
-            onClick={onClose}
-          >
-            X
-          </button>
-        </div>
-      </ModalComments>
     </div>
   );
 };

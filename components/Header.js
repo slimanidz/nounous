@@ -5,6 +5,7 @@ import ImageSrc from "./ImageSrc";
 import Link from "next/link";
 import { useAppContext } from "./AppContext";
 import { useAppContextNounou } from "./AppContextNounou";
+import BurgerMenu from "./BergerMenu";
 
 const Header = () => {
   const router = useRouter();
@@ -35,7 +36,7 @@ const Header = () => {
 
   return (
     <header className="flex justify-between">
-      {/* <BurgerMenu /> */}
+      <BurgerMenu />
       <div className=" flex justify-center grow p-2">
         <ImageSrc
           src="/logo/logo-nounous.png"

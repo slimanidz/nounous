@@ -20,6 +20,7 @@ export default function Home() {
   //   }
   //   fetchData();
   // }, []);
+  const userId = 122;
 
   return (
     <Page className={styles.container}>

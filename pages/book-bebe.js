@@ -3,7 +3,9 @@ import Page from "../components/Page";
 const BookBebe = () => {
   return (
     <Page>
-      <div>livres pour enfants</div>
+      <div className="h-screen bg-cover bg-[url('/images/bg-nounou.webp')] bg-no-repeat">
+        <p>livres pour enfants</p>
+      </div>
     </Page>
   );
 };

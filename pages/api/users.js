@@ -14,8 +14,9 @@ const usersRoutes = async (req, res) => {
 
       return;
     }
+    const [{ count }] = await User.query().count();
 
-    res.status(200).send({ result: users });
+    res.status(200).send({ result: users, count });
   }
 
   if (req.method === "POST") {

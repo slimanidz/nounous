@@ -6,6 +6,7 @@ import {
   useEffect,
   useState,
 } from "react";
+import api from "../services/api";
 const AppContext = createContext();
 const initialState = {
   session: null,
@@ -45,12 +46,47 @@ const AppContextProvider = (props) => {
     setSession(localStorage.getItem("session_jwt"));
   }, [setSession]);
 
+  ///////////////////////////////////////////////
+
+  const [nounouIdC, setNounouIdC] = useState(0);
+
+  const setNounouIdC1 = useCallback((nounouId) => {
+    setNounouIdC(nounouId);
+  }, []);
+  console.log(nounouIdC);
+
+  const [countComments, setCountComments] = useState(0);
+  const [comments, setComments] = useState([]);
+  const addComments = useCallback(
+    (...comments) => setComments((previous) => [...previous, ...comments]),
+    []
+  );
+
+  useEffect(() => {
+    (async () => {
+      const nounouId = nounouIdC;
+      const {
+        data: { result1, count },
+      } = await api.get(`/api/comments/${nounouId}`);
+      console.log({ tez: nounouId });
+      console.log({ tez1: result1 });
+      addComments(...result1);
+      setCountComments(count);
+    })();
+  }, [addComments, nounouIdC]);
+
+  console.log(comments);
+
   return (
     <AppContext.Provider
       {...props}
       value={{
         setSession,
         state,
+        setNounouIdC1,
+        nounouIdC,
+        addComments,
+        comments,
       }}
     />
   );
