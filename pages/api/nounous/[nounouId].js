@@ -90,16 +90,18 @@ const userIdRoutes = async (req, res) => {
 
   if (req.method === "DELETE") {
     const {
-      params: { id },
+      query: { nounouId },
     } = req;
 
-    const user = await User.query().deleteById(id).returning("*");
+    console.log(nounouId);
 
-    if (!user) {
+    const nounou = await Nounou.query().deleteById(nounouId).returning("*");
+
+    if (!nounou) {
       res.status(404).send({ error: "Erreur. Aucun utilisateur pour cet ID." });
     }
 
-    res.status(200).send(user);
+    res.status(200).send({ result: nounou });
   }
 };
 

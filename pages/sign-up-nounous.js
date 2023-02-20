@@ -9,6 +9,7 @@ import Link from "next/link";
 import api from "../services/api";
 import Page from "../components/Page";
 import ImageSrc from "../components/ImageSrc";
+import validationSchema from "../components/validateurs/Valitateur";
 
 const initialValues = {
   username: "",
@@ -75,13 +76,10 @@ const SignUpNounous = () => {
         localite,
         situation,
         password,
-      })(result.id);
+      });
 
       const nounouId = result.id;
-
-      const {
-        data: { count },
-      } = await api.post("/services", {
+      console.log({
         service1,
         service2,
         service3,
@@ -92,6 +90,21 @@ const SignUpNounous = () => {
         service8,
         nounouId,
       });
+
+      const {
+        data: { result1 },
+      } = await api.post("/api/services", {
+        service1,
+        service2,
+        service3,
+        service4,
+        service5,
+        service6,
+        service7,
+        service8,
+        nounouId,
+      });
+      console.log(result1);
       router.push("/sign-in-nounous");
     },
 
@@ -159,7 +172,11 @@ const SignUpNounous = () => {
             </div>
           ) : null} */}
 
-            <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+            <Formik
+              initialValues={initialValues}
+              onSubmit={handleSubmit}
+              validationSchema={validationSchema}
+            >
               {(formik) => (
                 <Form className="flex flex-col gap-3">
                   <div className="flex flex-col">
@@ -243,6 +260,11 @@ const SignUpNounous = () => {
                       </option>
                       <option value="autre">autre</option>
                     </Field>
+                    <ErrorMessage
+                      name="type"
+                      component="small"
+                      className="text-red-600"
+                    />
                   </div>
                   {/* kkkkkkkkkkkkkkkkkkkkkk */}
                   <div className="flex flex-col gap-3 ">

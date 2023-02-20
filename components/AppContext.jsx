@@ -70,7 +70,7 @@ const AppContextProvider = (props) => {
       } = await api.get(`/api/comments/${nounouId}`);
       console.log({ tez: nounouId });
       console.log({ tez1: result1 });
-      addComments(...result1);
+      setComments(result1);
       setCountComments(count);
     })();
   }, [addComments, nounouIdC]);

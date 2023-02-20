@@ -6,10 +6,10 @@ import { BiShowAlt, BiLowVision } from "react-icons/bi";
 import api from "../services/api";
 import Link from "next/link";
 
-import { API_STATUS_CONNECT } from "../services/makeApiClient";
 import { useAppContext } from "../components/AppContext";
 import Page from "../components/Page";
 import ImageSrc from "../components/ImageSrc";
+import validationSchemaSignIn from "../components/validateurs/validationSchemaSignIn";
 
 const initialValues = {
   email: "",
@@ -106,7 +106,11 @@ const SignIn = () => {
               </div>
             ) : null}
 
-            <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+            <Formik
+              initialValues={initialValues}
+              onSubmit={handleSubmit}
+              validationSchema={validationSchemaSignIn}
+            >
               <Form>
                 <div className="flex flex-col">
                   <label>Email *:</label>

@@ -32,6 +32,10 @@ const nounousRoutes = async (req, res) => {
         password,
       },
     } = req;
+    if (email === null || email === "") {
+      res.status(400).send({ error: "Erreur. Champs email obligatoire." });
+      return;
+    }
     const { hash, salt } = hashPassword(password);
     const nounou = await Nounou.query()
       .insert({
@@ -45,10 +49,6 @@ const nounousRoutes = async (req, res) => {
         passwordSalt: salt,
       })
       .returning("*");
-    if (email === null || email === "") {
-      res.status(400).send({ error: "Erreur. Champs email obligatoire." });
-      return;
-    }
     res.status(200).send({ result: nounou });
   }
 };

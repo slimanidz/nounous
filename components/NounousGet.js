@@ -32,7 +32,6 @@ const NounousGet = () => {
   const [nounouService, setNounouService] = useState([]);
   const [openModal, setOpenModal] = useState(false);
   const [openModalServices, setOpenModalServices] = useState(false);
-  const [isActive, setIsActive] = useState(false);
 
   const onClose = () => {
     setOpenModal(false);
@@ -43,6 +42,15 @@ const NounousGet = () => {
     const nounouId = Number(event.currentTarget.getAttribute("data-id"));
     setNounouIdC1(nounouId);
   };
+  const handleClearSearch = useCallback(() => {
+    (async () => {
+      const {
+        data: { result },
+      } = await api.get("/api/nounous");
+      setNounous(result);
+      setAdresse("");
+    })();
+  }, []);
 
   const handelFilter = useCallback(async ({ adresse }) => {
     if (adresse === "") {
@@ -53,6 +61,7 @@ const NounousGet = () => {
       data: { result },
     } = await api.get(`/api/adresse/${adresse}`);
     setNounous(result);
+    setAdresse(adresse);
   }, []);
 
   useEffect(() => {
@@ -65,7 +74,17 @@ const NounousGet = () => {
   }, []);
 
   if (!nounous) {
-    return <p>Loading </p>;
+    return (
+      <div className="flex flex-col justify-center items-center">
+        No Nounous ! Sorry
+        <ImageSrc
+          width="200"
+          height="200"
+          src="/images/ico-triste.jpg"
+          alt="image"
+        />
+      </div>
+    );
   }
 
   const handleClickContact = async (event) => {
@@ -112,11 +131,23 @@ const NounousGet = () => {
               <p className="md:text-xl md:font-bold">
                 Trounver une nounou proche de vous!
               </p>
-              <Field
-                className=" border-2 border-black px-2 rounded-xl"
-                name="adresse"
-                placeholder="entrer votre ville"
-              />
+              <div className=" flex items-center border-2 border-black px-2 rounded-xl">
+                <Field
+                  className="bg-red-200"
+                  name="adresse"
+                  placeholder="entrer votre ville"
+                />
+                {adresse ? (
+                  <button
+                    type="button"
+                    onClick={handleClearSearch}
+                    className=" border-2 border-black rounded-full px-1 "
+                  >
+                    X
+                  </button>
+                ) : null}
+              </div>
+
               <button
                 type="submit"
                 className="bg-blue-600 active:bg-blue-300 text-white font-bold px-2 py-1 rounded-xl"
@@ -180,6 +211,18 @@ const NounousGet = () => {
           </li>
         ))}
       </ul>
+      {nounous.length === 0 ? (
+        <div className="flex flex-col justify-center items-center">
+          No Nounous ! Sorry
+          <ImageSrc
+            width="200"
+            height="200"
+            src="/images/ico-triste.jpg"
+            alt="triste"
+          />
+        </div>
+      ) : null}
+
       <Modal
         className={
           session || sessionNounou

@@ -10,6 +10,7 @@ import api from "../services/api";
 import { useAppContextNounou } from "../components/AppContextNounou";
 import Page from "../components/Page";
 import ImageSrc from "../components/ImageSrc";
+import validationSchemaSignIn from "../components/validateurs/validationSchemaSignIn";
 
 const initialValues = {
   email: "",
@@ -87,7 +88,11 @@ const SignIn = () => {
               </div>
             ) : null}
 
-            <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+            <Formik
+              initialValues={initialValues}
+              onSubmit={handleSubmit}
+              validationSchema={validationSchemaSignIn}
+            >
               <Form>
                 <div className="flex flex-col">
                   <label>Email or username *:</label>

@@ -23,7 +23,7 @@ const AppContextNounouProvider = (props) => {
   const setSessionNounou = useCallback(
     (jwt) => {
       if (!jwt) {
-        localStorage.removeItem("session_jwt");
+        localStorage.removeItem("sessionNounou_jwt");
         updateState({ sessionNounou: null });
 
         return;
@@ -34,7 +34,7 @@ const AppContextNounouProvider = (props) => {
         Buffer.from(jwt.split(".")[1], "base64").toString("utf-8")
       );
 
-      localStorage.setItem("session_jwt", jwt);
+      localStorage.setItem("sessionNounou_jwt", jwt);
 
       updateState({ sessionNounou });
     },
@@ -42,7 +42,7 @@ const AppContextNounouProvider = (props) => {
   );
 
   useEffect(() => {
-    setSessionNounou(localStorage.getItem("session_jwt"));
+    setSessionNounou(localStorage.getItem("sessionNounou_jwt"));
   }, [setSessionNounou]);
 
   return (

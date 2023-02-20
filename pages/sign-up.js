@@ -8,6 +8,7 @@ import Link from "next/link";
 import api from "../services/api";
 import Page from "../components/Page";
 import ImageSrc from "../components/ImageSrc";
+import validationSchema from "../components/validateurs/Valitateur";
 
 const initialValues = {
   username: "",
@@ -103,7 +104,11 @@ const SignUp = () => {
             </div>
           ) : null} */}
 
-            <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+            <Formik
+              initialValues={initialValues}
+              onSubmit={handleSubmit}
+              validationSchema={validationSchema}
+            >
               {(formik) => (
                 <Form>
                   <div className="flex flex-col">

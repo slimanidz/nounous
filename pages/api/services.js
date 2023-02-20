@@ -1,6 +1,4 @@
 import Service from "../../src/api/db/models/Service";
-import hashPassword from "../../src/hashPassword";
-// import hashPassword from "../../src/hashPassword";
 
 const usersRoutes = async (req, res) => {
   // if (!auth(req, res)) {
@@ -35,7 +33,17 @@ const usersRoutes = async (req, res) => {
         nounouId,
       },
     } = req;
-    const { hash, salt } = hashPassword(password);
+    console.log({
+      service1,
+      service2,
+      service3,
+      service4,
+      service5,
+      service6,
+      service7,
+      service8,
+      nounouId,
+    });
     const service = await Service.query()
       .insert({
         service1,
@@ -49,11 +57,8 @@ const usersRoutes = async (req, res) => {
         nounouId,
       })
       .returning("*");
-    if (email === null || email === "") {
-      res.status(400).send({ error: "Erreur. Champs email obligatoire." });
-      return;
-    }
-    res.status(200).send({ result: service });
+
+    res.status(200).send({ result1: service });
   }
 };
 
