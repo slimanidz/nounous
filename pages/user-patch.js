@@ -24,6 +24,7 @@ const UserPatch = () => {
     setSession,
   } = useAppContext();
   const router = useRouter();
+  const [user, setUser] = useState([]);
   const [errors, setErrors] = useState([]);
   const [openModal, setOpenModal] = useState(false);
   const [data, setData] = useState([]);
@@ -38,6 +39,17 @@ const UserPatch = () => {
     setOpenModal(false);
     setActive(false);
   };
+
+  ///////playcolder
+
+  useEffect(() => {
+    (async () => {
+      const {
+        data: { result },
+      } = await api.get(`/api/users/${session.email}`);
+      setUser(result);
+    })();
+  }, [session.email]);
 
   const handleSubmit = useCallback(
     async ({ password }) => {
@@ -55,6 +67,7 @@ const UserPatch = () => {
 
       if (session) {
         const userId = session.email;
+
         const email = session.email;
 
         /////////checPassword
@@ -148,7 +161,7 @@ const UserPatch = () => {
                 <Field
                   type="email"
                   name="email1"
-                  placeholder={`${session.email}`}
+                  placeholder={`${user.email}`}
                   className="border-2 border-black px-2 rounded"
                 />
                 <ErrorMessage
@@ -162,7 +175,7 @@ const UserPatch = () => {
                 <Field
                   type="text"
                   name="username1"
-                  placeholder={`${session.username}`}
+                  placeholder={`${user.username}`}
                   className="border-2 border-black px-2 rounded "
                 />
                 <ErrorMessage
@@ -177,7 +190,7 @@ const UserPatch = () => {
                 <Field
                   type="number"
                   name="telephone1"
-                  placeholder={`${session.talephone}`}
+                  placeholder={`${user.telephone}`}
                   className="border-2 border-black px-2 rounded"
                 />
                 <ErrorMessage

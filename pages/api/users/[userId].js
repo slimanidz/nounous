@@ -26,7 +26,7 @@ const userIdRoutes = async (req, res) => {
 
     const [user] = await User.query()
       .where({ email: userId })
-      .select("id", "email", "username");
+      .select("id", "email", "username", "telephone");
 
     if (!user) {
       res.status(200).send("Ok");
