@@ -17,11 +17,8 @@ const Comments = () => {
   const { nounouIdC, addComments } = useAppContext();
 
   const nounouId = nounouIdC;
-  console.log({ nounouId: nounouId });
 
   const handleSubmit = async ({ content }, { resetForm }) => {
-    console.log("hello");
-    console.log(content, nounouId);
     const {
       data: { result },
     } = await api.post("/api/comments", {
@@ -29,7 +26,6 @@ const Comments = () => {
       userId: session.id,
       nounouId,
     });
-    console.log({ rsult: result });
     addComments(result);
     resetForm();
     if (result) {

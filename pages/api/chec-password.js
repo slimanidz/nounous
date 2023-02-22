@@ -1,5 +1,3 @@
-import jsonwebtoken from "jsonwebtoken";
-import config from "../../src/api/config";
 import User from "../../src/api/db/models/User";
 import hashPassword from "../../src/hashPassword";
 
@@ -15,24 +13,14 @@ const handler = async (req, res) => {
       ? hashPassword(password, user.passwordSalt)
       : false;
     if (!user || !{ hash, salt } || user.passwordHash !== hash) {
-      res.send({ error: "erreur dans l'email ou le mot de passe" });
+      res.send({
+        error: "Oooops! erreur dans l'email ou le mot de passe",
+      });
 
       return;
     }
-    const jwt = jsonwebtoken.sign(
-      {
-        payload: {
-          id: user.id,
-          username: user.username,
-          email: user.email,
-          talephone: user.telephone,
-          role: user.role,
-        },
-      },
-      config.security.session.jwtSecret,
-      { expiresIn: config.security.session.expiresIn }
-    );
-    res.send({ result: [{ jwt }] });
+
+    res.send({ resultchec: user });
   }
 };
 

@@ -6,32 +6,21 @@ import ImageSrc from "../components/ImageSrc";
 import NounousGet from "../components/NounousGet";
 import Page from "../components/Page";
 import styles from "../styles/Home.module.css";
-
 import Nounous from "./nounous";
 
 export default function Home() {
   const {
     state: { sessionNounou },
   } = useAppContextNounou();
-  // useEffect(() => {
-  //   async function fetchData() {
-  //     const result = await fetch("/api/users").then((r) => r.json());
-  //     console.log({ result: result });
-  //   }
-  //   fetchData();
-  // }, []);
-  const userId = 122;
 
   return (
-    <Page className={styles.container}>
+    <Page>
       <Head>
         <title>Nounous</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <div className=" flex flex-col p-3 items-cente grow overflow-y-auto">
-        {/* {session ? <p>{session.user.email}</p> : null}
-        {session1 ? <p>{session1.nounou.email}</p> : null} */}
+      <div className=" flex flex-col  items-cente grow overflow-y-auto">
         <div className="bg-red-300 relative">
           <ImageSrc
             src="/images/bg-nounou.webp"

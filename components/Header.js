@@ -35,7 +35,7 @@ const Header = () => {
   };
 
   return (
-    <header className="flex justify-between">
+    <header className="w-full flex justify-between">
       <BurgerMenu />
       <div className=" flex justify-center grow p-2">
         <ImageSrc

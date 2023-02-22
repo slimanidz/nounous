@@ -12,7 +12,6 @@ const initialValues = {
 
 const Message = (props) => {
   const { nounouId } = props;
-  console.log({ nounouId: nounouId });
   const {
     state: { session },
   } = useAppContext();

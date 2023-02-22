@@ -6,7 +6,6 @@ import CommentsGet from "../components/comments/CommentsGet";
 const TestProps = (props) => {
   const { nounouIdC } = useAppContext();
 
-  console.log(nounouIdC);
   return (
     <div>
       <Comments />

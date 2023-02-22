@@ -2,25 +2,13 @@ import React, { useEffect, useState } from "react";
 import api from "../../services/api";
 import { useAppContext } from "../AppContext";
 import formatLongDateTime from "../formateurs/FormatDate";
-// import api from "../services/api";
-// import formatLongDateTime from "./formateurs/znFormatDate";
 
 const CommentsGet = (props) => {
-  // const { nounouIdC } = useAppContext();
-
-  // const nounouId = nounouIdC;
-  // const [comments, setComments] = useState();
   const [users, setUsers] = useState([]);
   const { comments } = useAppContext();
-  console.log({ comments: comments });
 
   useEffect(() => {
     async function fetchData() {
-      // const {
-      //   data: { result1 },
-      // } = await api.get(`/api/comments/${nounouId}`);
-      // setComments(result1);
-
       const {
         data: { result },
       } = await api.get(`/api/users`);

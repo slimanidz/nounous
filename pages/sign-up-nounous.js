@@ -79,17 +79,6 @@ const SignUpNounous = () => {
       });
 
       const nounouId = result.id;
-      console.log({
-        service1,
-        service2,
-        service3,
-        service4,
-        service5,
-        service6,
-        service7,
-        service8,
-        nounouId,
-      });
 
       const {
         data: { result1 },
@@ -104,7 +93,6 @@ const SignUpNounous = () => {
         service8,
         nounouId,
       });
-      console.log(result1);
       router.push("/sign-in-nounous");
     },
 

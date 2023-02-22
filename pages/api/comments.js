@@ -9,7 +9,6 @@ const commentsRoutes = async (req, res) => {
 
       return;
     }
-    console.log(comments);
 
     res.status(200).send({ result: comments });
   }
@@ -18,8 +17,7 @@ const commentsRoutes = async (req, res) => {
     const {
       body: { content, userId, nounouId },
     } = req;
-    console.log(999999);
-    console.log({ content, userId, nounouId });
+
     const comment = await Comment.query()
       .insert({
         content,

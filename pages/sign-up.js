@@ -43,7 +43,6 @@ const SignUp = () => {
         telephone,
         password,
       });
-      console.log(result);
 
       if (result) {
         // restform();

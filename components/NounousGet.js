@@ -127,33 +127,35 @@ const NounousGet = () => {
         {/* <h1 className=" text-center  text-2xl ">LIST OF nounous</h1> */}
         <div>
           <Formik onSubmit={handelFilter} initialValues={initialValue}>
-            <Form className="w-full md:flex gap-3 bg-red-200 p-2 rounded-xl my-5 ">
+            <Form className="w-ful md:flex gap-3 bg-red-200 p-2 rounded-xl my-5 ">
               <p className="md:text-xl md:font-bold">
                 Trounver une nounou proche de vous!
               </p>
-              <div className=" flex items-center border-2 border-black px-2 rounded-xl">
-                <Field
-                  className="bg-red-200"
-                  name="adresse"
-                  placeholder="entrer votre ville"
-                />
-                {adresse ? (
-                  <button
-                    type="button"
-                    onClick={handleClearSearch}
-                    className=" border-2 border-black rounded-full px-1 "
-                  >
-                    X
-                  </button>
-                ) : null}
-              </div>
+              <div className="flex flex-grow">
+                <div className=" flex items-center border-2 border-black px-2 rounded-xl">
+                  <Field
+                    className="bg-red-200"
+                    name="adresse"
+                    placeholder="entrer votre ville"
+                  />
+                  {adresse ? (
+                    <button
+                      type="button"
+                      onClick={handleClearSearch}
+                      className=" border-2 border-black rounded-full px-1 "
+                    >
+                      X
+                    </button>
+                  ) : null}
+                </div>
 
-              <button
-                type="submit"
-                className="bg-blue-600 active:bg-blue-300 text-white font-bold px-2 py-1 rounded-xl"
-              >
-                Ok
-              </button>
+                <button
+                  type="submit"
+                  className="bg-blue-600 active:bg-blue-300 text-white font-bold px-2 py-1 ml-1 rounded-xl"
+                >
+                  Ok
+                </button>
+              </div>
             </Form>
           </Formik>
         </div>

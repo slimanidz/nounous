@@ -8,7 +8,6 @@ const handler = async (req, res) => {
     const {
       body: { email, password },
     } = req;
-    console.log({ email, password });
 
     const nounou = await Nounou.query().findOne({ email });
     const { hash, salt } = nounou
@@ -34,7 +33,6 @@ const handler = async (req, res) => {
       config.security.session.jwtSecret,
       { expiresIn: config.security.session.expiresIn }
     );
-    console.log(jwt);
     res.send({ result: [{ jwt }] });
   }
 };

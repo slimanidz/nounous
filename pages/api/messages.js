@@ -15,7 +15,6 @@ const messagesRoutes = async (req, res) => {
 
       return;
     }
-    console.log(messages);
 
     res.status(200).send({ result: messages });
   }

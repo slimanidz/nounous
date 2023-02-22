@@ -26,7 +26,6 @@ const SignIn = () => {
   const handleSubmit = useCallback(
     async ({ email, password }) => {
       setErrors([]);
-      console.log({ email, password });
 
       try {
         const {
@@ -34,12 +33,10 @@ const SignIn = () => {
             result: [{ jwt }],
           },
         } = await api.post("/api/sign-in-nounous", { email, password });
-        console.log(jwt);
         setSessionNounou(jwt);
 
         if (jwt) {
           router.push("/");
-          console.log("sign-in");
           return;
         }
       } catch (err) {

@@ -14,7 +14,6 @@ const usersRoutes = async (req, res) => {
 
       return;
     }
-    console.log(services);
 
     res.status(200).send({ result: services });
   }
@@ -33,17 +32,7 @@ const usersRoutes = async (req, res) => {
         nounouId,
       },
     } = req;
-    console.log({
-      service1,
-      service2,
-      service3,
-      service4,
-      service5,
-      service6,
-      service7,
-      service8,
-      nounouId,
-    });
+
     const service = await Service.query()
       .insert({
         service1,

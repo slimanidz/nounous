@@ -11,7 +11,6 @@ async function postImage({ image }) {
   const result = await api.post("/images", formData, {
     headers: { "Content-Type": "multipart/form-data" },
   });
-  console.log(result.data);
   return result.data;
 }
 

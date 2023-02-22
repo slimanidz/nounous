@@ -53,7 +53,6 @@ const AppContextProvider = (props) => {
   const setNounouIdC1 = useCallback((nounouId) => {
     setNounouIdC(nounouId);
   }, []);
-  console.log(nounouIdC);
 
   const [countComments, setCountComments] = useState(0);
   const [comments, setComments] = useState([]);
@@ -68,14 +67,11 @@ const AppContextProvider = (props) => {
       const {
         data: { result1, count },
       } = await api.get(`/api/comments/${nounouId}`);
-      console.log({ tez: nounouId });
-      console.log({ tez1: result1 });
+
       setComments(result1);
       setCountComments(count);
     })();
   }, [addComments, nounouIdC]);
-
-  console.log(comments);
 
   return (
     <AppContext.Provider
