@@ -18,19 +18,23 @@ const initialValues = {
   email1: "",
 };
 const initialValues1 = { password1: "" };
+
 const UserPatch = () => {
   const {
     state: { session },
     setSession,
   } = useAppContext();
   const router = useRouter();
-  const [user, setUser] = useState([]);
+  // const [user, setUser] = useState([]);
   const [errors, setErrors] = useState([]);
   const [openModal, setOpenModal] = useState(false);
   const [data, setData] = useState([]);
   const [active, setActive] = useState(false);
 
   const handleSubmit1 = ({ email1, username1, telephone1 }) => {
+    if (!email1 && !username1 && !telephone1) {
+      return;
+    }
     setData({ email1, username1, telephone1 });
     setOpenModal(true);
   };
@@ -42,14 +46,14 @@ const UserPatch = () => {
 
   ///////playcolder
 
-  useEffect(() => {
-    (async () => {
-      const {
-        data: { result },
-      } = await api.get(`/api/users/${session.email}`);
-      setUser(result);
-    })();
-  }, [session.email]);
+  // useEffect(() => {
+  //   (async () => {
+  //     const {
+  //       data: { result },
+  //     } = await api.get(`/api/users/${session.email}`);
+  //     setUser(result);
+  //   })();
+  // }, [session]);
 
   const handleSubmit = useCallback(
     async ({ password }) => {
@@ -161,7 +165,7 @@ const UserPatch = () => {
                 <Field
                   type="email"
                   name="email1"
-                  placeholder={`${user.email}`}
+                  // placeholder={`${user.email}`}
                   className="border-2 border-black px-2 rounded"
                 />
                 <ErrorMessage
@@ -175,7 +179,7 @@ const UserPatch = () => {
                 <Field
                   type="text"
                   name="username1"
-                  placeholder={`${user.username}`}
+                  // placeholder={`${user.username}`}
                   className="border-2 border-black px-2 rounded "
                 />
                 <ErrorMessage
@@ -190,7 +194,7 @@ const UserPatch = () => {
                 <Field
                   type="number"
                   name="telephone1"
-                  placeholder={`${user.telephone}`}
+                  // placeholder={`${user.telephone}`}
                   className="border-2 border-black px-2 rounded"
                 />
                 <ErrorMessage
