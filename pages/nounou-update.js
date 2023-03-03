@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useCallback, useEffect, useState } from "react";
 import { useAppContext } from "../components/AppContext";
+import { useAppContextNounou } from "../components/AppContextNounou";
 import Header from "../components/Header";
 import ImageSrc from "../components/ImageSrc";
 import Modal from "../components/Modal";
@@ -21,9 +22,10 @@ const initialValues1 = { password1: "" };
 
 const UserPatch = () => {
   const {
-    state: { session },
-    setSession,
-  } = useAppContext();
+    state: { sessionNounou },
+    setSessionNounou,
+  } = useAppContextNounou();
+  console.log({ sessionNounou: sessionNounou });
   const router = useRouter();
   // const [user, setUser] = useState([]);
   const [errors, setErrors] = useState([]);
@@ -50,10 +52,10 @@ const UserPatch = () => {
   //   (async () => {
   //     const {
   //       data: { result },
-  //     } = await api.get(`/api/users/${session.email}`);
+  //     } = await api.get(`/api/users/${sessionNounou.email}`);
   //     setUser(result);
   //   })();
-  // }, [session]);
+  // }, [sessionNounou]);
 
   const handleSubmit = useCallback(
     async ({ password }) => {
@@ -69,33 +71,35 @@ const UserPatch = () => {
         return;
       }
 
-      if (session) {
-        const userId = session.email;
+      if (sessionNounou) {
+        console.log(123);
+        const nounouId = sessionNounou.email;
 
-        const email = session.email;
+        const email = sessionNounou.email;
 
         /////////checPassword
         const {
-          data: { resultchec },
-        } = await api.post("/api/chec-password", {
+          data: { resultChecNounou },
+        } = await api.post("/api/chec-password-nounou", {
           email,
           password,
         });
-        if (!resultchec) {
+        if (!resultChecNounou) {
           setActive(true);
           console.log("ERROR");
           console.log(active);
           return;
         }
-        console.log(resultchec);
+        console.log(resultChecNounou);
         setActive(false);
 
         ///////////
+        console.log({ email1, username1, telephone1, nounouId });
 
         try {
           const {
             data: { result },
-          } = await api.patch(`/api/users/${userId}`, {
+          } = await api.patch(`/api/nounous/${nounouId}`, {
             email1,
             username1,
             telephone1,
@@ -109,12 +113,12 @@ const UserPatch = () => {
               data: {
                 result: [{ jwt }],
               },
-            } = await api.post("/api/sign-in", { email, password });
-            setSession(jwt);
+            } = await api.post("/api/sign-in-nounous", { email, password });
+            setSessionNounou(jwt);
 
             console.log(1234);
             // resetForm();
-            // router.push("/");
+            router.push("/setting");
             setOpenModal(false);
 
             return;
@@ -130,7 +134,7 @@ const UserPatch = () => {
         }
       }
     },
-    [data.email1, data.telephone1, data.username1, session, setSession, active]
+    [data.email1, data.telephone1, data.username1, sessionNounou, active]
   );
 
   return (
@@ -165,7 +169,7 @@ const UserPatch = () => {
                 <Field
                   type="email"
                   name="email1"
-                  // placeholder={`${user.email}`}
+                  // placeholder={`${sessionNounou.email}`}
                   className="border-2 border-black px-2 rounded"
                 />
                 <ErrorMessage
@@ -179,7 +183,7 @@ const UserPatch = () => {
                 <Field
                   type="text"
                   name="username1"
-                  // placeholder={`${user.username}`}
+                  // placeholder={`${sessionNounou.username}`}
                   className="border-2 border-black px-2 rounded "
                 />
                 <ErrorMessage
@@ -194,7 +198,7 @@ const UserPatch = () => {
                 <Field
                   type="number"
                   name="telephone1"
-                  // placeholder={`${user.telephone}`}
+                  // placeholder={`${sessionNounou.telephone}`}
                   className="border-2 border-black px-2 rounded"
                 />
                 <ErrorMessage

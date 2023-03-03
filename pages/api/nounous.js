@@ -16,8 +16,8 @@ const nounousRoutes = async (req, res) => {
 
       return;
     }
-
-    res.status(200).send({ result: nounous });
+    const [{ count }] = await Nounou.query().count();
+    res.status(200).send({ result: nounous, count });
   }
 
   if (req.method === "POST") {

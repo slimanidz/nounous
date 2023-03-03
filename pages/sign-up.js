@@ -8,7 +8,7 @@ import Link from "next/link";
 import api from "../services/api";
 import Page from "../components/Page";
 import ImageSrc from "../components/ImageSrc";
-import validationSchema from "../components/validateurs/Valitateur";
+import validationSchemaUsers from "../components/validateurs/ValidatuerUsers";
 
 const initialValues = {
   username: "",
@@ -106,7 +106,7 @@ const SignUp = () => {
             <Formik
               initialValues={initialValues}
               onSubmit={handleSubmit}
-              validationSchema={validationSchema}
+              validationSchema={validationSchemaUsers}
             >
               {(formik) => (
                 <Form>

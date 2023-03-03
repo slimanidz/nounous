@@ -24,66 +24,45 @@ const userIdRoutes = async (req, res) => {
 
   if (req.method === "PUT") {
     const {
-      query: { serviceId },
       body: {
-        // firstName,
-        // lastName,
-        // email,
-        password,
-        // gender,
-        // ageCategory,
-        // salaryCategory,
-        // professionalCategory,
-        // politicalPartyId,
+        service1,
+        service2,
+        service3,
+        service4,
+        service5,
+        service6,
+        service7,
+        service8,
+        nounouId,
       },
     } = req;
     ////////////////////////
-    console.log(serviceId);
-    console.log(password);
+    console.log(nounouId);
 
-    const [user] = await User.query().where({ email: serviceId });
-    console.log(user);
+    const [service] = await Service.query()
+      .where({ nounouId: nounouId })
+      .update({
+        service1,
+        service2,
+        service3,
+        service4,
+        service5,
+        service6,
+        service7,
+        service8,
+        nounouId,
+        updatedAt: new Date(),
+      })
+      .returning("*");
+    console.log(service);
 
-    if (!user) {
+    if (!service) {
       res.status(404).send({ error: ["User not found."] });
 
       return;
     }
 
-    let passwordHash;
-    let passwordSalt;
-
-    if (password) {
-      const { hash, salt } = hashPassword(password);
-
-      passwordHash = hash;
-      passwordSalt = salt;
-    }
     ///////////////////////
-
-    const ubdateuser = await User.query()
-      .where({ email: serviceId })
-      // .patchAndFetchById(id, {
-      .update({
-        // firstName,
-        // lastName,
-        // email,
-        passwordHash,
-        passwordSalt,
-        // gender,
-        // ageCategory,
-        // salaryCategory,
-        // professionalCategory,
-        // politicalPartyId,
-      });
-
-    if (!ubdateuser) {
-      res
-        .status(404)
-        .send({ error: "Abandon. Aucun utilisateur pour cet ID." });
-
-      return;
-    }
 
     res.status(200).send({ result: ubdateuser });
   }

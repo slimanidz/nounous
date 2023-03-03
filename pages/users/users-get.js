@@ -1,7 +1,7 @@
-// import Modal from "@/components/Modal";
-
 import { useEffect, useState } from "react";
 import { ImBin2 } from "react-icons/im";
+import Header from "../../components/Header";
+import Modal from "../../components/Modal";
 import Page from "../../components/Page";
 import api from "../../services/api";
 
@@ -15,7 +15,7 @@ const GetUsers = () => {
     const userId = Number(event.currentTarget.getAttribute("data-id"));
     const {
       data: { result },
-    } = await api.get(`/comments/${userId}`);
+    } = await api.get(`/api/comments/users/${userId}`);
     setComments(result);
     setOpenModal(true);
   };
@@ -55,6 +55,7 @@ const GetUsers = () => {
 
   return (
     <Page>
+      <Header />
       <div className={` bg-slat-500 ${openModal ? "opacity-40" : null} `}>
         <div className="bg-slate-700 p-3 sticky top-0 flex justify-between  text-white text-2xl">
           <h1 className=" text-center  text-2xl ">LIST OF USERS</h1>
@@ -92,7 +93,7 @@ const GetUsers = () => {
           ))}
         </ul>
       </div>
-      {/* <Modal className="bg-slat-100 " open={openModal}>
+      <Modal className="bg-slat-100 " open={openModal}>
         <div className="flex flex-col m-[25%]  overflow-y-auto bg-white w-[50%] h-80 border-2 border-black rounded-xl">
           <div className=" pl-3 flex justify-between items-center font-bold  sticky top-0 bg-slate-700 rounded-t-xl text-white ">
             Liste des commentaires:
@@ -103,34 +104,34 @@ const GetUsers = () => {
               X
             </button>
           </div>
+
           <ul className="">
             <li className="flex justify-between border-t-2 border-white text-white  sticky top-10  bg-slate-700 ">
               <p className=" w-[20%] text-center bg-ble-600 ">userId</p>
-              <p className=" w-[20%] text-center bg-ble-600 ">RaceId</p>
+              <p className=" w-[20%] text-center bg-ble-600 ">NounouId</p>
               <p className=" w-[60%] text-center bg-ble-600 ">Content</p>
             </li>
             {comments.length ? (
               <div>
-                {" "}
                 {comments.map((comment) => (
                   <li
                     className="flex justify-between   overflow-x-auto  items-center border-2 border-black odd:bg-slate-200"
                     key={comment.id}
                   >
                     <p className="px-2 w-[20%]">{comment.userId}</p>
-                    <p className="px-2 w-[20%]">{comment.raceId}</p>
+                    <p className="px-2 w-[20%]">{comment.nounouId}</p>
                     <p className="px-2 w-[60%]">{comment.content}</p>
                   </li>
                 ))}
               </div>
             ) : (
               <p className="text-2xl font-bold p-5 text-center">
-                Il y'a pas de commentaires pour cet user
+                Il ya pas de commentaires pour cet user
               </p>
             )}
           </ul>
         </div>
-      </Modal> */}
+      </Modal>
     </Page>
   );
 };

@@ -1,6 +1,6 @@
 import * as Yup from "yup";
 
-const validationSchema = Yup.object().shape({
+const validationSchemaUsers = Yup.object().shape({
   username: Yup.string()
     .min(5, "trop petit!")
     .max(50, "trop long!")
@@ -23,7 +23,5 @@ const validationSchema = Yup.object().shape({
     [true],
     "Accepter les conditions est obligatoire"
   ),
-  type: Yup.string().required("Selectionner votre situation"),
-  localite: Yup.string().required("Ce champ est obligatoire"),
 });
-export default validationSchema;
+export default validationSchemaUsers;

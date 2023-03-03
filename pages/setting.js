@@ -7,6 +7,8 @@ import { useAppContext } from "../components/AppContext";
 import api from "../services/api";
 import Link from "next/link";
 import { useAppContextNounou } from "../components/AppContextNounou";
+import ServiceGet from "../components/sercivesGet";
+import ServicesNounous from "../components/ServicesNounous";
 
 const Setting = () => {
   const [isactive, setIsactive] = useState(false);
@@ -50,7 +52,7 @@ const Setting = () => {
 
       return;
     }
-  }, [router, session, setSession]);
+  }, [router, sessionNounou, setSessionNounou]);
   return (
     <Page>
       <Header />
@@ -127,7 +129,7 @@ const Setting = () => {
                     <div className="flex gap-5 justify-center">
                       <Link
                         className="mt-5 p-2 text font-bold text-white bg-blue-500 active:bg-blue-400 rounded "
-                        href="/users/user-update"
+                        href="/nounou-update"
                       >
                         modify{" "}
                       </Link>
@@ -183,6 +185,7 @@ const Setting = () => {
         </div>
         {/* <Contact /> */}
       </div>
+      {sessionNounou ? <ServiceGet /> : null}
     </Page>
   );
 };

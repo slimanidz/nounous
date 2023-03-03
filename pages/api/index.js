@@ -7,10 +7,6 @@
 // import User from "@/api/db/models/User"
 
 const usersRoutes = async (req, res) => {
-  // if (!auth(req, res)) {
-  //   return
-  // }
-
   if (req.method === "GET") {
     res.status(200).send({ result: "users" });
   }

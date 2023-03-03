@@ -49,6 +49,60 @@ const usersRoutes = async (req, res) => {
 
     res.status(200).send({ result1: service });
   }
+  if (req.method === "PATCH") {
+    const {
+      body: {
+        service1,
+        service2,
+        service3,
+        service4,
+        service5,
+        service6,
+        service7,
+        service8,
+        nounouId,
+      },
+    } = req;
+    ////////////////////////
+    console.log({
+      service1,
+      service2,
+      service3,
+      service4,
+      service5,
+      service6,
+      service7,
+      service8,
+      nounouId,
+    });
+
+    const [service] = await Service.query()
+      .where({ nounouId: nounouId })
+      .update({
+        service1,
+        service2,
+        service3,
+        service4,
+        service5,
+        service6,
+        service7,
+        service8,
+        nounouId,
+        updatedAt: new Date(),
+      })
+      .returning("*");
+    console.log(service);
+
+    if (!service) {
+      res.status(404).send({ error: ["User not found."] });
+
+      return;
+    }
+
+    ///////////////////////
+
+    res.status(200).send({ result: service });
+  }
 };
 
 export default usersRoutes;

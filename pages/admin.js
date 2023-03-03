@@ -12,21 +12,21 @@ const Admin = () => {
       </h1>
       <section className="flex gap-3">
         <div className="w-1/2 flex flex-col items-center justify-center">
-          <h1 className=" text-2xl font-bold">USERS</h1>
+          {/* <h1 className=" text-2xl font-bold"></h1> */}
           <Link
             href="/users/users-get"
             className="bg-blue-600 text-white p-2 rounded-xl w-1/2 text-center font-bold text-xl my-2"
           >
-            usersGet
+            USERS
           </Link>
         </div>
         <div className="w-1/2 flex flex-col items-center justify-center">
-          <h1 className=" text-2xl font-bold">NOUNOUS</h1>
+          {/* <h1 className=" text-2xl font-bold"></h1> */}
           <Link
-            href="/users/users-get"
+            href="/nounous-get"
             className="bg-blue-600 text-white p-2 rounded-xl w-1/2 text-center font-bold text-xl my-2"
           >
-            nounousGet
+            NOUNOUS
           </Link>
         </div>
       </section>

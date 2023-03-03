@@ -22,6 +22,81 @@ const userIdRoutes = async (req, res) => {
     res.status(200).send({ result: nounou });
   }
 
+  ////// PATCH
+
+  if (req.method === "PATCH") {
+    const {
+      query: { nounouId },
+      body: { email1, username1, telephone1 },
+    } = req;
+
+    console.log({ nounouId, email1, username1, telephone1 });
+
+    const object = [email1, username1, telephone1].map((item) => {
+      if (item === "") {
+        return undefined;
+      }
+
+      return item;
+    });
+    const email = object[0];
+    const username = object[1];
+    const telephone = object[2];
+    // const password = object[3];
+
+    const [nounou] = await Nounou.query().where({ email: nounouId });
+
+    if (!nounou) {
+      res.status(404).send({ error: ["Nounou not found."] });
+
+      return;
+    }
+
+    // let passwordHash;
+    // let passwordSalt;
+
+    // if (password) {
+    //   const [hash, salt] = hashPassword(password);
+
+    //   passwordHash = hash;
+    //   passwordSalt = salt;
+    // }
+
+    try {
+      const [updatedNounou] = await Nounou.query()
+        .where({ email: nounouId })
+        // Nounou.query().findById(nounouId)
+        .update({
+          email,
+          username,
+          telephone,
+          // passwordHash,
+          // passwordSalt,
+          updatedAt: new Date(),
+        })
+        .returning("*");
+
+      res.send({ result: [updatedNounou] });
+    } catch (err) {
+      if (err.code === "23505") {
+        res.status(409).send({
+          error: [
+            `Duplicated value for "${err.detail.match(/^Key \((\w+)\)/)[1]}"`,
+          ],
+        });
+
+        return;
+      }
+
+      // eslint-disable-next-line no-console
+      console.error(err);
+
+      res.status(500).send({ error: "Oops. Something went wrong." });
+    }
+  }
+
+  ///////////////////////////////////////////////////////////////////////
+
   if (req.method === "PUT") {
     const {
       query: { nounouId },
@@ -41,11 +116,11 @@ const userIdRoutes = async (req, res) => {
     console.log(nounouId);
     console.log(password);
 
-    const [user] = await User.query().where({ email: nounouId });
-    console.log(user);
+    const [nounou] = await Nounou.query().where({ email: nounouId });
+    console.log(nounou);
 
-    if (!user) {
-      res.status(404).send({ error: ["User not found."] });
+    if (!nounou) {
+      res.status(404).send({ error: ["Nounou not found."] });
 
       return;
     }
@@ -61,7 +136,7 @@ const userIdRoutes = async (req, res) => {
     }
     ///////////////////////
 
-    const ubdateuser = await User.query()
+    const ubdateuser = await Nounou.query()
       .where({ email: nounouId })
       // .patchAndFetchById(id, {
       .update({
