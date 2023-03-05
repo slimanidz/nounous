@@ -4,7 +4,7 @@ import ImageSrc from "./ImageSrc";
 import Modal from "./Modal";
 import { FaPhone } from "react-icons/fa";
 import { BiRightArrowAlt } from "react-icons/bi";
-
+import { RiMailSendFill } from "react-icons/ri";
 import { useAppContext } from "./AppContext";
 import Link from "next/link";
 import { Field, Form, Formik } from "formik";
@@ -257,7 +257,13 @@ const NounousGet = () => {
                   name :<span className="font-bold ">{nounou.username}</span>
                 </h1>
                 <p>localite: {nounou.localite}</p>
-                <p>E-mail: {nounou.email}</p>
+                <div className="flex gap-3">
+                  <p>E-mail: {nounou.email}</p>
+                  <button>
+                    <RiMailSendFill />
+                  </button>
+                </div>
+
                 <div className="flex gap-3">
                   <p> telephone: {nounou.telephone}</p>
 

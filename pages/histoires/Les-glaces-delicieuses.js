@@ -24,7 +24,7 @@ const Histoire1 = () => {
   return (
     <Page>
       <Header />
-      <div className="w-full flex gap-3 justify-center items-center mt-32 p-3">
+      <div className="w-full flex gap-3 justify-center items-center mt-10 md:mt-32 p-3">
         <button
           className={
             num === 1

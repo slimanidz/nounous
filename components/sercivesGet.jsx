@@ -25,7 +25,6 @@ const ServiceGet = () => {
   const {
     state: { sessionNounou },
   } = useAppContextNounou();
-  console.log(sessionNounou);
   const nounouId = sessionNounou.id;
 
   const hadleChange = (event) => {
@@ -33,46 +32,48 @@ const ServiceGet = () => {
 
     if (checked) {
       setValue((pre) => [...pre, value]);
-    }
-
-    console.log({ res: checkedValue });
-
-    // if (checked) {
-    //   setValue((pre) => [...pre, value]);
-    // } else
-    //   setValue((pre) => {
-    //     return [...pre.filter((skill) => skill !== value)];
-    //   });
+    } else
+      setValue((pre) => {
+        return [...pre.filter((skill) => skill !== value)];
+      });
   };
 
-  const service1 = checkedValue[0];
-  const service2 = checkedValue[1];
-  const service3 = checkedValue[2];
-  const service4 = checkedValue[3];
-  const service5 = checkedValue[4];
-  const service6 = checkedValue[5];
-  const service7 = checkedValue[6];
-  const service8 = checkedValue[7];
+  const service11 = checkedValue[0];
+  const service21 = checkedValue[1];
+  const service31 = checkedValue[2];
+  const service41 = checkedValue[3];
+  const service51 = checkedValue[4];
+  const service61 = checkedValue[5];
+  const service71 = checkedValue[6];
+  const service81 = checkedValue[7];
 
   const checkedValue1 = [
-    service1,
-    service2,
-    service3,
-    service4,
-    service5,
-    service6,
-    service7,
-    service8,
+    service11,
+    service21,
+    service31,
+    service41,
+    service51,
+    service61,
+    service71,
+    service81,
   ];
 
-  checkedValue1.map((value) => {
+  const values = checkedValue1.map((value) => {
     if (value === undefined) {
-      return " ";
+      return "";
     }
     return value;
   });
 
-  console.log({ res1: checkedValue1 });
+  const service1 = values[0];
+  const service2 = values[1];
+  const service3 = values[2];
+  const service4 = values[3];
+  const service5 = values[4];
+  const service6 = values[5];
+  const service7 = values[6];
+  const service8 = values[7];
+
   const handleSubmit = useCallback(async () => {
     const {
       data: { result },
@@ -87,6 +88,9 @@ const ServiceGet = () => {
       service8,
       nounouId,
     });
+    if (result) {
+      window.location.reload();
+    }
   }, [
     service1,
     service2,
@@ -98,6 +102,7 @@ const ServiceGet = () => {
     service8,
     nounouId,
   ]);
+
   const hiddenFields = [];
   useEffect(() => {
     (async () => {
@@ -124,7 +129,7 @@ const ServiceGet = () => {
   };
 
   return (
-    <div className="">
+    <div className="p-10">
       <h1 className="text-3xl font-bold">services:</h1>
       <ul className=" bg-red-30">
         {services.length === 0 ? (
@@ -188,7 +193,7 @@ const ServiceGet = () => {
         )}
       </ul>
       <button
-        className="bg-blue-700 active:bg-blue-400 text-white p-2 rounded-xl mt-5"
+        className="mt-5 p-2 text font-bold text-white bg-blue-500 active:bg-blue-400 rounded "
         type="button"
         onClick={handleOpenModel}
       >
@@ -198,10 +203,12 @@ const ServiceGet = () => {
         className="bg-slate-50 p-5    flex justify-center items-center "
         open={openModal}
       >
-        Hello
         <div className="">
           <Formik initialValues={initialValues} onSubmit={handleSubmit}>
             <Form className="flex flex-col gap-3">
+              <h1 className="text-2xl md:text-3xl font-bold">
+                Choisi tes nouveaux services :
+              </h1>
               <div>
                 <input
                   type="checkbox"
@@ -271,11 +278,13 @@ const ServiceGet = () => {
                 <input type="checkbox" value="autre" onChange={hadleChange} />
                 <span className="px-2">autre</span>
               </div>
-              <div>
+              <div className="flex gap-3">
                 {" "}
-                <button type="submit">add</button>
+                <button className="bg-blue-300 p-2 rounded-xl" type="submit">
+                  confirm
+                </button>
                 <button
-                  className="bg-red-300 p-1 rounded-xl"
+                  className="bg-red-300 p-2 rounded-xl"
                   type="button"
                   onClick={handleCloseModel}
                 >

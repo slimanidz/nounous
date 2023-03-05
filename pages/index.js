@@ -3,15 +3,21 @@ import Link from "next/link";
 import { useAppContextNounou } from "../components/AppContextNounou";
 import Header from "../components/Header";
 import ImageSrc from "../components/ImageSrc";
+import Modal from "../components/Modal";
 import NounousGet from "../components/NounousGet";
 import Page from "../components/Page";
-import styles from "../styles/Home.module.css";
 import Nounous from "./nounous";
 
 export default function Home() {
   const {
     state: { sessionNounou },
+    openModal,
+    setOpenModal,
   } = useAppContextNounou();
+
+  const haldleferme = () => {
+    setOpenModal(false);
+  };
 
   return (
     <Page>
@@ -108,6 +114,39 @@ export default function Home() {
           </div>
         ) : null}
       </div>
+      <Modal
+        className="w-screen h-screen bg-slate-5 flex justify-center items-end z-50 px-5 py-20"
+        open={openModal}
+      >
+        <div className=" bg-white  p-5  shadow-lg shadow-black ">
+          <button
+            className="w-full flex justify-end underline"
+            onClick={haldleferme}
+          >
+            Contunuer sans accepter
+          </button>
+          <p>
+            Nounous et ses fournisseurs utilisent des cookies et des
+            technologies similaires pour améliorer votre expérience et évaluer
+            vos interactions avec nos sites Web, produits et services. Nous les
+            utilisons également pour vous fournir des informations plus
+            pertinentes dans les recherches et dans les annonces publicitaires
+            sur ce site et sur d&rsquo;autres sites. Si cela vous convient,
+            cliquez sur « Accepter ». En cliquant sur « Contunuer sans accepter
+            », seuls les cookies strictement nécessaires seront définis. Vous
+            pouvez également consulter nos fournisseurs et personnaliser vos
+            choix en cliquant sur « Paramètres des cookies ».
+          </p>
+          <div className="flex justify-between">
+            <button className="p-1 border-4 border-double border-black rounded-xl hover:bg-slate-100 active:bg-slate-200">
+              Paramètres des cookies
+            </button>
+            <button className="p-1 border-4 border-double border-black rounded-xl hover:bg-slate-100 active:bg-slate-200">
+              Accepter
+            </button>
+          </div>
+        </div>
+      </Modal>
     </Page>
   );
 }

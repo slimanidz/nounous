@@ -15,6 +15,7 @@ export const useAppContextNounou = () => useContext(AppContextNounou);
 
 const AppContextNounouProvider = (props) => {
   const [state, setState] = useState(initialState);
+  const [openModal, setOpenModal] = useState(true);
   const updateState = useCallback(
     (newState) =>
       setState((previousState) => deepmerge(previousState, newState)),
@@ -51,6 +52,8 @@ const AppContextNounouProvider = (props) => {
       value={{
         setSessionNounou,
         state,
+        openModal,
+        setOpenModal,
       }}
     />
   );

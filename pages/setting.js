@@ -80,7 +80,7 @@ const Setting = () => {
                         className="mt-5 p-2 text font-bold text-white bg-blue-500 active:bg-blue-400 rounded "
                         href="/user-patch"
                       >
-                        modify{" "}
+                        Modifier{" "}
                       </Link>
                       <button
                         className="mt-5 p-2 text font-bold text-white bg-red-600 active:bg-red-300 rounded"
@@ -131,7 +131,7 @@ const Setting = () => {
                         className="mt-5 p-2 text font-bold text-white bg-blue-500 active:bg-blue-400 rounded "
                         href="/nounou-update"
                       >
-                        modify{" "}
+                        Modifier{" "}
                       </Link>
                       <button
                         className="mt-5 p-2 text font-bold text-white bg-red-600 active:bg-red-300 rounded"
