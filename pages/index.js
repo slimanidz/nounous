@@ -13,10 +13,12 @@ export default function Home() {
     state: { sessionNounou },
     openModal,
     setOpenModal,
+    setTimeOut,
   } = useAppContextNounou();
 
   const haldleferme = () => {
     setOpenModal(false);
+    setTimeOut(false);
   };
 
   return (

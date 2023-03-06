@@ -27,7 +27,7 @@ const CommentsGet = (props) => {
       <ul className="flex flex-col-reverse">
         {comments.map((comment) => (
           <div key={comment.id} className="flex w-full bg-blue-20">
-            <li className="m-2 p-2  bg-red-200 rounded-full flex items-center">
+            <li className="m-2 p-2 h-10  bg-red-200 rounded-full flex items-center">
               {users.map((user) =>
                 user.id === comment.userId ? (
                   <p key={comment.id}> {user.username}</p>

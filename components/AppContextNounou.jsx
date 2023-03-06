@@ -15,7 +15,15 @@ export const useAppContextNounou = () => useContext(AppContextNounou);
 
 const AppContextNounouProvider = (props) => {
   const [state, setState] = useState(initialState);
-  const [openModal, setOpenModal] = useState(true);
+  const [openModal, setOpenModal] = useState(false);
+  const [timeOut, setTimeOut] = useState(true);
+
+  if (timeOut) {
+    setTimeout(() => {
+      setOpenModal(true);
+    }, "2000");
+  }
+
   const updateState = useCallback(
     (newState) =>
       setState((previousState) => deepmerge(previousState, newState)),
@@ -54,6 +62,7 @@ const AppContextNounouProvider = (props) => {
         state,
         openModal,
         setOpenModal,
+        setTimeOut,
       }}
     />
   );

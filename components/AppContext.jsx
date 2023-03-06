@@ -16,7 +16,6 @@ export const useAppContext = () => useContext(AppContext);
 
 const AppContextProvider = (props) => {
   const [state, setState] = useState(initialState);
-  const [openModal, setOpenModal] = useState(true);
 
   const updateState = useCallback(
     (newState) =>
@@ -85,8 +84,6 @@ const AppContextProvider = (props) => {
         nounouIdC,
         addComments,
         comments,
-        openModal,
-        setOpenModal,
       }}
     />
   );
