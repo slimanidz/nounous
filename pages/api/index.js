@@ -3,8 +3,6 @@
 // export default function handler(req, res) {
 //   res.status(200).json({ name: 'John Doe' })
 // }
-// import auth from "@/api/auth"
-// import User from "@/api/db/models/User"
 
 const usersRoutes = async (req, res) => {
   if (req.method === "GET") {

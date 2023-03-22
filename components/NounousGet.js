@@ -11,6 +11,7 @@ import { Field, Form, Formik } from "formik";
 import { useAppContextNounou } from "./AppContextNounou";
 import Message from "./Message";
 import api from "../services/api";
+import Agenda from "./Agenda";
 
 const initialValue = {
   adresse: "",
@@ -228,14 +229,14 @@ const NounousGet = () => {
       <Modal
         className={
           session || sessionNounou
-            ? "bg-slate-50 p-5"
+            ? "bg-slate-50 p-5 overflow-y-auto pb-20"
             : " flex justify-center items-center "
         }
         open={openModal}
       >
         {session || sessionNounou ? (
           <div>
-            <div className="w-full flex justify-end">
+            <div className="w-full flex justify-end ">
               <button
                 className="p-2 bg-blue-700 active:bg-blue-300 text-white text-3xl font-bold rounded-xl"
                 onClick={onClose}
@@ -277,6 +278,9 @@ const NounousGet = () => {
                     <Message nounouId={nounouIdComment} />
                   </div>
                 ) : null}
+              </div>
+              <div>
+                <Agenda />
               </div>
             </div>
           </div>

@@ -30,6 +30,9 @@ const UserPatch = () => {
   const [openModal, setOpenModal] = useState(false);
   const [data, setData] = useState([]);
   const [active, setActive] = useState(false);
+  const [name, setName] = useState(false);
+  const [email, setEmail] = useState(false);
+  const [telephone, setTelephone] = useState(false);
 
   const handleSubmit1 = ({ email1, username1, telephone1 }) => {
     if (!email1 && !username1 && !telephone1) {
@@ -43,17 +46,6 @@ const UserPatch = () => {
     setOpenModal(false);
     setActive(false);
   };
-
-  ///////playcolder
-
-  // useEffect(() => {
-  //   (async () => {
-  //     const {
-  //       data: { result },
-  //     } = await api.get(`/api/users/${session.email}`);
-  //     setUser(result);
-  //   })();
-  // }, [session]);
 
   const handleSubmit = useCallback(
     async ({ password }) => {
@@ -116,6 +108,15 @@ const UserPatch = () => {
             // resetForm();
             // router.push("/");
             setOpenModal(false);
+            if (email1) {
+              setEmail(true);
+            }
+            if (username1) {
+              setName(true);
+            }
+            if (telephone1) {
+              setTelephone(true);
+            }
 
             return;
           }
@@ -145,6 +146,15 @@ const UserPatch = () => {
             <h1 className="text-center text-4xl font-bold mb-5  bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-900 ">
               Update
             </h1>
+            {email ? (
+              <p className="text-green-700 ">Email modifier avec succe</p>
+            ) : null}
+            {name ? (
+              <p className="text-green-700 ">Name modifier avec succe</p>
+            ) : null}
+            {telephone ? (
+              <p className="text-green-700 ">Telephone modifier avec succe</p>
+            ) : null}
           </div>
           {errors.length ? (
             <div className="rounded-lg border-4 border-red-600 mb-4 flex flex-col gap-4 p-4">

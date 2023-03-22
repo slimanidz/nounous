@@ -21,7 +21,7 @@ const AppContextNounouProvider = (props) => {
   if (timeOut) {
     setTimeout(() => {
       setOpenModal(true);
-    }, "2000");
+    }, "1000");
   }
 
   const updateState = useCallback(

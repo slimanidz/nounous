@@ -2,7 +2,6 @@
   "name": "next",
   "version": "0.1.0",
   "private": true,
-  
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -23,6 +22,7 @@
     "objection": "^3.0.1",
     "pg": "^8.9.0",
     "react": "18.2.0",
+    "react-calendar": "^4.0.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.7.1",
     "vercel": "^28.16.2",

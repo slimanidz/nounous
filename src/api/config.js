@@ -1,6 +1,5 @@
 import "dotenv/config";
 import knexfile from "../../knexfile";
-// import knexfile from "@/../knexfile";
 
 const config = {
   db: knexfile,

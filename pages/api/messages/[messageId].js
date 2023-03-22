@@ -18,7 +18,6 @@ const messageIdRoutes = async (req, res) => {
 
       return;
     }
-    console.log(messages);
     res.status(200).send({ result1: messages });
   }
 
