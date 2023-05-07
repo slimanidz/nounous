@@ -9,8 +9,8 @@ const commentsRoutes = async (req, res) => {
 
       return;
     }
-
-    res.status(200).send({ result: comments });
+    const [{ count }] = await Comment.query().count();
+    res.status(200).send({ result: comments, count });
   }
 
   if (req.method === "POST") {

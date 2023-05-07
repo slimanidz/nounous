@@ -24,7 +24,7 @@ const Agenda = () => {
     console.log(heur);
   };
   const handeleDisable = ({ activeStartDate, date, view }) =>
-    date.getDay() === 4 || date.getDay() === 1;
+    date.getDay() === 0 || date.getDay() === 1;
 
   return (
     <div className="flex flex-col items-center gap-3">
@@ -33,7 +33,6 @@ const Agenda = () => {
         onChange={onChange}
         selectRange={false} /* true pour selectionne plusieurs date */
       />
-      {/* <input type="checkbox" onChange={onChange1} name="active" /> */}
       <div>
         <Formik onSubmit={handleSubmit} initialValues={initialValues}>
           <Form className="flex flex-col items-center">
@@ -47,6 +46,7 @@ const Agenda = () => {
             </button>
           </Form>
         </Formik>
+        <p>{formatLongDateTime(state)}</p>
       </div>
     </div>
   );

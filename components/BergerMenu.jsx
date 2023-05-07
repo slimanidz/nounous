@@ -47,12 +47,12 @@ const BurgerMenu = () => {
             </li>
             <li className="bg-slate-300 border-double  border-4 border-black  rounded-xl">
               <p className="p-4 block hover:bg-slate-100 rounded-xl">
-                <Link href="/#">item 5</Link>
+                <Link href="/book-bebe"> Histoires pour enfants</Link>
               </p>
             </li>
             <li className="bg-slate-300 border-double  border-4 border-black  rounded-xl">
               <p className="p-4 block hover:bg-slate-100 rounded-xl">
-                <Link href="/book-bebe"> Histoires pour enfants</Link>
+                <Link href="/statistiques">Statistiques</Link>
               </p>
             </li>
             <li className="bg-slate-300 border-double  border-4 border-black  rounded-xl">

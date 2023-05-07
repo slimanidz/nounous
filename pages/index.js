@@ -28,7 +28,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <div className=" flex flex-col  items-cente grow overflow-y-auto">
+      <div className=" flex flex-col  items-cente  grow overflow-y-auto">
         <div className="bg-red-300 relative">
           <ImageSrc
             src="/images/bg-nounou.webp"
@@ -61,43 +61,51 @@ export default function Home() {
             </Link>
           </div>
         </div>
-        <div className="md:flex items-center gap-5 justify-center">
-          <div className="md:w-64 md:h-64 m-3 bg-slate-300 border-4 border-slate-400 rounded-xl flex justify-center  gap-2 md:flex-col items-center">
-            <ImageSrc
-              src="/logo/logo-nounous1.png"
-              width="200"
-              height={32}
-              className="w-32 h-20"
-              alt="logo-nounous1"
-            />
-            <h1 className="font-bold text-xl">Securiser et efficace</h1>
-            <p className="text-center">
-              Tous les jours, des centaines de nouvelles annonces.
-            </p>
-          </div>
-          <div className="md:w-64 md:h-64 m-3 bg-slate-300 border-4 border-slate-400 rounded-xl flex justify-center  gap-2 md:flex-col items-center">
+        <div className="flex items-center  justify-around">
+          <div className="md:w-64 md:h-64 m-2 bg-slate-300 border-4 border-slate-400 rounded-xl flex justify-center  gap-2 flex-col items-center">
             <ImageSrc
               src="/logo/nounous2.png"
               width="200"
               height={32}
-              className="w-32 h-20"
+              className="  md:w-32 md:h-20 "
               alt="nounous2"
             />
-            <h1 className="font-bold text-xl">Confiance</h1>
-            <p className="text-center">
+            <h1 className=" font-bold text-sm md:text-xl text-center">
+              Confiance
+            </h1>
+            <p className="text-center  invisible w-[1px] h-[1px] md:visible md:w-64 md:h-20">
               Profils complets, vérifications, avis : recrutez sereinement.
             </p>
           </div>
-          <div className="md:w-64 md:h-64 m-3 bg-slate-300 border-4 border-slate-400 rounded-xl flex justify-center  gap-2 md:flex-col items-center">
+
+          <div className="md:w-64  md:h-64 m-2 bg-slate-300 border-4 border-slate-400 rounded-xl flex flex-col justify-center  gap-2  items-center">
+            <ImageSrc
+              src="/logo/logo-nounous1.png"
+              width="200"
+              height={32}
+              className=" md:w-32 md:h-20 "
+              alt="logo-nounous1"
+            />
+            <h1 className=" font-bold text-sm md:text-xl text-center">
+              Securiser et efficace
+            </h1>
+            <p className="text-center  invisible w-[1px] h-[1px] md:visible md:w-64 md:h-20">
+              Tous les jours, des centaines de nouvelles annonces.
+            </p>
+          </div>
+
+          <div className="md:w-64 md:h-64 m-2 bg-slate-300 border-4 border-slate-400 rounded-xl flex justify-center  gap-2 flex-col items-center">
             <ImageSrc
               src="/logo/nounou-free.png"
               width="200"
               height={32}
-              className="w-32 h-20"
+              className=" md:w-32 md:h-20 "
               alt="nounou-free"
             />
-            <h1 className="font-bold text-xl">Gratuite</h1>
-            <p className="text-center">
+            <h1 className=" font-bold text-sm md:text-xl text-center">
+              Gratuite
+            </h1>
+            <p className="text-center invisible w-[1px] h-[1px] md:visible md:w-64 md:h-20  ">
               Se contacter et se rencontrer gratuitement ? Ici c&rsquo; est
               possible
             </p>
@@ -117,10 +125,10 @@ export default function Home() {
         ) : null}
       </div>
       <Modal
-        className="w-screen h-screen bg-slate-5 flex justify-center items-end z-50 px-5 py-20"
+        className="w-screen h-screen bg-slate-5 flex items-end px-5 lg:pl-[20%] py-20"
         open={openModal}
       >
-        <div className=" bg-white  p-5  shadow-lg shadow-black ">
+        <div className=" lg:w-[75%] bg-white  p-5  shadow-lg shadow-black ">
           <button
             className="w-full flex justify-end underline"
             onClick={haldleferme}

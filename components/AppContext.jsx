@@ -74,6 +74,7 @@ const AppContextProvider = (props) => {
     })();
   }, [addComments, nounouIdC]);
 
+  const [idContact, setIdContact] = useState(0);
   return (
     <AppContext.Provider
       {...props}
@@ -84,6 +85,8 @@ const AppContextProvider = (props) => {
         nounouIdC,
         addComments,
         comments,
+        idContact,
+        setIdContact,
       }}
     />
   );

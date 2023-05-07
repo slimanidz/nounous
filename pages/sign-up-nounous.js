@@ -10,6 +10,11 @@ import api from "../services/api";
 import Page from "../components/Page";
 import ImageSrc from "../components/ImageSrc";
 import validationSchema from "../components/validateurs/Valitateur";
+import AddImage from "../components/AddImageToFirebase";
+
+import { Timestamp, collection, addDoc } from "firebase/firestore";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { db, storage } from "../components/FirebaseConfig";
 
 const initialValues = {
   username: "",
@@ -37,6 +42,18 @@ const SignUpNounous = () => {
   const [openModal, setOpenModal] = useState(false);
   const [visible, setVisiblity] = useState(false);
   const [visible1, setVisiblity1] = useState(false);
+
+  const [formData, setFormData] = useState({
+    id: "",
+    image: "",
+    createdAt: Timestamp.now().toDate(),
+  });
+
+  console.log(formData);
+
+  const handleImageChange = (e) => {
+    setFormData({ ...formData, image: e.target.files[0] });
+  };
 
   const onClose = () => {
     setOpenModal(false);
@@ -79,6 +96,7 @@ const SignUpNounous = () => {
       });
 
       const nounouId = result.id;
+      setFormData({ ...formData, id: nounouId });
 
       const {
         data: { result1 },
@@ -93,6 +111,56 @@ const SignUpNounous = () => {
         service8,
         nounouId,
       });
+
+      // Stock Image in firebase
+      if (!formData.image) {
+        alert("Add image please");
+        return;
+      }
+
+      const storageRef = ref(
+        storage,
+        `/images/${Date.now()}${formData.image.name}`
+      );
+
+      const uploadImage = uploadBytesResumable(storageRef, formData.image);
+
+      uploadImage.on(
+        "state_changed",
+        (snapshot) => {
+          const progressPercent = Math.round(
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+          );
+        },
+        (err) => {
+          console.log(err);
+        },
+        () => {
+          setFormData({
+            id: "",
+            image: "",
+          });
+
+          getDownloadURL(uploadImage.snapshot.ref).then((url) => {
+            const articleRef = collection(db, "nounous");
+            addDoc(articleRef, {
+              id: formData.id,
+              imageUrl: url,
+              createdAt: Timestamp.now().toDate(),
+            })
+              .then(() => {
+                alert("Article added successfully");
+                setProgress(0);
+              })
+              .catch((err) => {
+                alert("Error adding article");
+              });
+          });
+        }
+      );
+
+      // fin firebase
+
       router.push("/sign-in-nounous");
     },
 
@@ -106,6 +174,7 @@ const SignUpNounous = () => {
       service7,
       service8,
       router,
+      formData,
     ]
   );
 
@@ -224,6 +293,7 @@ const SignUpNounous = () => {
                     <Field
                       type="file"
                       name="image"
+                      onChange={handleImageChange}
                       accept="image/png, image/jpeg"
                       className="border-2 border-black rounded"
                     />

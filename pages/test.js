@@ -42,8 +42,16 @@ const App = () => {
         <button type="submit">Submit</button>
       </form>
       <div className="flex items-center justify-center">
-        <div className="bg-auto bg-[url('/images/bg-nounou.webp')] ">
+        <div className="bg-auto bg-[url('/images/bg-nounou.webp')] text-green-600 ">
           Binvenu dans voutre application NOUNOUS Pour acceder a toutes les
+          fonctionalites de votre application vous pouvez vous connecter comme
+          utilisateur si vous ete chercheur d&rsquo;une nounous comme vous
+          pouvez vous connecter comme nounous si vous ete une nounou! Binvenu
+          dans voutre application NOUNOUS Pour acceder a toutes les
+          fonctionalites de votre application vous pouvez vous connecter comme
+          utilisateur si vous ete chercheur d&rsquo;une nounous comme vous
+          pouvez vous connecter comme nounous si vous ete une nounou! Binvenu
+          dans voutre application NOUNOUS Pour acceder a toutes les
           fonctionalites de votre application vous pouvez vous connecter comme
           utilisateur si vous ete chercheur d&rsquo;une nounous comme vous
           pouvez vous connecter comme nounous si vous ete une nounou!
