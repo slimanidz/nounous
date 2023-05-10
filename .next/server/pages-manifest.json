@@ -2,7 +2,7 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/nounou-page": "pages/nounou-page.js",
+  "/": "pages/index.js",
   "/api/nounous": "pages/api/nounous.js",
-  "/api/nounous/[nounouId]": "pages/api/nounous/[nounouId].js"
+  "/api/comments/[commentId]": "pages/api/comments/[commentId].js"
 }

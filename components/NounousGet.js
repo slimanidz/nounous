@@ -10,7 +10,6 @@ import api from "../services/api";
 import { useRouter } from "next/router";
 import { db } from "./FirebaseConfig";
 import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
-import Image from "next/image";
 
 const initialValue = {
   adresse: "",
@@ -137,6 +136,7 @@ const NounousGet = () => {
     <div className=" overflow-y-auto flex flex-col items-center ">
       <div className=" flex  justify-center my-5">
         {/* <h1 className=" text-center  text-2xl ">LIST OF nounous</h1> */}
+
         <div>
           <Formik onSubmit={handelFilter} initialValues={initialValue}>
             <Form className="w-ful md:flex gap-3 bg-red-200 p-2 rounded-xl my-5 ">
