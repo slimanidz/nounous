@@ -51,6 +51,7 @@ const NounousGet = () => {
       setImages(images);
     });
   }, []);
+  //fin
 
   const handleClickComment = async (event) => {
     const nounouId = Number(event.currentTarget.getAttribute("data-id"));

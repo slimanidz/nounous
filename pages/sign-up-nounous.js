@@ -44,7 +44,7 @@ const SignUpNounous = () => {
   const [visible1, setVisiblity1] = useState(false);
 
   const [formData, setFormData] = useState({
-    id: "",
+    id: 0,
     image: "",
     createdAt: Timestamp.now().toDate(),
   });
@@ -96,7 +96,6 @@ const SignUpNounous = () => {
       });
 
       const nounouId = result.id;
-      setFormData({ ...formData, id: nounouId });
 
       const {
         data: { result1 },
@@ -144,13 +143,12 @@ const SignUpNounous = () => {
           getDownloadURL(uploadImage.snapshot.ref).then((url) => {
             const articleRef = collection(db, "nounous");
             addDoc(articleRef, {
-              id: formData.id,
+              id: nounouId,
               imageUrl: url,
               createdAt: Timestamp.now().toDate(),
             })
               .then(() => {
                 alert("Article added successfully");
-                setProgress(0);
               })
               .catch((err) => {
                 alert("Error adding article");
