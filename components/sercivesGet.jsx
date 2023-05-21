@@ -129,8 +129,8 @@ const ServiceGet = () => {
   };
 
   return (
-    <div className="py-10">
-      <h1 className="text-3xl font-bold">services:</h1>
+    <div className="block py-10">
+      <h1 className="text-3xl font-bold">services</h1>
       <ul className=" bg-red-30">
         {services.length === 0 ? (
           <p>no services difined ...</p>
@@ -239,14 +239,14 @@ const ServiceGet = () => {
             ))}
           </ul>
         )}
+        <button
+          className=" rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 "
+          type="button"
+          onClick={handleOpenModel}
+        >
+          Modifier
+        </button>
       </ul>
-      <button
-        className=" rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 "
-        type="button"
-        onClick={handleOpenModel}
-      >
-        Modifier
-      </button>
 
       {/* /////////////////  MODELE POUR MODIFIER LES SERVICES  /////////////////// */}
 

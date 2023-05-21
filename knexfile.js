@@ -6,7 +6,6 @@ module.exports = {
   // Pour le local il faut mettre tous
 
   connection: process.env.DB_URL,
-
   // connection: {
   //   user: process.env.DB_USER,
   //   database: process.env.DB_DATABASE,

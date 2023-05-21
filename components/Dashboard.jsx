@@ -13,6 +13,7 @@ import DisclosureUsers from "./DisclosureUsers";
 import DisclosureNounous from "./DisclosureNounous";
 import TitrePage from "./TitrePage";
 import { usePathname } from "next/navigation";
+import FooterPage from "./FooterPage";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -77,7 +78,7 @@ export default function Example(props) {
                 <div className="mx-auto max--7xl px-2 sm:px-4 lg:px-8">
                   <div className="relative flex h-16 items-center justify-between lg:border-b lg:border-indigo-400 lg:border-opacity-25">
                     <div className="flex items-center px-2 lg:px-0">
-                      <div className="flex -shrink-0">
+                      <Link href="/" className="flex -shrink-0">
                         <ImageSrc
                           src="/logo/logo-nounous-white.png"
                           width="200"
@@ -85,7 +86,7 @@ export default function Example(props) {
                           className="w-20 md:w-20 h-10 rounded"
                           alt="logo-nounous"
                         />
-                      </div>
+                      </Link>
                       <div className="hidden lg:ml-10 lg:block">
                         <div className="flex space-x-4">
                           {navigation.map((item) => (
@@ -301,7 +302,11 @@ export default function Example(props) {
             {/* <NounousGet /> */}
           </div>
         </main>
-        <Footer />
+        <div>
+          <FooterPage />
+        </div>
+
+        {/* <Footer /> */}
       </div>
     </>
   );

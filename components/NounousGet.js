@@ -191,7 +191,7 @@ const NounousGet = () => {
       {/* ****************************************************** */}
       <ul
         role="list"
-        className="w-full divide-y divide-gray-100 bg-slate-300 rounded-t-xl pb-20 "
+        className="w-full divide-y divide-gray-100 bg-slate-300 rounded-t-xl pb-2 "
       >
         {nounous.map((nounou) => (
           <li key={nounou.id} className=" flex justify-around gap-x-6 py-5">
@@ -217,7 +217,7 @@ const NounousGet = () => {
                   <button
                     onClick={handleClickServices}
                     data-id={nounou.id}
-                    className="hover:underline"
+                    className="hover:underline hover:text-blue-500"
                   >
                     {nounou.username}
                   </button>
@@ -257,7 +257,7 @@ const NounousGet = () => {
                   leaveFrom="transform opacity-100 scale-100"
                   leaveTo="transform opacity-0 scale-95"
                 >
-                  <Menu.Items className="absolute right-0 z-10 mt-2 w-32 origin-top-right rounded-md bg-white py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none">
+                  <Menu.Items className="absolute right-5 -top-5 z-50 mt-2 w-32 origin-top-right rounded-md bg-white py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none">
                     <Menu.Item>
                       {({ active }) => (
                         <button

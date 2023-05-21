@@ -55,7 +55,7 @@ const Setting = () => {
   }, [router, sessionNounou, setSessionNounou]);
   return (
     <Dashboard>
-      <div className="p-10 bg-slate-200 h-screen rounded">
+      <div className="p-10 bg-slate-200 h-full rounded">
         <h1 className=" text-3xl font-bold mb-10">Settings</h1>
         <div>
           {session || sessionNounou ? (
@@ -195,7 +195,9 @@ const Setting = () => {
                       </div>
                     )}
                   </div>
-                  {sessionNounou ? <ServiceGet /> : null}
+                  <div className="pb-2 block">
+                    {sessionNounou ? <ServiceGet /> : null}
+                  </div>
                 </div>
               )}
             </div>
