@@ -133,8 +133,7 @@ const NounousGet = () => {
 
   if (!nounous) {
     return (
-      <div className="flex flex-col justify-center items-center text-white">
-        No Nounous ! Sorry
+      <div className="flex flex-col gap-4 justify-center items-center pt-20 ">
         <ImageSrc
           width="200"
           height="200"
@@ -142,13 +141,14 @@ const NounousGet = () => {
           className="rounded-full"
           alt="image"
         />
+        No Nounous ! Sorry
       </div>
     );
   }
 
   return (
     <div className=" overflow-y-auto flex flex-col items-center ">
-      <div className=" flex  justify-center my-5">
+      <div className=" flex  justify-center my-10">
         <div>
           <div class="flex flex-1 justify-center px-2 lg:ml-6 lg:justify-end">
             <div class="w-full max-w-lg lg:max-w-xs">
@@ -191,7 +191,7 @@ const NounousGet = () => {
       {/* ****************************************************** */}
       <ul
         role="list"
-        className="w-full divide-y divide-gray-100 bg-slate-300 rounded-t-xl"
+        className="w-full divide-y divide-gray-100 bg-slate-300 rounded-t-xl pb-20 "
       >
         {nounous.map((nounou) => (
           <li key={nounou.id} className=" flex justify-around gap-x-6 py-5">

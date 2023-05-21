@@ -66,7 +66,7 @@ export default function Example(props) {
 
   return (
     <>
-      <div className="h-screen flex flex-col ">
+      <div className="h-screen  flex flex-col ">
         <div className="bg-indigo-600  pb-32">
           <Disclosure
             as="nav"
@@ -74,7 +74,7 @@ export default function Example(props) {
           >
             {({ open }) => (
               <>
-                <div className="mx-auto max-w-7xl px-2 sm:px-4 lg:px-8">
+                <div className="mx-auto max--7xl px-2 sm:px-4 lg:px-8">
                   <div className="relative flex h-16 items-center justify-between lg:border-b lg:border-indigo-400 lg:border-opacity-25">
                     <div className="flex items-center px-2 lg:px-0">
                       <div className="flex -shrink-0">
