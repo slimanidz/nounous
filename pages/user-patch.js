@@ -7,7 +7,7 @@ import { useAppContext } from "../components/AppContext";
 import Header from "../components/Header";
 import ImageSrc from "../components/ImageSrc";
 import Modal from "../components/Modal";
-import Page from "../components/Page";
+import Dashboard from "../components/Dashboard";
 import validationSchemaPassword from "../components/validateurs/ValidatePassword";
 import ValidationSchemaPatch from "../components/validateurs/ValidationSchemaPatch";
 import api from "../services/api";
@@ -135,12 +135,9 @@ const UserPatch = () => {
   );
 
   return (
-    <Page>
-      <div className=" h-full  flex flex-col items-center bg-gradient-to-b from-gray-100 to-gray-500  ">
-        <Header className="" />
-        <div className=" py-10">
-          {/* <ImageSrc src="/images/logo/F1.png" className="w-48 h-15" /> */}
-        </div>
+    <Dashboard>
+      <div className=" h-screen  flex flex-col items-center bg-slate-200 rounded ">
+        <div className=" py-10"></div>
         <div>
           <div className="text-center">
             <h1 className="text-center text-4xl font-bold mb-5  bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-900 ">
@@ -169,14 +166,16 @@ const UserPatch = () => {
             validationSchema={ValidationSchemaPatch}
             onSubmit={handleSubmit1}
           >
-            <Form>
+            <Form className="flex flex-col gap-4">
               <div className="flex flex-col">
-                <label>email :</label>
+                <label className="block text-sm font-medium leading-6 text-gray-900">
+                  Email
+                </label>
                 <Field
                   type="email"
                   name="email1"
                   // placeholder={`${user.email}`}
-                  className="border-2 border-black px-2 rounded"
+                  className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
                 <ErrorMessage
                   name="email1"
@@ -184,13 +183,16 @@ const UserPatch = () => {
                   className="text-red-600"
                 />
               </div>
-              <div className="flex flex-col">
-                <label>Username :</label>
+
+              <div className="flex flex-col ">
+                <label className="block text-sm font-medium leading-6 text-gray-900">
+                  Username
+                </label>
                 <Field
                   type="text"
                   name="username1"
                   // placeholder={`${user.username}`}
-                  className="border-2 border-black px-2 rounded "
+                  className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
                 <ErrorMessage
                   name="username1"
@@ -200,12 +202,14 @@ const UserPatch = () => {
               </div>
 
               <div className="flex flex-col">
-                <label>Telephone :</label>
+                <label className="block text-sm font-medium leading-6 text-gray-900">
+                  Telephone
+                </label>
                 <Field
                   type="number"
                   name="telephone1"
                   // placeholder={`${user.telephone}`}
-                  className="border-2 border-black px-2 rounded"
+                  className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
                 <ErrorMessage
                   name="telephone1"
@@ -217,12 +221,12 @@ const UserPatch = () => {
               <div className="flex gap-3 my-3 justify-between">
                 <button
                   type="submit"
-                  className="p-2 text font-bold text-white bg-blue-500 active:bg-blue-400 rounded "
+                  className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >
                   Modifie
                 </button>
                 <Link
-                  className="p-2 text font-bold text-white bg-blue-500 active:bg-blue-400 rounded"
+                  className="flex  justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                   href="/setting"
                 >
                   Annule
@@ -278,7 +282,7 @@ const UserPatch = () => {
           </div>
         </div>
       </Modal>
-    </Page>
+    </Dashboard>
   );
 };
 

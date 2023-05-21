@@ -48,27 +48,48 @@ const UsersDiagramme = () => {
   };
 
   return (
-    <div className="md:w-96 bg-slate-300 m-5">
-      <h1 className=" text-2xl font-bold text-center pt-5">UTILISATEURS </h1>
+    <div>
+      <h1 className=" font-bold px-4 pt-8">UTILISATEURS</h1>
+      <div class="float-left ">
+        <div className="w-80 md:w-96  bg-slate-300 m-2">
+          {/* <h1 className=" text-2xl font-bold text-center pt-5">
+            UTILISATEURS{" "}
+          </h1> */}
 
-      <div className="m-3 flex justify-center gap-3">
-        <label>Type de diagramme:</label>
-        <select
-          onChange={handleChange}
-          className="border-4 border-double border-black "
-        >
-          <option value="Bar">Bar</option>
-          <option value="PolarArea">PolarArea</option>
-        </select>
+          <div className="m-3 flex justify-center gap-3">
+            <label>Type</label>
+            <select
+              onChange={handleChange}
+              className="border-4 border-double border-black "
+            >
+              <option value="Bar">Bar</option>
+              <option value="PolarArea">PolarArea</option>
+            </select>
+          </div>
+
+          <div className="flex">
+            {typeDiagramme === "Bar" ? (
+              <Bar data={data} options={options} />
+            ) : (
+              <PolarArea data={data} options={options} />
+            )}
+          </div>
+        </div>
       </div>
 
-      <div className="flex">
-        {typeDiagramme === "Bar" ? (
-          <Bar data={data} options={options} />
-        ) : (
-          <PolarArea data={data} options={options} />
-        )}
-      </div>
+      <p className="p-4">
+        Lorem ipsum dolor sit amet. Qui odit sapiente ea voluptate vero sed
+        voluptas odit et voluptatem architecto ab ipsam impedit aut ratione
+        enim. Est repellendus voluptates et ratione amet ut ducimus libero aut
+        omnis quia? Ab deserunt omnis et nemo quam ut vitae possimus id sint
+        aspernatur ea enim mollitia. Aut quis quia sed vero facere aut optio
+        pariatur et tenetur similique et autem incidunt. Sed dolores odit et
+        optio expedita et beatae voluptatem eos voluptatem quaerat? Et rerum
+        minima qui reprehenderit blanditiis id modi blanditiis qui fuga eveniet
+        ab quas tempora qui quos voluptatem sed voluptatem suscipit. Qui
+        molestiae Quis et saepe atque quo reiciendis dignissimos aut dolorem
+        esse.
+      </p>
     </div>
   );
 };

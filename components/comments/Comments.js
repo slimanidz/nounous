@@ -35,58 +35,57 @@ const Comments = () => {
   return (
     <div>
       <>
-        <div className="   ">
-          <div>
-            <Formik
-              initialValues={initialValues}
-              onSubmit={handleSubmit}
-              validationSchema={validationSchemaContent}
-            >
-              <Form className=" flex flex-col items-center gap-3">
-                <div className="flex flex-col">
-                  {session ? (
-                    <h1 className="p-4 text-3xl font-bold ">
-                      Laisser un commentaire pour votre nounou
-                    </h1>
-                  ) : (
-                    <h1 className="p-4 text-3xl font-bold ">
-                      Vous pouvez connecter pour laisser un commentaire
-                    </h1>
-                  )}
-
-                  <label>content *:</label>
-                  <Field
-                    as="textarea"
-                    name="content"
-                    className="border-2 border-black px-2 rounded"
-                    placeholder="contenu"
-                  />
-                  <ErrorMessage
-                    name="content"
-                    component="small"
-                    className="text-red-600"
-                  />
-                </div>
-
+        <div className="p-5 md:p-10 flex flex-col items-center ">
+          <Formik
+            initialValues={initialValues}
+            onSubmit={handleSubmit}
+            validationSchema={validationSchemaContent}
+          >
+            <Form className=" flex flex-col items-center gap-3 mx-2 ">
+              <div className="flex flex-col">
                 {session ? (
-                  <button
-                    type="submit"
-                    className=" p-2 text font-bold text-white bg-blue-500 active:bg-blue-400 rounded"
-                  >
-                    envoyer
-                  </button>
+                  <h1 className="p-4 text-xl font-medium text-center">
+                    Laisser un commentaire pour votre nounou
+                  </h1>
                 ) : (
-                  <Link
-                    href="/sign-up"
-                    className=" p-2 text-center font-bold text-white bg-blue-500 active:bg-blue-400 rounded"
-                  >
-                    Connecter ?
-                  </Link>
+                  <h1 className="p-4 text-xl font-medium text-center">
+                    Vous pouvez connecter pour laisser un commentaire
+                  </h1>
                 )}
-              </Form>
-            </Formik>
-            {/* <CommentsGet nounouId={nounouId} /> */}
-          </div>
+
+                {/* <label>content </label> */}
+                <Field
+                  as="textarea"
+                  name="content"
+                  rows={2}
+                  className="block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  placeholder="contenu"
+                />
+                <ErrorMessage
+                  name="content"
+                  component="small"
+                  className="text-red-600"
+                />
+              </div>
+
+              {session ? (
+                <button
+                  type="submit"
+                  className="flex  justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                >
+                  Send Comment
+                </button>
+              ) : (
+                <Link
+                  href="/sign-up"
+                  className="flex justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                >
+                  Connecter
+                </Link>
+              )}
+            </Form>
+          </Formik>
+          <div className=" w-[75%]  border-t-4 border-double  border-black mt-5 md:mt-10"></div>
         </div>
       </>
     </div>

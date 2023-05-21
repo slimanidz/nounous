@@ -12,6 +12,8 @@ import Page from "./Page";
 import Header from "./Header";
 import { db } from "./FirebaseConfig";
 import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
+import Dashboard from "./Dashboard";
+import { EnvelopeIcon, PhoneIcon } from "@heroicons/react/20/solid";
 
 const Nounou = () => {
   const { idContact } = useAppContext();
@@ -48,13 +50,12 @@ const Nounou = () => {
   }, []);
 
   return (
-    <Page>
-      <Header />
+    <Dashboard>
       <div>
         {
           session || sessionNounou ? (
             <div>
-              <div className="flex flex-col items-center gap-5 mt-20 ">
+              <div className="flex flex-col items-center gap-5 mt-10 ">
                 <div>
                   {images.map((image) => (
                     <div key={image.id} className=" ">
@@ -70,32 +71,55 @@ const Nounou = () => {
                     </div>
                   ))}
                 </div>
-
-                <div className=" ">
-                  <h1>
-                    Name :<span className="font-bold ">{nounou.username}</span>
+                <div className="flex flex-col items-center">
+                  {" "}
+                  <h1 className="text-2xl font-bold text-gray-900 ">
+                    {nounou.username}
                   </h1>
-                  <p>Localite: {nounou.localite}</p>
-                  <div className="flex gap-3">
-                    <p>E-mail: {nounou.email} </p>
-                    <a href={`mailto:${nounou.email}`}>
+                  <p className="text-sm text-gray-500">{nounou.localite}</p>
+                </div>
+
+                <div className=" flex flex-col gap-3 ">
+                  <div className="flex gap-5 justify-between items-center">
+                    {/* <a href={`mailto:${nounou.email}`}>
                       <RiMailSendFill />
+                    </a> */}
+                    <p className="">{nounou.email} </p>
+                    <a
+                      href={`mailto:${nounou.email}`}
+                      className="flex items-center justify-center gap-x-2 rounded-bl-lg   text-sm font-semibold text-gray-900"
+                    >
+                      <EnvelopeIcon
+                        className="h-5 w-5 text-gray-400"
+                        aria-hidden="true"
+                      />
+                      Email
                     </a>
                   </div>
-                  <div className="flex gap-3">
-                    <p> Telephone: {nounou.telephone}</p>
-                    <a href={`tel:${nounou.telephone}`}>
+                  <div className="w-full flex justify-between items-center ">
+                    {/* <a href={`tel:${nounou.telephone}`}>
                       <FaPhone />
+                    </a> */}
+                    <p className="">{nounou.telephone}</p>
+                    <a
+                      href={`tel:${nounou.telephone}`}
+                      className="flex items-center justify-center gap-x-2 rounded-br-lg  text-sm font-semibold text-gray-900"
+                    >
+                      <PhoneIcon
+                        className="h-5 w-5 text-gray-400"
+                        aria-hidden="true"
+                      />
+                      Call
                     </a>
                   </div>
                   {session ? (
                     <div>
-                      Message:
                       <Message nounouId={idContact} />
                     </div>
                   ) : null}
                 </div>
-                <div>
+
+                <div className="pt-5">
                   <Agenda />
                 </div>
               </div>
@@ -118,7 +142,7 @@ const Nounou = () => {
           // </div>
         }
       </div>
-    </Page>
+    </Dashboard>
   );
 };
 

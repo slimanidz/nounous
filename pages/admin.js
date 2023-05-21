@@ -1,15 +1,11 @@
 import Link from "next/link";
 import React from "react";
-import Header from "../components/Header";
-import Page from "../components/Page";
+import Dashboard from "../components/Dashboard";
 
 const Admin = () => {
   return (
-    <Page>
-      <Header />
-      <h1 className="flex justify-center p-10 text-2xl font-bold">
-        Administrateurs
-      </h1>
+    <Dashboard>
+      <h1 className="flex justify-center p-10 text-2xl font-bold">Comptes</h1>
       <section className="flex gap-3">
         <div className="w-1/2 flex flex-col items-center justify-center">
           {/* <h1 className=" text-2xl font-bold"></h1> */}
@@ -30,7 +26,7 @@ const Admin = () => {
           </Link>
         </div>
       </section>
-    </Page>
+    </Dashboard>
   );
 };
 

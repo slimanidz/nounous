@@ -3,12 +3,9 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useCallback, useEffect, useState } from "react";
-import { useAppContext } from "../components/AppContext";
 import { useAppContextNounou } from "../components/AppContextNounou";
-import Header from "../components/Header";
-import ImageSrc from "../components/ImageSrc";
 import Modal from "../components/Modal";
-import Page from "../components/Page";
+import Dashboard from "../components/Dashboard";
 import validationSchemaPassword from "../components/validateurs/ValidatePassword";
 import ValidationSchemaPatch from "../components/validateurs/ValidationSchemaPatch";
 import api from "../services/api";
@@ -25,9 +22,7 @@ const UserPatch = () => {
     state: { sessionNounou },
     setSessionNounou,
   } = useAppContextNounou();
-  console.log({ sessionNounou: sessionNounou });
   const router = useRouter();
-  // const [user, setUser] = useState([]);
   const [errors, setErrors] = useState([]);
   const [openModal, setOpenModal] = useState(false);
   const [data, setData] = useState([]);
@@ -60,19 +55,15 @@ const UserPatch = () => {
   const handleSubmit = useCallback(
     async ({ password }) => {
       setErrors([]);
-      console.log({ password: password });
       const email1 = data.email1;
       const username1 = data.username1;
       const telephone1 = data.telephone1;
-
-      console.log({ donnes: { email1, username1, telephone1 } });
 
       if (!email1 & !username1 & !telephone1) {
         return;
       }
 
       if (sessionNounou) {
-        console.log(123);
         const nounouId = sessionNounou.email;
 
         const email = sessionNounou.email;
@@ -86,15 +77,11 @@ const UserPatch = () => {
         });
         if (!resultChecNounou) {
           setActive(true);
-          console.log("ERROR");
-          console.log(active);
           return;
         }
-        console.log(resultChecNounou);
         setActive(false);
 
         ///////////
-        console.log({ email1, username1, telephone1, nounouId });
 
         try {
           const {
@@ -107,8 +94,6 @@ const UserPatch = () => {
 
           if (result.length !== 0) {
             const email = result[0].email;
-            // const password = password1;
-            console.log(password);
             const {
               data: {
                 result: [{ jwt }],
@@ -116,8 +101,6 @@ const UserPatch = () => {
             } = await api.post("/api/sign-in-nounous", { email, password });
             setSessionNounou(jwt);
 
-            console.log(1234);
-            // resetForm();
             router.push("/setting");
             setOpenModal(false);
 
@@ -138,15 +121,11 @@ const UserPatch = () => {
   );
 
   return (
-    <Page>
-      <div className=" h-full  flex flex-col items-center bg-gradient-to-b from-gray-100 to-gray-500  ">
-        <Header className="" />
-        <div className=" py-10">
-          {/* <ImageSrc src="/images/logo/F1.png" className="w-48 h-15" /> */}
-        </div>
+    <Dashboard>
+      <div className=" h-full  flex flex-col items-center bg-slate-200 rounded ">
         <div>
           <div className="text-center">
-            <h1 className="text-center text-4xl font-bold mb-5  bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-900 ">
+            <h1 className="text-center text-4xl font-bold my-20  bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-900 ">
               Update
             </h1>
           </div>
@@ -165,12 +144,14 @@ const UserPatch = () => {
           >
             <Form>
               <div className="flex flex-col">
-                <label>email :</label>
+                <label className="block text-sm font-medium leading-6 text-gray-900">
+                  email :
+                </label>
                 <Field
                   type="email"
                   name="email1"
                   // placeholder={`${sessionNounou.email}`}
-                  className="border-2 border-black px-2 rounded"
+                  className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
                 <ErrorMessage
                   name="email1"
@@ -179,12 +160,14 @@ const UserPatch = () => {
                 />
               </div>
               <div className="flex flex-col">
-                <label>Username :</label>
+                <label className="block text-sm font-medium leading-6 text-gray-900">
+                  Username :
+                </label>
                 <Field
                   type="text"
                   name="username1"
                   // placeholder={`${sessionNounou.username}`}
-                  className="border-2 border-black px-2 rounded "
+                  className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
                 <ErrorMessage
                   name="username1"
@@ -194,12 +177,14 @@ const UserPatch = () => {
               </div>
 
               <div className="flex flex-col">
-                <label>Telephone :</label>
+                <label className="block text-sm font-medium leading-6 text-gray-900">
+                  Telephone :
+                </label>
                 <Field
                   type="number"
                   name="telephone1"
                   // placeholder={`${sessionNounou.telephone}`}
-                  className="border-2 border-black px-2 rounded"
+                  className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
                 <ErrorMessage
                   name="telephone1"
@@ -211,12 +196,12 @@ const UserPatch = () => {
               <div className="flex gap-3 my-3 justify-between">
                 <button
                   type="submit"
-                  className="p-2 text font-bold text-white bg-blue-500 active:bg-blue-400 rounded "
+                  className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >
                   Modifie
                 </button>
                 <Link
-                  className="p-2 text font-bold text-white bg-blue-500 active:bg-blue-400 rounded"
+                  className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                   href="/setting"
                 >
                   Annule
@@ -272,7 +257,7 @@ const UserPatch = () => {
           </div>
         </div>
       </Modal>
-    </Page>
+    </Dashboard>
   );
 };
 

@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
 import ImageSrc from "./ImageSrc";
-import Modal from "./Modal";
 import { BiRightArrowAlt } from "react-icons/bi";
 import { useAppContext } from "./AppContext";
 import Link from "next/link";
@@ -10,6 +9,15 @@ import api from "../services/api";
 import { useRouter } from "next/router";
 import { db } from "./FirebaseConfig";
 import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
+
+import { Fragment } from "react";
+import { Menu, Transition, Dialog } from "@headlessui/react";
+import { EllipsisVerticalIcon } from "@heroicons/react/20/solid";
+import { CheckIcon } from "@heroicons/react/24/outline";
+
+function classNames(...classes) {
+  return classes.filter(Boolean).join(" ");
+}
 
 const initialValue = {
   adresse: "",
@@ -31,12 +39,11 @@ const NounousGet = () => {
   const [services, setServices] = useState([]);
   const [nounouService, setNounouService] = useState([]);
   const [openModal, setOpenModal] = useState(false);
-  const [openModalServices, setOpenModalServices] = useState(false);
   const [images, setImages] = useState([]);
+  const [open, setOpen] = useState(false);
 
   const onClose = () => {
     setOpenModal(false);
-    setOpenModalServices(false);
   };
 
   // Get image nounous de firebase
@@ -69,12 +76,16 @@ const NounousGet = () => {
 
   const handelFilter = useCallback(async ({ adresse }) => {
     if (adresse === "") {
+      const {
+        data: { result },
+      } = await api.get("/api/nounous");
+      setNounous(result);
       return;
     }
 
     const {
       data: { result },
-    } = await api.get(`/api/adresse/${adresse}`);
+    } = await api.get(`/api/adresse/${adresse.toLowerCase()}`);
     setNounous(result);
     setAdresse(adresse);
   }, []);
@@ -88,20 +99,6 @@ const NounousGet = () => {
     })();
   }, []);
 
-  if (!nounous) {
-    return (
-      <div className="flex flex-col justify-center items-center">
-        No Nounous ! Sorry
-        <ImageSrc
-          width="200"
-          height="200"
-          src="/images/ico-triste.jpg"
-          alt="image"
-        />
-      </div>
-    );
-  }
-
   const handleClickContact = async (event) => {
     const nounouId = Number(event.currentTarget.getAttribute("data-id"));
 
@@ -114,7 +111,7 @@ const NounousGet = () => {
   };
 
   const handleClickServices = async (event) => {
-    const hiddenFields = ["id", "nounouId", "createdAt", "updatedAt"];
+    const hiddenFields = ["nounouId", "createdAt", "updatedAt"];
     const nounouId = Number(event.currentTarget.getAttribute("data-id"));
     const {
       data: { result1 },
@@ -126,116 +123,179 @@ const NounousGet = () => {
       )
     );
     setServices(servicefiltre);
-    setOpenModalServices(true);
+    setOpen(true);
+    // setOpenModalServices(true);
     const {
       data: { result },
     } = await api.get(`/api/nounous/${nounouId}`);
     setNounouService(result);
   };
 
+  if (!nounous) {
+    return (
+      <div className="flex flex-col justify-center items-center text-white">
+        No Nounous ! Sorry
+        <ImageSrc
+          width="200"
+          height="200"
+          src="/images/ico-triste.jpg"
+          className="rounded-full"
+          alt="image"
+        />
+      </div>
+    );
+  }
+
   return (
     <div className=" overflow-y-auto flex flex-col items-center ">
       <div className=" flex  justify-center my-5">
-        {/* <h1 className=" text-center  text-2xl ">LIST OF nounous</h1> */}
-
         <div>
-          <Formik onSubmit={handelFilter} initialValues={initialValue}>
-            <Form className="w-ful md:flex gap-3 bg-red-200 p-2 rounded-xl my-5 ">
-              <p className="md:text-xl md:font-bold">
-                Trounver une nounou proche de vous!
-              </p>
-              <div className="flex flex-grow">
-                <div className=" flex items-center border-2 border-black px-2 rounded-xl">
-                  <Field
-                    className="bg-red-200"
-                    name="adresse"
-                    placeholder="entrer votre ville"
-                  />
-                  {adresse ? (
-                    <button
-                      type="button"
-                      onClick={handleClearSearch}
-                      className=" border-2 border-black rounded-full px-1 "
-                    >
-                      X
-                    </button>
-                  ) : null}
+          <div class="flex flex-1 justify-center px-2 lg:ml-6 lg:justify-end">
+            <div class="w-full max-w-lg lg:max-w-xs">
+              <label htmlFor="search" class="sr-only">
+                Search
+              </label>
+              <div class="relative text-gray-400 focus-within:text-gray-600">
+                <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                  <svg
+                    class="h-5 w-5"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
                 </div>
-
-                <button
-                  type="submit"
-                  className="bg-blue-600 active:bg-blue-300 text-white font-bold px-2 py-1 ml-1 rounded-xl"
-                >
-                  Ok
-                </button>
+                <div>
+                  <Formik onSubmit={handelFilter} initialValues={initialValue}>
+                    <Form>
+                      <Field
+                        class="block w-full rounded-md border-0 bg-white py-1.5 pl-10 pr-3 text-gray-900 focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-600 sm:text-sm sm:leading-6"
+                        placeholder="Search"
+                        type="search"
+                        name="adresse"
+                      />
+                    </Form>
+                  </Formik>
+                </div>
               </div>
-            </Form>
-          </Formik>
+            </div>
+          </div>
         </div>
       </div>
-      <ul className=" md:w-[80%] bg-red-30 px-2 ">
-        {nounous.map((nounou) => (
-          <li
-            className=" group flex justify-between odd:bg-slate-200 rounded-xl "
-            key={nounou.id}
-          >
-            <div className="w-full flex justify-between items-center relative border-b-4 border-black rounded-xl ">
-              <div className=" w-[70%] flex items-center  bg-red-30">
-                <button onClick={handleClickContact} data-id={nounou.id}>
-                  {images.map((image) => (
-                    <div key={image.id}>
-                      {image.id === nounou.id && (
-                        <ImageSrc
-                          src={`${image.imageUrl}`}
-                          alt="image nounou"
-                          width={180}
-                          height={180}
-                          className="w-20 h-20 rounded-xl"
-                        />
-                      )}
-                    </div>
-                  ))}
-                </button>
 
-                <div className="flex flex-col ">
-                  <span className="px-2 bg-blue-60">
-                    nom: {nounou.username}
-                  </span>
-                  <span className="px-2   bg-red-60">
-                    localite: {nounou.localite}
-                  </span>
-                  <span className="px-2  bg-blue-30">{nounou.situation}</span>
+      {/* ****************************************************** */}
+      <ul
+        role="list"
+        className="w-full divide-y divide-gray-100 bg-slate-300 rounded-t-xl"
+      >
+        {nounous.map((nounou) => (
+          <li key={nounou.id} className=" flex justify-around gap-x-6 py-5">
+            <div className="flex gap-x-4">
+              <div>
+                {images.map((image) => (
+                  <div key={image.imageUrl}>
+                    {image.id === nounou.id && (
+                      <ImageSrc
+                        src={`${image.imageUrl}`}
+                        alt="image nounou"
+                        width={180}
+                        height={180}
+                        className="h-12 md:h-20 w-12 md:w-20 flex-none rounded-full bg-gray-50"
+                      />
+                    )}
+                  </div>
+                ))}
+              </div>
+
+              <div className="min-w-0 flex-auto">
+                <p className="text-sm font-semibold leading-6 text-gray-900">
+                  <button
+                    onClick={handleClickServices}
+                    data-id={nounou.id}
+                    className="hover:underline"
+                  >
+                    {nounou.username}
+                  </button>
+                </p>
+                <p className="mt-1 flex text-xs leading-5 text-gray-500 first-letter:uppercase first-line:uppercase">
+                  {nounou.localite.toUpperCase()}
+                </p>
+              </div>
+            </div>
+            <div className="flex items-center gap-x-6">
+              <div className="hidden sm:flex sm:flex-col sm:items-end">
+                <p className="w-64 text-xs text-end leading-6 text-gray-900">
+                  {nounou.situation}
+                </p>
+
+                <div className="mt-1 flex items-center gap-x-1.5">
+                  <div className="flex-none rounded-full bg-emerald-500/20 p-1">
+                    <div className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+                  </div>
+                  <p className="text-xs leading-5 text-gray-500">Disponible</p>
                 </div>
               </div>
-
-              <div className="absolute  right-0 flex flex-col items-center justify-center bg-slate-300 rounded-xl md:invisible  group-hover:visible ">
-                <button
-                  className="border-b-2 border-black hover:bg-slate-600 hover:text-white rounded-xl px-2"
-                  onClick={handleClickContact}
-                  data-id={nounou.id}
+              <Menu as="div" className="relative flex-none">
+                <Menu.Button className="-m-2.5 block p-2.5 text-gray-500 hover:text-gray-900">
+                  <span className="sr-only">Open options</span>
+                  <EllipsisVerticalIcon
+                    className="h-5 w-5"
+                    aria-hidden="true"
+                  />
+                </Menu.Button>
+                <Transition
+                  as={Fragment}
+                  enter="transition ease-out duration-100"
+                  enterFrom="transform opacity-0 scale-95"
+                  enterTo="transform opacity-100 scale-100"
+                  leave="transition ease-in duration-75"
+                  leaveFrom="transform opacity-100 scale-100"
+                  leaveTo="transform opacity-0 scale-95"
                 >
-                  contact
-                </button>
-                <button
-                  className="border-b-2 border-black hover:bg-slate-600 hover:text-white rounded-xl px-2"
-                  onClick={handleClickServices}
-                  data-id={nounou.id}
-                >
-                  services
-                </button>
-                <Link
-                  href="/comments"
-                  className="border-b-2 border-black hover:bg-slate-600 hover:text-white rounded-xl px-2"
-                  onClick={handleClickComment}
-                  data-id={nounou.id}
-                >
-                  commantaire
-                </Link>
-              </div>
+                  <Menu.Items className="absolute right-0 z-10 mt-2 w-32 origin-top-right rounded-md bg-white py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none">
+                    <Menu.Item>
+                      {({ active }) => (
+                        <button
+                          className={classNames(
+                            active ? "bg-gray-50" : "",
+                            "block px-3 py-1 text-sm leading-6 text-gray-900"
+                          )}
+                          onClick={handleClickContact}
+                          data-id={nounou.id}
+                        >
+                          View profile
+                        </button>
+                      )}
+                    </Menu.Item>
+                    <Menu.Item>
+                      {({ active }) => (
+                        <Link
+                          href="/comments"
+                          className={classNames(
+                            active ? "bg-gray-50" : "",
+                            "block px-3 py-1 text-sm leading-6 text-gray-900"
+                          )}
+                          onClick={handleClickComment}
+                          data-id={nounou.id}
+                        >
+                          commantaire
+                        </Link>
+                      )}
+                    </Menu.Item>
+                  </Menu.Items>
+                </Transition>
+              </Menu>
             </div>
           </li>
         ))}
       </ul>
+
+      {/* ************************************************************** */}
       {nounous.length === 0 ? (
         <div className="flex flex-col justify-center items-center">
           No Nounous ! Sorry
@@ -249,124 +309,206 @@ const NounousGet = () => {
       ) : null}
 
       {/* model no session => no nounouPage */}
-      <Modal
-        className={
-          session || sessionNounou
-            ? "bg-slate-50 p-5 overflow-y-auto pb-20"
-            : " flex justify-center items-center "
-        }
-        open={openModal}
-      >
-        <div className="bg-slate-50 w-80 h-80  shadow-lg shadow-black ">
-          <div className="w-full flex justify-end">
-            <button
-              className="p-2 bg-blue-700 active:bg-blue-300 text-white text-3xl font-bold rounded-xl"
-              onClick={onClose}
-            >
-              X
-            </button>
-          </div>
-          <div className="flex flex-col items-center justify-center gap-5 p-5">
-            <p className="text-center">
-              vous n&rsquo; ete pas connecter, vous deveraiez vous connecter
-              pour contacter les nounous
-            </p>
-            <Link
-              className="bg-blue-600 active:bg-blue-300 rounded-xl p-2 text-white font-bold"
-              href="/connexion"
-            >
-              connecter
-            </Link>
-          </div>
-        </div>
-      </Modal>
 
-      <Modal
-        className="w-screen h-screen bg-slate-5 flex justify-center items-center"
-        open={openModalServices}
-      >
-        <div className="md:w-96 bg-slate-300  p-5  shadow-lg shadow-black ">
-          <div className="w-full flex justify-end">
-            <button
-              className="p-2 bg-blue-700 active:bg-blue-300 text-white text-3xl font-bold rounded-xl"
-              onClick={onClose}
-            >
-              X
-            </button>
-          </div>
-          <div className=" ">
-            <div className=" flex justify-between text-2xl sticky top-0">
-              <h1 className=" text-center  text-2xl ">
-                {" "}
-                name: {nounouService.username}
-              </h1>
+      <Transition.Root show={openModal} as={Fragment}>
+        <Dialog as="div" className="relative z-10" onClose={onClose}>
+          <Transition.Child
+            as={Fragment}
+            enter="ease-out duration-300"
+            enterFrom="opacity-0"
+            enterTo="opacity-100"
+            leave="ease-in duration-200"
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
+          >
+            <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+          </Transition.Child>
+
+          <div className="fixed inset-0 z-10 overflow-y-auto">
+            <div className="flex min-h-full items-center justify-center p-4 text-center sm:items-center sm:p-0">
+              <Transition.Child
+                as={Fragment}
+                enter="ease-out duration-300"
+                enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                enterTo="opacity-100 translate-y-0 sm:scale-100"
+                leave="ease-in duration-200"
+                leaveFrom="opacity-100 translate-y-0 sm:scale-100"
+                leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+              >
+                <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-sm sm:p-6">
+                  <div>
+                    <div className="mt-3 text-center sm:mt-5">
+                      <div className="mt-2">
+                        <p className="text-sm text-gray-500">
+                          Vous n&rsquo;êtes pas connecté, vous devez vous
+                          connecter pour accéder aux profils des nounous!
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="mt-5 sm:mt-6">
+                    <Link
+                      href="/connexion"
+                      className="inline-flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                      // onClick={onClose}
+                    >
+                      Connexion
+                    </Link>
+                  </div>
+                </Dialog.Panel>
+              </Transition.Child>
             </div>
-
-            {services.length === 0 ? (
-              <p>no services difined ...</p>
-            ) : (
-              <ul className="  ">
-                <h1 className="p-2 text-3xl font-bold text-center ">
-                  Services:
-                </h1>
-                {services.map((service) => (
-                  <li
-                    key={service.id}
-                    className="flex flex-col gap-3 odd:bg-red-300  "
-                  >
-                    <h1 className="px-2 flex gap-2   bg-red-">
-                      {" "}
-                      {service.service1 ? <BiRightArrowAlt /> : null}{" "}
-                      {service.service1}
-                    </h1>
-
-                    <h1 className="px-2 flex gap-2   bg-red-">
-                      {" "}
-                      {service.service2 ? <BiRightArrowAlt /> : null}
-                      {service.service2}
-                    </h1>
-
-                    <h1 className="px-2 flex gap-2   bg-red-">
-                      {" "}
-                      {service.service3 ? <BiRightArrowAlt /> : null}
-                      {service.service3}
-                    </h1>
-
-                    <h1 className="px-2 flex gap-2   bg-red-">
-                      {" "}
-                      {service.service4 ? <BiRightArrowAlt /> : null}
-                      {service.service4}
-                    </h1>
-
-                    <h1 className="px-2 flex gap-2   bg-red-">
-                      {" "}
-                      {service.service5 ? <BiRightArrowAlt /> : null}
-                      {service.service5}
-                    </h1>
-
-                    <h1 className="px-2 flex gap-2   bg-red-">
-                      {" "}
-                      {service.service6 ? <BiRightArrowAlt /> : null}
-                      {service.service6}
-                    </h1>
-
-                    <h1 className="px-2 flex gap-2   bg-red-">
-                      {" "}
-                      {service.service7 ? <BiRightArrowAlt /> : null}
-                      {service.service7}
-                    </h1>
-
-                    <h1 className="px-2 flex gap-2   bg-red-">
-                      {service.service8 ? <BiRightArrowAlt /> : null}
-                      {service.service8}
-                    </h1>
-                  </li>
-                ))}
-              </ul>
-            )}
           </div>
-        </div>
-      </Modal>
+        </Dialog>
+      </Transition.Root>
+
+      <Transition.Root show={open} as={Fragment}>
+        <Dialog as="div" className="relative z-10" onClose={setOpen}>
+          <Transition.Child
+            as={Fragment}
+            enter="ease-out duration-300"
+            enterFrom="opacity-0"
+            enterTo="opacity-100"
+            leave="ease-in duration-200"
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
+          >
+            <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+          </Transition.Child>
+
+          <div className="fixed inset-0 z-10 overflow-y-auto">
+            <div className="flex min-h-full items-center justify-center p-4 text-center sm:items-center sm:p-0">
+              <Transition.Child
+                as={Fragment}
+                enter="ease-out duration-300"
+                enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                enterTo="opacity-100 translate-y-0 sm:scale-100"
+                leave="ease-in duration-200"
+                leaveFrom="opacity-100 translate-y-0 sm:scale-100"
+                leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+              >
+                <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-sm sm:p-6">
+                  <div>
+                    <div className="mx-auto flex  items-center justify-center">
+                      {images.map((image) => (
+                        <div key={image.id}>
+                          {image.id === nounouService.id && (
+                            <ImageSrc
+                              src={`${image.imageUrl}`}
+                              alt="image nounou"
+                              width={180}
+                              height={180}
+                              className="h-12 md:h-20 w-12 md:w-20 flex-none rounded-full bg-gray-50"
+                            />
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                    <div className="mt-3 text-center sm:mt-5">
+                      <Dialog.Title
+                        as="h3"
+                        className="text-base font-semibold leading-6 text-gray-900"
+                      >
+                        {nounouService.username?.toUpperCase()}
+                      </Dialog.Title>
+                      <div className="mt-2">
+                        {services.length === 0 ? (
+                          <p>No service defined ...</p>
+                        ) : (
+                          <ul className="  ">
+                            <h1 className="p-2 text-2xl font-bold text-center ">
+                              Services
+                            </h1>
+                            {services.map((service) => (
+                              <li
+                                key={service.id}
+                                className="flex flex-col gap-3 odd:bg-red-300  "
+                              >
+                                {console.log(service.id)}
+                                <h1 className="px-2 flex gap-2 text-sm text-gray-500   bg-red-">
+                                  {" "}
+                                  {service.service1 ? (
+                                    <BiRightArrowAlt />
+                                  ) : null}{" "}
+                                  {service.service1}
+                                </h1>
+
+                                <h1 className="px-2 flex gap-2 text-sm text-gray-500   bg-red-">
+                                  {" "}
+                                  {service.service2 ? (
+                                    <BiRightArrowAlt />
+                                  ) : null}
+                                  {service.service2}
+                                </h1>
+
+                                <h1 className="px-2 flex gap-2 text-sm text-gray-500   bg-red-">
+                                  {" "}
+                                  {service.service3 ? (
+                                    <BiRightArrowAlt />
+                                  ) : null}
+                                  {service.service3}
+                                </h1>
+
+                                <h1 className="px-2 flex gap-2 text-sm text-gray-500   bg-red-">
+                                  {" "}
+                                  {service.service4 ? (
+                                    <BiRightArrowAlt />
+                                  ) : null}
+                                  {service.service4}
+                                </h1>
+
+                                <h1 className="px-2 flex gap-2 text-sm text-gray-500   bg-red-">
+                                  {" "}
+                                  {service.service5 ? (
+                                    <BiRightArrowAlt />
+                                  ) : null}
+                                  {service.service5}
+                                </h1>
+
+                                <h1 className="px-2 flex gap-2 text-sm text-gray-500   bg-red-">
+                                  {" "}
+                                  {service.service6 ? (
+                                    <BiRightArrowAlt />
+                                  ) : null}
+                                  {service.service6}
+                                </h1>
+
+                                <h1 className="px-2 flex gap-2 text-sm text-gray-500   bg-red-">
+                                  {" "}
+                                  {service.service7 ? (
+                                    <BiRightArrowAlt />
+                                  ) : null}
+                                  {service.service7}
+                                </h1>
+
+                                <h1 className="px-2 flex gap-2 text-sm text-gray-500   bg-red-">
+                                  {service.service8 ? (
+                                    <BiRightArrowAlt />
+                                  ) : null}
+                                  {service.service8}
+                                </h1>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="mt-5 sm:mt-6">
+                    <button
+                      type="button"
+                      className="inline-flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                      onClick={() => setOpen(false)}
+                    >
+                      OK
+                    </button>
+                  </div>
+                </Dialog.Panel>
+              </Transition.Child>
+            </div>
+          </div>
+        </Dialog>
+      </Transition.Root>
     </div>
   );
 };

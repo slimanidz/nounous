@@ -3,22 +3,17 @@ import { useAppContext } from "../components/AppContext";
 import Comments from "../components/comments/Comments";
 import CommentsGet from "../components/comments/CommentsGet";
 import Footer from "../components/Footer";
-import Header from "../components/Header";
+import Dashboard from "../components/Dashboard";
 
-const TestProps = (props) => {
-  const { nounouIdC } = useAppContext();
-
+const comments = () => {
   return (
-    <div className="h-screen flex flex-col">
-      <Header />
-      <div className="grow">
+    <Dashboard className="">
+      <div className="h-full rounded bg-slate-200  ">
         <Comments />
         <CommentsGet />
       </div>
-
-      <Footer />
-    </div>
+    </Dashboard>
   );
 };
 
-export default TestProps;
+export default comments;

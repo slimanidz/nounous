@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Header from "../../components/Header";
 import ImageSrc from "../../components/ImageSrc";
-import Page from "../../components/Page";
+import Dashboard from "../../components/Dashboard";
 import { BiCaretLeftCircle } from "react-icons/bi";
 import { BiCaretRightCircle } from "react-icons/bi";
 
@@ -22,9 +22,11 @@ const Histoire1 = () => {
   };
 
   return (
-    <Page>
-      <Header />
-      <div className="w-full flex gap-3 justify-center items-center mt-10 md:mt-32 p-3">
+    <Dashboard>
+      <h1 className="pt-5 text-3xl text-center font-bold">
+        Les glaces délicieuses
+      </h1>
+      <div className="w-full flex gap-3 justify-center items-center mt-10 md:mt-20 p-3">
         <button
           className={
             num === 1
@@ -40,7 +42,7 @@ const Histoire1 = () => {
           <ImageSrc
             width="400"
             height="80"
-            className="w-[80%] h-[500px]"
+            className="w-[80%] h-[300px] md:h-[500px]"
             alt="histoire"
             src={`/histoire1/${num}.jpg`}
           />
@@ -118,7 +120,7 @@ const Histoire1 = () => {
           <BiCaretRightCircle className="w-10 h-10 md:w-20 md:h-20 " />
         </button>
       </div>
-    </Page>
+    </Dashboard>
   );
 };
 

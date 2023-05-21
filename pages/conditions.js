@@ -1,9 +1,9 @@
 import React from "react";
-import Page from "../components/Page";
+import Dashboard from "../components/Dashboard";
 
 const conditions = () => {
   return (
-    <Page>
+    <Dashboard>
       <div>
         Conditions pour être nounou à domicileconditions garde domicile Ce
         qu&rsquo; il faut pour être auxiliaire parentale Si, en théorie, tout le
@@ -13,7 +13,7 @@ const conditions = () => {
         savoir-être tout particulier. Le seul critère d&rsquo; aimer les enfants
         ne suffit plus pour faire partie des bonnes nounous. La
       </div>
-    </Page>
+    </Dashboard>
   );
 };
 

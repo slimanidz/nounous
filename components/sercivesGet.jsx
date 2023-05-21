@@ -2,10 +2,10 @@ import React, { useCallback, useEffect, useState } from "react";
 import api from "../services/api";
 import { BiRightArrowAlt } from "react-icons/bi";
 import { useAppContextNounou } from "./AppContextNounou";
-import Modal from "./Modal";
 import { Form, Formik } from "formik";
-
-// import api from "../../services/api";
+import ImageSrc from "./ImageSrc";
+import { Transition, Dialog } from "@headlessui/react";
+import { Fragment } from "react";
 
 const initialValues = {
   name1: false,
@@ -129,7 +129,7 @@ const ServiceGet = () => {
   };
 
   return (
-    <div className="p-10">
+    <div className="py-10">
       <h1 className="text-3xl font-bold">services:</h1>
       <ul className=" bg-red-30">
         {services.length === 0 ? (
@@ -141,49 +141,97 @@ const ServiceGet = () => {
                 key={service.id}
                 className="flex flex-col gap-3 odd:bg-red-30 "
               >
-                <h1 className="px-2 flex gap-2   bg-red-">
+                <h1
+                  className={
+                    service.service1
+                      ? " flex items-center gap-3 md:w-80 rounded border-0 p-2 text-gray-900 shadow-xl ring-1 ring-inset ring-gray-300   text-sm  md:text-lg "
+                      : ""
+                  } // className="px-2 flex gap-2   bg-red-"
+                >
                   {" "}
                   {service.service1 ? <BiRightArrowAlt /> : null}{" "}
                   {service.service1}
                 </h1>
 
-                <h1 className="px-2 flex gap-2   bg-red-">
+                <h1
+                  className={
+                    service.service2
+                      ? " flex items-center gap-3 md:w-80 rounded border-0 p-2 text-gray-900 shadow-xl ring-1 ring-inset ring-gray-300   text-sm  md:text-lg "
+                      : ""
+                  }
+                >
                   {" "}
                   {service.service2 ? <BiRightArrowAlt /> : null}
                   {service.service2}
                 </h1>
 
-                <h1 className="px-2 flex gap-2   bg-red-">
+                <h1
+                  className={
+                    service.service3
+                      ? " flex items-center gap-3 md:w-80 rounded border-0 p-2 text-gray-900 shadow-xl ring-1 ring-inset ring-gray-300   text-sm  md:text-lg "
+                      : ""
+                  }
+                >
                   {" "}
                   {service.service3 ? <BiRightArrowAlt /> : null}
                   {service.service3}
                 </h1>
 
-                <h1 className="px-2 flex gap-2   bg-red-">
+                <h1
+                  className={
+                    service.service4
+                      ? " flex items-center gap-3 md:w-80 rounded border-0 p-2 text-gray-900 shadow-xl ring-1 ring-inset ring-gray-300   text-sm  md:text-lg "
+                      : ""
+                  }
+                >
                   {" "}
                   {service.service4 ? <BiRightArrowAlt /> : null}
                   {service.service4}
                 </h1>
 
-                <h1 className="px-2 flex gap-2   bg-red-">
+                <h1
+                  className={
+                    service.service5
+                      ? " flex items-center gap-3 md:w-80 rounded border-0 p-2 text-gray-900 shadow-xl ring-1 ring-inset ring-gray-300   text-sm  md:text-lg "
+                      : ""
+                  }
+                >
                   {" "}
                   {service.service5 ? <BiRightArrowAlt /> : null}
                   {service.service5}
                 </h1>
 
-                <h1 className="px-2 flex gap-2   bg-red-">
+                <h1
+                  className={
+                    service.service6
+                      ? " flex items-center gap-3 md:w-80 rounded border-0 p-2 text-gray-900 shadow-xl ring-1 ring-inset ring-gray-300   text-sm  md:text-lg "
+                      : ""
+                  }
+                >
                   {" "}
                   {service.service6 ? <BiRightArrowAlt /> : null}
                   {service.service6}
                 </h1>
 
-                <h1 className="px-2 flex gap-2   bg-red-">
+                <h1
+                  className={
+                    service.service7
+                      ? " flex items-center gap-3 md:w-80 rounded border-0 p-2 text-gray-900 shadow-xl ring-1 ring-inset ring-gray-300   text-sm  md:text-lg "
+                      : ""
+                  }
+                >
                   {" "}
                   {service.service7 ? <BiRightArrowAlt /> : null}
                   {service.service7}
                 </h1>
 
-                <h1 className="px-2 flex gap-2   bg-red-">
+                <h1
+                  className={
+                    service.service8
+                      ? " flex items-center gap-3 md:w-80 rounded border-0 p-2 text-gray-900 shadow-xl ring-1 ring-inset ring-gray-300   text-sm  md:text-lg "
+                      : ""
+                  }
+                >
                   {service.service8 ? <BiRightArrowAlt /> : null}
                   {service.service8}
                 </h1>
@@ -193,108 +241,159 @@ const ServiceGet = () => {
         )}
       </ul>
       <button
-        className="mt-5 p-2 text font-bold text-white bg-blue-500 active:bg-blue-400 rounded "
+        className=" rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 "
         type="button"
         onClick={handleOpenModel}
       >
         Modifier
       </button>
-      <Modal
-        className="bg-slate-50 p-5    flex justify-center items-center "
-        open={openModal}
-      >
-        <div className="">
-          <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-            <Form className="flex flex-col gap-3">
-              <h1 className="text-2xl md:text-3xl font-bold">
-                Choisi tes nouveaux services :
-              </h1>
-              <div>
-                <input
-                  type="checkbox"
-                  value="garde enfant jour"
-                  onChange={hadleChange}
-                />
-                <span className="px-2">garde enfant jour</span>
-              </div>
-              <div>
-                {" "}
-                <input
-                  type="checkbox"
-                  value="garde enfant nuit"
-                  onChange={hadleChange}
-                />
-                <span className="px-2">garde enfant nuit</span>
-              </div>
-              <div>
-                {" "}
-                <input
-                  type="checkbox"
-                  value="garde enfant jour et nuit"
-                  onChange={hadleChange}
-                />
-                <span className="px-2">garde enfant jour et nuit</span>
-              </div>
-              <div>
-                {" "}
-                <input
-                  type="checkbox"
-                  value="recuperer l'enfant de l'ecole"
-                  onChange={hadleChange}
-                />
-                <span className="px-2">
-                  recuperer l&rsquo;enfant de l&rsquo;ecole
-                </span>
-              </div>
-              <div>
-                {" "}
-                <input
-                  type="checkbox"
-                  value="soutien scolaire"
-                  onChange={hadleChange}
-                />
-                <span className="px-2">soutien scolaire</span>
-              </div>
-              <div>
-                {" "}
-                <input
-                  type="checkbox"
-                  value="garde enfant moin de 2 ans"
-                  onChange={hadleChange}
-                />
-                <span className="px-2">garde enfant moin de 2 ans</span>
-              </div>
-              <div>
-                {" "}
-                <input
-                  type="checkbox"
-                  value="prepare a manger"
-                  onChange={hadleChange}
-                />
-                <span className="px-2">prepare a manger</span>
-              </div>
-              <div>
-                {" "}
-                <input type="checkbox" value="autre" onChange={hadleChange} />
-                <span className="px-2">autre</span>
-              </div>
-              <div className="flex gap-3">
-                {" "}
-                <button className="bg-blue-300 p-2 rounded-xl" type="submit">
-                  confirm
-                </button>
-                <button
-                  className="bg-red-300 p-2 rounded-xl"
-                  type="button"
-                  onClick={handleCloseModel}
-                >
-                  annul
-                </button>
-              </div>
-            </Form>
-          </Formik>
-        </div>
-      </Modal>
+
+      {/* /////////////////  MODELE POUR MODIFIER LES SERVICES  /////////////////// */}
+
+      <Transition.Root show={openModal} as={Fragment}>
+        <Dialog as="div" className="relative z-10" onClose={setOpenModal}>
+          <Transition.Child
+            as={Fragment}
+            enter="ease-out duration-300"
+            enterFrom="opacity-0"
+            enterTo="opacity-100"
+            leave="ease-in duration-200"
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
+          >
+            <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+          </Transition.Child>
+
+          <div className="fixed inset-0 z-10 overflow-y-auto">
+            <div className="flex min-h-full items-center justify-center p-4 text-center sm:items-center sm:p-0">
+              <Transition.Child
+                as={Fragment}
+                enter="ease-out duration-300"
+                enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                enterTo="opacity-100 translate-y-0 sm:scale-100"
+                leave="ease-in duration-200"
+                leaveFrom="opacity-100 translate-y-0 sm:scale-100"
+                leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+              >
+                <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-sm sm:p-6">
+                  <div>
+                    <div className="mt-3  sm:mt-5">
+                      <Dialog.Title
+                        as="h1"
+                        className="text-xl text-center font-semibold leading-6 text-gray-900"
+                      >
+                        Choisi tes nouveaux services
+                      </Dialog.Title>
+                      <div className="mt-6">
+                        <Formik
+                          initialValues={initialValues}
+                          onSubmit={handleSubmit}
+                        >
+                          <Form className="flex flex-col gap-5 pl-5 ">
+                            <div>
+                              <input
+                                type="checkbox"
+                                value="garde enfant jour"
+                                onChange={hadleChange}
+                              />
+                              <span className="px-2">garde enfant jour</span>
+                            </div>
+                            <div>
+                              {" "}
+                              <input
+                                type="checkbox"
+                                value="garde enfant nuit"
+                                onChange={hadleChange}
+                              />
+                              <span className="px-2">garde enfant nuit</span>
+                            </div>
+                            <div>
+                              {" "}
+                              <input
+                                type="checkbox"
+                                value="garde enfant jour et nuit"
+                                onChange={hadleChange}
+                              />
+                              <span className="px-2">
+                                garde enfant jour et nuit
+                              </span>
+                            </div>
+                            <div>
+                              {" "}
+                              <input
+                                type="checkbox"
+                                value="recuperer l'enfant de l'ecole"
+                                onChange={hadleChange}
+                              />
+                              <span className="px-2">
+                                recuperer l&rsquo;enfant de l&rsquo;ecole
+                              </span>
+                            </div>
+                            <div>
+                              {" "}
+                              <input
+                                type="checkbox"
+                                value="soutien scolaire"
+                                onChange={hadleChange}
+                              />
+                              <span className="px-2">soutien scolaire</span>
+                            </div>
+                            <div>
+                              {" "}
+                              <input
+                                type="checkbox"
+                                value="garde enfant moin de 2 ans"
+                                onChange={hadleChange}
+                              />
+                              <span className="px-2">
+                                garde enfant moin de 2 ans
+                              </span>
+                            </div>
+                            <div>
+                              {" "}
+                              <input
+                                type="checkbox"
+                                value="prepare a manger"
+                                onChange={hadleChange}
+                              />
+                              <span className="px-2">prepare a manger</span>
+                            </div>
+                            <div>
+                              {" "}
+                              <input
+                                type="checkbox"
+                                value="autre"
+                                onChange={hadleChange}
+                              />
+                              <span className="px-2">autre</span>
+                            </div>
+                            <div className="flex justify-end gap-3">
+                              {" "}
+                              <button
+                                className=" rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 "
+                                type="submit"
+                              >
+                                Confirm
+                              </button>
+                              <button
+                                className=" rounded-md bg-red-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-red-500 "
+                                type="button"
+                                onClick={handleCloseModel}
+                              >
+                                Annul
+                              </button>
+                            </div>
+                          </Form>
+                        </Formik>
+                      </div>
+                    </div>
+                  </div>
+                </Dialog.Panel>
+              </Transition.Child>
+            </div>
+          </div>
+        </Dialog>
+      </Transition.Root>
     </div>
   );
 };

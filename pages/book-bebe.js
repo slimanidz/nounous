@@ -1,22 +1,20 @@
 import Link from "next/link";
 import Header from "../components/Header";
 import ImageSrc from "../components/ImageSrc";
-import Page from "../components/Page";
+import Dashboard from "../components/Dashboard";
 
 const BookBebe = () => {
   return (
-    <Page>
-      <Header />
-
+    <Dashboard>
       <div className="">
         <ImageSrc
           width="10000"
           height="1000"
           src="/images/book.webp"
           alt="image"
-          className="h-[20%] md:h-80"
+          className="h-[20%] md:h-80 rounded-xl"
         />
-        <h1 className="text-3xl ">Histoires pour enfants:</h1>
+        {/* <h1 className="text-3xl ">Histoires pour enfants:</h1> */}
         <Link
           href="/histoires/Les-glaces-delicieuses"
           className="p-4 m-2 md:mx-20 flex items-center bg-slate-100"
@@ -44,7 +42,7 @@ const BookBebe = () => {
           <div className="p-3">Groudou le porc-epic </div>
         </Link>
       </div>
-    </Page>
+    </Dashboard>
   );
 };
 

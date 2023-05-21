@@ -61,100 +61,112 @@ const SignIn = () => {
 
   return (
     <Page>
-      <div className="h-full flex flex-col">
-        <div className=" grow flex flex-col items-center bg-gradient-to-b from-gray-100 to-gray-500  ">
-          <div className=" py-10">
-            <ImageSrc
-              src="/logo/logo-nounous.png"
-              width="200"
-              height={32}
-              className="w-48 h-15"
-              alt="logo-nounous"
-            />
-          </div>
-          <div className="bg-white p-10  rounded-xl shadow-lg shadow-white">
-            <h1 className=" text-center text-4xl font-bold mb-5  bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-900 ">
-              Sign-In-Nounou
-            </h1>
-
-            {errors.length ? (
-              <div className="rounded-lg border-4 border-red-600 mb-4 flex flex-col gap-4 p-4">
-                {errors.map((error) => (
-                  <p key={error}>{error}</p>
-                ))}
-              </div>
-            ) : null}
-
-            <Formik
-              initialValues={initialValues}
-              onSubmit={handleSubmit}
-              validationSchema={validationSchemaSignIn}
-            >
-              <Form>
-                <div className="flex flex-col">
-                  <label>Email or username *:</label>
-                  <Field
-                    type="text"
-                    name="email"
-                    className="border-2 border-black px-2 rounded"
-                  />
-                  <ErrorMessage
-                    name="email"
-                    component="small"
-                    className="text-red-600"
-                  />
-                </div>
-
-                <div className="flex flex-col">
-                  <label>Mot de passe *:</label>
-                  <div className="flex items-center justify-between border-2 border-black rounded bg-white">
-                    <Field
-                      type={visible ? "text" : "password"}
-                      name="password"
-                      className=" px-2 w-full"
-                    />
-                    {visible ? (
-                      <span onClick={handleVesionOn}>
-                        <BiLowVision className=" w-6 h-6 hover:text-red-600 hover:cursor-pointer" />
-                      </span>
-                    ) : (
-                      <span onClick={handleVisionOff}>
-                        <BiShowAlt className=" w-6 h-6 hover:text-red-600 hover:cursor-pointer" />
-                      </span>
-                    )}{" "}
-                  </div>
-                  <ErrorMessage
-                    name="password"
-                    component="small"
-                    className="text-red-600"
-                  />
-                </div>
-
-                <div className="flex gap-3 my-3">
-                  <button
-                    type="submit"
-                    className="p-2 text font-bold text-white bg-blue-500 active:bg-blue-400 rounded"
-                  >
-                    sign-in
-                  </button>
-                  <Link
-                    href="/sign-up"
-                    className="p-2 text font-bold text-white bg-blue-500 active:bg-blue-400 rounded hover:underline"
-                  >
-                    cree un compte
-                  </Link>
-                  <Link
-                    href="/password-forget"
-                    className="p-2 text-blue-700 hover:underline"
-                  >
-                    mot de passe oublie ?
-                  </Link>
-                </div>
-              </Form>
-            </Formik>
-          </div>
+      <div className="flex min-h-full flex-1 flex-col justify-center items-center px-6 py-12 lg:px-8 ">
+        <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+          <ImageSrc
+            src="/logo/logo-nounous.png"
+            width="200"
+            height={32}
+            className="mx-auto h-20 w-auto"
+            alt="logo-nounous"
+          />
+          <h2 className="my-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+            Sign in to your account
+          </h2>
+          <p className="mb-3 text-center text-red-500 font-bold leading-9 tracking-tight ">
+            {errors}
+          </p>
         </div>
-        {/* <Footer /> */}
+
+        <Formik
+          initialValues={initialValues}
+          onSubmit={handleSubmit}
+          validationSchema={validationSchemaSignIn}
+          className=" mt-10 sm:mx-auto sm:w-full sm:max-w-sm "
+        >
+          <Form className="space-y-6  w-full sm:w-96  ">
+            <div>
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
+                Email address
+              </label>
+              <div className="mt-2 flex flex-col">
+                <Field
+                  name="email"
+                  type="email"
+                  className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                />
+                <ErrorMessage
+                  name="email"
+                  component="small"
+                  className="text-red-600"
+                />
+              </div>
+            </div>
+
+            <div>
+              <div className="flex items-center justify-between">
+                <label
+                  htmlFor="password"
+                  className="block text-sm font-medium leading-6 text-gray-900"
+                >
+                  Password
+                </label>
+                <div className="text-sm">
+                  <a
+                    href="#"
+                    className="font-semibold text-indigo-600 hover:text-indigo-500"
+                  >
+                    Forgot password?
+                  </a>
+                </div>
+              </div>
+              <div className="mt-2 flex flex-col">
+                <div className=" flex items-center">
+                  <Field
+                    name="password"
+                    type={visible ? "text" : "password"}
+                    className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  />{" "}
+                  {visible ? (
+                    <span onClick={handleVesionOn}>
+                      <BiLowVision className=" w-6 h-6 hover:text-red-600 hover:cursor-pointer" />
+                    </span>
+                  ) : (
+                    <span onClick={handleVisionOff}>
+                      <BiShowAlt className=" w-6 h-6 hover:text-red-600 hover:cursor-pointer" />
+                    </span>
+                  )}
+                </div>{" "}
+                <ErrorMessage
+                  name="password"
+                  component="small"
+                  className="text-red-600"
+                />
+              </div>
+            </div>
+
+            <div>
+              <button
+                type="submit"
+                className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              >
+                Sign in
+              </button>
+            </div>
+            <p className="mt-10 text-center text-sm text-gray-500">
+              Not a member?{" "}
+              <Link
+                href="/sign-up-nounous"
+                className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
+              >
+                cree un compte
+              </Link>
+            </p>
+          </Form>
+        </Formik>
       </div>
     </Page>
   );
