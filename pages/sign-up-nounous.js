@@ -7,7 +7,7 @@ import { BiShowAlt, BiLowVision } from "react-icons/bi";
 import Link from "next/link";
 
 import api from "../services/api";
-import Page from "../components/Page";
+import Dashboard from "../components/Dashboard";
 import ImageSrc from "../components/ImageSrc";
 import validationSchema from "../components/validateurs/Valitateur";
 import AddImage from "../components/AddImageToFirebase";
@@ -191,8 +191,8 @@ const SignUpNounous = () => {
   };
 
   return (
-    <Page>
-      <div className="flex min-h-full flex-1 flex-col justify-center items-center px-6 py-12 lg:px-8 ">
+    <Dashboard>
+      <div className="flex min-h-full flex-1 flex-col justify-center items-center px-6 py-10 sm:py-20 lg:px-8 ">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <ImageSrc
             src="/logo/logo-nounous.png"
@@ -343,77 +343,77 @@ const SignUpNounous = () => {
                 <div>
                   <input
                     type="checkbox"
-                    value="garde enfant jour"
+                    value="Garde d'enfant jour"
                     onChange={hadleChange}
                   />
                   <span className="px-2 text-sm text-gray-500">
-                    garde enfant jour
+                    Garde d&rsquo;enfant jour
                   </span>
                 </div>
                 <div>
                   {" "}
                   <input
                     type="checkbox"
-                    value="garde enfant nuit"
+                    value="Garde d'enfant nuit"
                     onChange={hadleChange}
                   />
                   <span className="px-2 text-sm text-gray-500">
-                    garde enfant nuit
+                    Garde d&rsquo;enfant nuit
                   </span>
                 </div>
                 <div>
                   {" "}
                   <input
                     type="checkbox"
-                    value="garde enfant jour et nuit"
+                    value="Garde d'enfant jour et nuit"
                     onChange={hadleChange}
                   />
                   <span className="px-2 text-sm text-gray-500">
-                    garde enfant jour et nuit
+                    Garde d&rsquo;enfant jour et nuit
                   </span>
                 </div>
                 <div>
                   {" "}
                   <input
                     type="checkbox"
-                    value="recuperer l'enfant de l'ecole"
+                    value="Accompagnateur d'enfant"
                     onChange={hadleChange}
                   />
                   <span className="px-2 text-sm text-gray-500">
-                    recuperer l&rsquo;enfant de l&rsquo;ecole
+                    Accompagnateur d&rsquo;enfant
                   </span>
                 </div>
                 <div>
                   {" "}
                   <input
                     type="checkbox"
-                    value="soutien scolaire"
+                    value="Soutien scolaire"
                     onChange={hadleChange}
                   />
                   <span className="px-2 text-sm text-gray-500">
-                    soutien scolaire
+                    Soutien scolaire
                   </span>
                 </div>
                 <div>
                   {" "}
                   <input
                     type="checkbox"
-                    value="garde enfant moin de 2 ans"
+                    value="Garde d'enfant moins de 2 ans"
                     onChange={hadleChange}
                   />
                   <span className="px-2 text-sm text-gray-500">
-                    garde enfant moin de 2 ans
+                    Garde d&rsquo;enfant moins de 2 ans
                   </span>
                 </div>
                 <div>
                   {" "}
                   <input
                     type="checkbox"
-                    value="prepare a manger"
+                    value="Préparer à manger"
                     onChange={hadleChange}
                   />
                   <span className="px-2 text-sm text-gray-500">
-                    prepare a manger
+                    Préparer à manger
                   </span>
                 </div>
                 <div>
@@ -538,7 +538,7 @@ const SignUpNounous = () => {
           </Form>
         </Formik>
       </div>
-    </Page>
+    </Dashboard>
   );
 };
 

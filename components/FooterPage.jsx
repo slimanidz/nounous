@@ -74,8 +74,8 @@ const navigation = {
 
 export default function FooterPage() {
   return (
-    <footer className="bg-slate-200 mx-4">
-      <div className="mx-auto max--7xl overflow-hidden px-6 py-10 sm:py-20 lg:px-8">
+    <footer className="bg-slate-200 mx-4 border-t-[5px]  border-white ">
+      <div className="mx-auto max--7xl overflow-hidden px-6 pb-10 sm:py-10 lg:px-8">
         <nav
           className="-mb-6 columns-2 sm:flex sm:justify-center sm:space-x-12"
           aria-label="Footer"

@@ -8,7 +8,7 @@ import { BiShowAlt, BiLowVision } from "react-icons/bi";
 import Link from "next/link";
 import api from "../services/api";
 import { useAppContextNounou } from "../components/AppContextNounou";
-import Page from "../components/Page";
+import Dashboard from "../components/Dashboard";
 import ImageSrc from "../components/ImageSrc";
 import validationSchemaSignIn from "../components/validateurs/validationSchemaSignIn";
 
@@ -60,8 +60,8 @@ const SignIn = () => {
   };
 
   return (
-    <Page>
-      <div className="flex min-h-full flex-1 flex-col justify-center items-center px-6 py-12 lg:px-8 ">
+    <Dashboard>
+      <div className="flex min-h-full flex-1 flex-col justify-center items-center px-6 py-10 sm:py-20 lg:px-8 ">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <ImageSrc
             src="/logo/logo-nounous.png"
@@ -162,13 +162,13 @@ const SignIn = () => {
                 href="/sign-up-nounous"
                 className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
               >
-                cree un compte
+                créer un compte
               </Link>
             </p>
           </Form>
         </Formik>
       </div>
-    </Page>
+    </Dashboard>
   );
 };
 

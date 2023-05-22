@@ -6,7 +6,7 @@ import { AxiosError } from "axios";
 import { BiShowAlt, BiLowVision } from "react-icons/bi";
 import Link from "next/link";
 import api from "../services/api";
-import Page from "../components/Page";
+import Dashboard from "../components/Dashboard";
 import ImageSrc from "../components/ImageSrc";
 import validationSchemaUsers from "../components/validateurs/ValidatuerUsers";
 
@@ -66,8 +66,8 @@ const SignUp = () => {
   };
 
   return (
-    <Page>
-      <div className="flex min-h-full flex-1 flex-col justify-center items-center px-6 pt-12 lg:px-8 ">
+    <Dashboard>
+      <div className="flex min-h-full flex-1 flex-col justify-center items-center px-6 py-10 sm:py-20 lg:px-8 ">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <ImageSrc
             src="/logo/logo-nounous.png"
@@ -261,7 +261,7 @@ const SignUp = () => {
           </Form>
         </Formik>
       </div>
-    </Page>
+    </Dashboard>
   );
 };
 

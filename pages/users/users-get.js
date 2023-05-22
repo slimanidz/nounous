@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { ImBin2 } from "react-icons/im";
 import Header from "../../components/Header";
 import Modal from "../../components/Modal";
-import Page from "../../components/Page";
+import Dashboard from "../../components/Dashboard";
 import api from "../../services/api";
 
 const GetUsers = () => {
@@ -54,9 +54,8 @@ const GetUsers = () => {
   /* je ne sais lire */
 
   return (
-    <Page>
-      <Header />
-      <div className={` bg-slat-500 ${openModal ? "opacity-40" : null} `}>
+    <Dashboard>
+      <div className={` py-20 ${openModal ? "opacity-40 " : null} `}>
         <div className="bg-slate-700 p-3 sticky top-0 flex justify-between  text-white text-2xl">
           <h1 className=" text-center  text-2xl ">LIST OF USERS</h1>
           <h1 className=" text-center  text-2xl ">TOTAL: {count}</h1>
@@ -132,7 +131,7 @@ const GetUsers = () => {
           </ul>
         </div>
       </Modal>
-    </Page>
+    </Dashboard>
   );
 };
 

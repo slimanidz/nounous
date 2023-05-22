@@ -7,9 +7,10 @@ import api from "../services/api";
 import Link from "next/link";
 
 import { useAppContext } from "../components/AppContext";
-import Page from "../components/Page";
+import Dashboard from "../components/Dashboard";
 import ImageSrc from "../components/ImageSrc";
 import validationSchemaSignIn from "../components/validateurs/validationSchemaSignIn";
+import FooterPage from "../components/FooterPage";
 
 const initialValues = {
   email: "",
@@ -60,8 +61,8 @@ const SignIn = () => {
   };
 
   return (
-    <Page>
-      <div className="flex min-h-full flex-1 flex-col justify-center items-center px-6 py-12 lg:px-8 ">
+    <Dashboard>
+      <div className="h-full flex min-h-full flex-1 flex-col justify- items-center px-6 pt-20 lg:px-8 ">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <ImageSrc
             src="/logo/logo-nounous.png"
@@ -84,7 +85,7 @@ const SignIn = () => {
           validationSchema={validationSchemaSignIn}
           className=" mt-10 sm:mx-auto sm:w-full sm:max-w-sm "
         >
-          <Form className="space-y-6  w-full sm:w-96  ">
+          <Form className="space-y-6  w-full sm:w-96 pb-20 ">
             <div>
               <label
                 htmlFor="email"
@@ -162,13 +163,14 @@ const SignIn = () => {
                 href="/sign-up"
                 className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
               >
-                cree un compte
+                créer un compte
               </Link>
             </p>
           </Form>
         </Formik>
+        {/* <FooterPage /> */}
       </div>
-    </Page>
+    </Dashboard>
   );
 };
 

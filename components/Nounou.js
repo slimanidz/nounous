@@ -73,10 +73,12 @@ const Nounou = () => {
                 </div>
                 <div className="flex flex-col items-center">
                   {" "}
-                  <h1 className="text-2xl font-bold text-gray-900 ">
+                  <h1 className="text-2xl font-bold text-gray-900 first-letter:uppercase first-letter:text-3x ">
                     {nounou.username}
                   </h1>
-                  <p className="text-sm text-gray-500">{nounou.localite}</p>
+                  <p className="text-sm text-gray-500 first-letter:uppercase ">
+                    {nounou.localite}
+                  </p>
                 </div>
 
                 <div className=" flex flex-col gap-3 ">

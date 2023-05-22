@@ -1,13 +1,13 @@
 import Link from "next/link";
 import React from "react";
 import ImageSrc from "../components/ImageSrc";
-import Page from "../components/Page";
+import Dashboard from "../components/Dashboard";
 
 const Conexion = () => {
   return (
-    <Page>
-      <div className=" flex flex-col justify-cente  gap-5">
-        <div className=" pt-[10%]  w-full flex justify-center">
+    <Dashboard>
+      <div className="py-10 flex flex-col justify-cente  gap-5">
+        <div className="   w-full flex justify-center">
           <ImageSrc
             src="/logo/logo-nounous.png"
             width="200"
@@ -23,20 +23,20 @@ const Conexion = () => {
           vous pouvez vous connecter comme nounous si vous êtes une nounou!{" "}
         </p>
         <div className=" flex gap-5 justify-center">
-          <div className="w-full flex flex-col items-center text-center gap-10 bg-red-30 ">
-            <p>Vous êtes un utilisateur clic ici</p>
+          <div className="w-full flex flex-col items-center text-center gap-5 bg-red-30 ">
+            <p>utilisateur clic ici</p>
             <Link
               href="/sign-up"
-              className=" h-20 w-[50%] bg-blue-700  text-white shadow-[-20px_35px_60px_10px_black] active:shadow-none flex items-center justify-center p-3 rounded-xl font-bold "
+              className="flex w-full sm:w-[50%] justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
               Utilisateur
             </Link>
           </div>
-          <div className="w-full flex flex-col items-center text-center gap-10">
-            <p>Vous êtes une nounou clic ici</p>
+          <div className="w-full flex flex-col items-center text-center gap-5">
+            <p>nounou clic ici</p>
             <Link
               href="/sign-up-nounous"
-              className="h-20 w-[50%] bg-blue-700  text-white shadow-[20px_35px_60px_10px_black] active:shadow-none  p-3 flex items-center justify-center rounded-xl font-bold "
+              className="flex w-full  sm:w-[50%] justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
               Nounous
             </Link>
@@ -51,7 +51,7 @@ const Conexion = () => {
           </Link>
         </div> */}
       </div>
-    </Page>
+    </Dashboard>
   );
 };
 
