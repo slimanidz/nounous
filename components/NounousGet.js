@@ -1,6 +1,8 @@
 import React, { useCallback, useEffect, useState } from "react";
 import ImageSrc from "./ImageSrc";
 import { BiRightArrowAlt } from "react-icons/bi";
+import { BiX } from "react-icons/bi";
+
 import { useAppContext } from "./AppContext";
 import Link from "next/link";
 import { Field, Form, Formik } from "formik";
@@ -174,11 +176,20 @@ const NounousGet = () => {
                   <Formik onSubmit={handelFilter} initialValues={initialValue}>
                     <Form>
                       <Field
-                        class="block w-full rounded-md border-0 bg-white py-1.5 pl-10 pr-3 text-gray-900 focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-indigo-600 sm:text-sm sm:leading-6"
+                        class=" block w-full rounded-md border-0 bg-white py-1.5 pl-10 pr-3 text-gray-900 focus:ring-2 focus:bg-white focus:ring-offset-2 focus:ring-offset-indigo-600 sm:text-sm sm:leading-6"
                         placeholder="Search"
                         type="search"
                         name="adresse"
                       />
+                      {adresse ? (
+                        <button
+                          type="button"
+                          onClick={handleClearSearch}
+                          className="absolute bottom-1.5 right-3 tex font-bold text-gray-500 bg-gray-100 px-1 rounded-full "
+                        >
+                          x{/* <BiX className="w-5 h-5" /> */}
+                        </button>
+                      ) : null}
                     </Form>
                   </Formik>
                 </div>
