@@ -9,8 +9,11 @@ import Link from "next/link";
 import { useAppContextNounou } from "../components/AppContextNounou";
 import ServiceGet from "../components/sercivesGet";
 import ServicesNounous from "../components/ServicesNounous";
+import { usePathname } from "next/navigation";
 
 const Setting = () => {
+  const pathname = usePathname();
+  console.log(pathname);
   const [isactive, setIsactive] = useState(false);
   const {
     state: { session },
@@ -56,10 +59,10 @@ const Setting = () => {
   return (
     <Dashboard>
       <div className="p-10 bg-slate-200 h-full rounded">
-        <h1 className=" text-3xl font-bold mb-10">Settings</h1>
         <div>
           {session || sessionNounou ? (
             <div>
+              <h1 className=" text-3xl font-bold mb-10">Settings</h1>
               {session ? (
                 <div className="px-5 flex flex-col gap-5">
                   <div className="text-center font-bond underline">
@@ -203,12 +206,15 @@ const Setting = () => {
             </div>
           ) : (
             <div>
-              <p className="text-red-700 text-3xl font-bold text-center">
-                Not registered
+              <p className=" text-3xl font-bold text-center pt-20">
+                Non connecter
               </p>
               <div className="mt-5 flex justify-center">
-                <Link className="bg-blue-500 px-5 py-2" href="/connexion">
-                  Sign-Up
+                <Link
+                  className="flex  justify-center rounded-md bg-indigo-600 px-5 py-2 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  href="/connexion"
+                >
+                  Se connecter
                 </Link>
               </div>
             </div>

@@ -135,7 +135,7 @@ const NounousGet = () => {
 
   if (!nounous) {
     return (
-      <div className="flex flex-col gap-4 justify-center items-center pt-20 ">
+      <div className="flex flex-col gap-4 justify-center items-center pt-20 rounded-full ">
         <ImageSrc
           width="200"
           height="200"
@@ -205,7 +205,10 @@ const NounousGet = () => {
         className="w-full divide-y divide-gray-100 bg-slate-300 rounded-t-xl pb-2 "
       >
         {nounous.map((nounou) => (
-          <li key={nounou.id} className=" flex justify-around gap-x-6 py-5">
+          <li
+            key={nounou.id}
+            className=" flex justify-between gap-x-6 p-5 sm:px-20"
+          >
             <div className="flex gap-x-4">
               <div>
                 {images.map((image) => (
@@ -228,7 +231,7 @@ const NounousGet = () => {
                   <button
                     onClick={handleClickServices}
                     data-id={nounou.id}
-                    className="hover:underline hover:text-blue-500"
+                    className="hover:underline first-letter:uppercase hover:text-blue-500"
                   >
                     {nounou.username}
                   </button>
@@ -279,7 +282,7 @@ const NounousGet = () => {
                           onClick={handleClickContact}
                           data-id={nounou.id}
                         >
-                          View profile
+                          Contacter
                         </button>
                       )}
                     </Menu.Item>
@@ -294,7 +297,7 @@ const NounousGet = () => {
                           onClick={handleClickComment}
                           data-id={nounou.id}
                         >
-                          commantaire
+                          Commentaire
                         </Link>
                       )}
                     </Menu.Item>
@@ -308,14 +311,15 @@ const NounousGet = () => {
 
       {/* ************************************************************** */}
       {nounous.length === 0 ? (
-        <div className="flex flex-col justify-center items-center">
-          No Nounous ! Sorry
+        <div className="flex flex-col justify-center items-center ">
           <ImageSrc
             width="200"
             height="200"
             src="/images/ico-triste.jpg"
             alt="triste"
+            className="bg-slate-200 rounded-full"
           />
+          No Nounous ! Sorry
         </div>
       ) : null}
 

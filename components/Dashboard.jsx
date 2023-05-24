@@ -34,7 +34,7 @@ export default function Example(props) {
       current: pathname === "/statistiques" ? true : false,
     },
     {
-      name: "Setting",
+      name: "Settings",
       href: "/setting",
       current: pathname === "/setting" ? true : false,
     },
