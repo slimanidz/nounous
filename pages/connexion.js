@@ -6,7 +6,7 @@ import Dashboard from "../components/Dashboard";
 const Conexion = () => {
   return (
     <Dashboard>
-      <div className="py-10 flex flex-col justify-cente  gap-5">
+      <div className="py-10 flex flex-col justify-cente items-center  gap-5">
         <div className="   w-full flex justify-center">
           <ImageSrc
             src="/logo/logo-nounous.png"
@@ -16,15 +16,15 @@ const Conexion = () => {
             alt="logo-nounous"
           />
         </div>
-        <p className=" pb-10 text-center">
+        <p className=" sm:w-[50%] pb-10 text-center">
           Bienvenu dans votre application NOUNOUS <br /> Pour accéder à toutes
           les fonctionnalités de votre application vous pouvez vous connecter
           comme utilisateur si vous êtes chercheur d&rsquo; une nounous, comme
           vous pouvez vous connecter comme nounous si vous êtes une nounou!{" "}
         </p>
-        <div className=" flex gap-5 justify-center">
+        <div className="w-full flex gap-5 justify-center">
           <div className="w-full flex flex-col items-center text-center gap-5 bg-red-30 ">
-            <p>utilisateur clic ici</p>
+            {/* <p>utilisateur clic ici</p> */}
             <Link
               href="/sign-up"
               className="flex w-full sm:w-[50%] justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
@@ -33,7 +33,7 @@ const Conexion = () => {
             </Link>
           </div>
           <div className="w-full flex flex-col items-center text-center gap-5">
-            <p>nounou clic ici</p>
+            {/* <p>nounou clic ici</p> */}
             <Link
               href="/sign-up-nounous"
               className="flex w-full  sm:w-[50%] justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"

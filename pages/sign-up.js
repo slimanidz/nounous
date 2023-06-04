@@ -155,19 +155,19 @@ const SignUp = () => {
               </label>
 
               <div className="mt-1 flex flex-col">
-                <div className=" flex items-center">
+                <div className="relative flex items-center">
                   <Field
                     name="password"
                     type={visible ? "text" : "password"}
-                    className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 p-1.5 pr-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />{" "}
                   {visible ? (
                     <span onClick={handleVisionOff}>
-                      <BiLowVision className=" w-6 h-6 hover:text-red-600 hover:cursor-pointer" />
+                      <BiLowVision className="absolute bottom-1.5 right-3 w-6 h-6 hover:text-red-600 hover:cursor-pointer" />
                     </span>
                   ) : (
                     <span onClick={handleVisionOn}>
-                      <BiShowAlt className=" w-6 h-6 hover:text-red-600 hover:cursor-pointer" />
+                      <BiShowAlt className="absolute bottom-1.5 right-3 w-6 h-6 hover:text-red-600 hover:cursor-pointer" />
                     </span>
                   )}
                 </div>{" "}
@@ -187,19 +187,19 @@ const SignUp = () => {
               </label>
 
               <div className="mt-1 flex flex-col">
-                <div className=" flex items-center">
+                <div className=" relative flex items-center">
                   <Field
                     name="confirmPassword"
                     type={visible1 ? "text" : "password"}
-                    className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 p-1.5 pr-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />{" "}
                   {visible1 ? (
                     <span onClick={handleVisionOff1}>
-                      <BiLowVision className=" w-6 h-6 hover:text-red-600 hover:cursor-pointer" />
+                      <BiLowVision className="absolute bottom-1.5 right-3 w-6 h-6 hover:text-red-600 hover:cursor-pointer" />
                     </span>
                   ) : (
                     <span onClick={handleVisionOn1}>
-                      <BiShowAlt className=" w-6 h-6 hover:text-red-600 hover:cursor-pointer" />
+                      <BiShowAlt className="absolute bottom-1.5 right-3 w-6 h-6 hover:text-red-600 hover:cursor-pointer" />
                     </span>
                   )}
                 </div>{" "}

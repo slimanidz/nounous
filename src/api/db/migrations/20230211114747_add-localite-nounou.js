@@ -5,7 +5,6 @@ exports.up = async (knex) => {
   await knex.schema.alterTable("nounous", (table) => {
     table.text("localite").notNullable();
     table.text("situation").notNullable();
-    // table.image("image").notNullable();
   });
 };
 
@@ -16,6 +15,5 @@ exports.down = async (knex) => {
   await knex.schema.alterTable("nounous", (table) => {
     table.dropColumn("localite");
     table.dropColumn("situation");
-    // table.dropColumn("image");
   });
 };

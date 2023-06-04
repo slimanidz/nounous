@@ -8,25 +8,8 @@ const userIdRoutes = async (req, res) => {
     const {
       query: { userId },
     } = req;
-    console.log(userId);
-    if (typeof userId === "number") {
-      const [user] = await User.query().where({ id: userId }).returning("*");
 
-      if (!user) {
-        res.status(200).send("Ok");
-
-        return;
-      }
-
-      res.status(200).send({ result: user });
-      return;
-    }
-
-    // get par email
-
-    const [user] = await User.query()
-      .where({ email: userId })
-      .select("id", "email", "username", "telephone");
+    const [user] = await User.query().where({ id: userId }).returning("*");
 
     if (!user) {
       res.status(200).send("Ok");
@@ -34,7 +17,7 @@ const userIdRoutes = async (req, res) => {
       return;
     }
 
-    res.send({ result: user });
+    res.status(200).send({ result: user });
   }
 
   ////// PATCH
@@ -110,28 +93,17 @@ const userIdRoutes = async (req, res) => {
     }
   }
 
-  /////// PUT
+  //////////////////// PUT /////////////////////
 
   if (req.method === "PUT") {
     const {
-      query: { nounouId },
-      body: {
-        // firstName,
-        // lastName,
-        // email,
-        password,
-        // gender,
-        // ageCategory,
-        // salaryCategory,
-        // professionalCategory,
-        // politicalPartyId,
-      },
+      query: { userId },
+      body: { password },
     } = req;
-    ////////////////////////
-    console.log(nounouId);
+    console.log(userId);
     console.log(password);
 
-    const [user] = await User.query().where({ email: nounouId });
+    const [user] = await User.query().where({ id: userId });
     console.log(user);
 
     if (!user) {
@@ -149,23 +121,10 @@ const userIdRoutes = async (req, res) => {
       passwordHash = hash;
       passwordSalt = salt;
     }
-    ///////////////////////
-
-    const ubdateuser = await User.query()
-      .where({ email: nounouId })
-      // .patchAndFetchById(id, {
-      .update({
-        // firstName,
-        // lastName,
-        // email,
-        passwordHash,
-        passwordSalt,
-        // gender,
-        // ageCategory,
-        // salaryCategory,
-        // professionalCategory,
-        // politicalPartyId,
-      });
+    const ubdateuser = await User.query().where({ id: userId }).update({
+      passwordHash,
+      passwordSalt,
+    });
 
     if (!ubdateuser) {
       res

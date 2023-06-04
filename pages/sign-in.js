@@ -116,28 +116,28 @@ const SignIn = () => {
                   Password
                 </label>
                 <div className="text-sm">
-                  <a
-                    href="#"
+                  <Link
+                    href="/password-forget"
                     className="font-semibold text-indigo-600 hover:text-indigo-500"
                   >
                     Forgot password?
-                  </a>
+                  </Link>
                 </div>
               </div>
               <div className="mt-2 flex flex-col">
-                <div className=" flex items-center">
+                <div className=" flex items-center relative">
                   <Field
                     name="password"
                     type={visible ? "text" : "password"}
-                    className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 p-1.5 pr-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />{" "}
                   {visible ? (
                     <span onClick={handleVesionOn}>
-                      <BiLowVision className=" w-6 h-6 hover:text-red-600 hover:cursor-pointer" />
+                      <BiLowVision className="absolute bottom-1.5 right-3 w-6 h-6 hover:text-red-600 hover:cursor-pointer" />
                     </span>
                   ) : (
                     <span onClick={handleVisionOff}>
-                      <BiShowAlt className=" w-6 h-6 hover:text-red-600 hover:cursor-pointer" />
+                      <BiShowAlt className="absolute bottom-1.5 right-3 w-6 h-6 hover:text-red-600 hover:cursor-pointer" />
                     </span>
                   )}
                 </div>{" "}

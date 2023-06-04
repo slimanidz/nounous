@@ -14,8 +14,10 @@ import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 
 import { Fragment } from "react";
 import { Menu, Transition, Dialog } from "@headlessui/react";
-import { EllipsisVerticalIcon } from "@heroicons/react/20/solid";
-import { CheckIcon } from "@heroicons/react/24/outline";
+import { EllipsisVerticalIcon, StarIcon } from "@heroicons/react/20/solid";
+
+import Pagination from "./Pagination";
+import StarClass from "./StarClass";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -43,6 +45,10 @@ const NounousGet = () => {
   const [openModal, setOpenModal] = useState(false);
   const [images, setImages] = useState([]);
   const [open, setOpen] = useState(false);
+  const n = 3;
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage, setPostsPerPage] = useState(10);
 
   const onClose = () => {
     setOpenModal(false);
@@ -148,19 +154,27 @@ const NounousGet = () => {
     );
   }
 
+  // Pagination
+
+  const lastPostIndex = currentPage * postsPerPage;
+  const firstpostindex = lastPostIndex - postsPerPage;
+  const currentPosts = nounous.slice(firstpostindex, lastPostIndex);
+  const totalPages = Math.ceil(nounous.length / postsPerPage);
+
+  console.log(currentPosts);
   return (
     <div className=" overflow-y-auto flex flex-col items-center ">
       <div className=" flex  justify-center my-10">
         <div>
-          <div class="flex flex-1 justify-center px-2 lg:ml-6 lg:justify-end">
-            <div class="w-full max-w-lg lg:max-w-xs">
-              <label htmlFor="search" class="sr-only">
+          <div className="flex flex-1 justify-center px-2 lg:ml-6 lg:justify-end">
+            <div className="w-full max-w-lg lg:max-w-xs">
+              <label htmlFor="search" className="sr-only">
                 Search
               </label>
-              <div class="relative text-gray-400 focus-within:text-gray-600">
-                <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+              <div className="relative text-gray-400 focus-within:text-gray-600">
+                <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
                   <svg
-                    class="h-5 w-5"
+                    className="h-5 w-5"
                     viewBox="0 0 20 20"
                     fill="currentColor"
                     aria-hidden="true"
@@ -176,7 +190,7 @@ const NounousGet = () => {
                   <Formik onSubmit={handelFilter} initialValues={initialValue}>
                     <Form>
                       <Field
-                        class=" block w-full rounded-md border-0 bg-white py-1.5 pl-10 pr-3 text-gray-900 focus:ring-2 focus:bg-white focus:ring-offset-2 focus:ring-offset-indigo-600 sm:text-sm sm:leading-6"
+                        className=" block w-full rounded-md border-0 bg-white py-1.5 pl-10 pr-3 text-gray-900 focus:ring-2 focus:bg-white focus:ring-offset-2 focus:ring-offset-indigo-600 sm:text-sm sm:leading-6"
                         placeholder="Search"
                         type="search"
                         name="adresse"
@@ -204,12 +218,12 @@ const NounousGet = () => {
         role="list"
         className="w-full divide-y divide-gray-100 bg-slate-300 rounded-t-xl pb-2 "
       >
-        {nounous.map((nounou) => (
+        {currentPosts.map((nounou) => (
           <li
             key={nounou.id}
             className=" flex justify-between gap-x-6 p-5 sm:px-20"
           >
-            <div className="flex gap-x-4">
+            <div className="flex items-center gap-x-4">
               <div>
                 {images.map((image) => (
                   <div key={image.imageUrl}>
@@ -236,6 +250,11 @@ const NounousGet = () => {
                     {nounou.username}
                   </button>
                 </p>
+
+                {/* ///////////// STAR ///////////// */}
+                <StarClass n={nounou.star} />
+                {/* //////////////////////////////// */}
+
                 <p className="mt-1 flex text-xs leading-5 text-gray-500 first-letter:uppercase first-line:uppercase">
                   {nounou.localite.toUpperCase()}
                 </p>
@@ -308,7 +327,12 @@ const NounousGet = () => {
           </li>
         ))}
       </ul>
-
+      {/* ********************* Pagination *************************** */}
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        setCurrentPage={setCurrentPage}
+      />
       {/* ************************************************************** */}
       {nounous.length === 0 ? (
         <div className="flex flex-col justify-center items-center ">
