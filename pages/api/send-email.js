@@ -1,10 +1,8 @@
 import mg from "mailgun-js";
-import hashPassword from "../../src/hashPassword";
 import hashId from "../../src/hashId";
 
 export default function handler(req, res) {
   const { email, id } = req.body;
-  console.log({ email, id });
   const idString = String(id);
   const hashid = hashId(idString);
 

@@ -49,9 +49,8 @@ const SignUpNounous = () => {
     createdAt: Timestamp.now().toDate(),
   });
 
-  console.log(formData);
-
   const handleImageChange = (e) => {
+    console.log(e.target.files);
     setFormData({ ...formData, image: e.target.files[0] });
   };
 
