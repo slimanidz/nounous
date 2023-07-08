@@ -206,6 +206,16 @@ const SignUpNounous = () => {
           <p className="mb-3 text-center text-red-500 font-bold leading-9 tracking-tight ">
             {/* {errors} */}
           </p>
+          <p className="-mt-5 mb-5 text-center text-sm text-gray-500">
+            Déjà membre?{" "}
+            <Link
+              className="hover:underline font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
+              href="/sign-in-nounous"
+            >
+              {" "}
+              se connecter
+            </Link>
+          </p>
         </div>
 
         <Formik
@@ -524,16 +534,6 @@ const SignUpNounous = () => {
                 Sign up
               </button>
             </div>
-            <p className="mt-10 text-center text-sm text-gray-500">
-              Déjà membre?{" "}
-              <Link
-                className="hover:underline font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
-                href="/sign-in-nounous"
-              >
-                {" "}
-                se connecter
-              </Link>
-            </p>
           </Form>
         </Formik>
       </div>
