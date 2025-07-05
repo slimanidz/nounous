@@ -2,15 +2,11 @@ import React, { useCallback, useState } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import { useRouter } from "next/router.js";
 import { AxiosError } from "axios";
-// import Link from "@/components/Link"
 import { BiShowAlt, BiLowVision } from "react-icons/bi";
-
-import Link from "next/link";
 import api from "../services/api";
-import { useAppContextNounou } from "../components/AppContextNounou";
-import Dashboard from "../components/Dashboard";
-import ImageSrc from "../components/ImageSrc";
-import validationSchemaSignIn from "../components/validateurs/validationSchemaSignIn";
+import Link from "next/link";
+
+import { useAppContext } from "../components/AppContext";
 
 const initialValues = {
   email: "",
@@ -19,7 +15,7 @@ const initialValues = {
 
 const SignIn = () => {
   const router = useRouter();
-  const { setSessionNounou } = useAppContextNounou();
+  const { setSession } = useAppContext();
   const [errors, setErrors] = useState([]);
   const [visible, setVisiblity] = useState(false);
 
@@ -32,11 +28,11 @@ const SignIn = () => {
           data: {
             result: [{ jwt }],
           },
-        } = await api.post("/api/sign-in-nounous", { email, password });
-        setSessionNounou(jwt);
-
+        } = await api.post("/api/sign-in", { email, password });
+        setSession(jwt);
         if (jwt) {
           router.push("/");
+          console.log("is gign-in");
           return;
         }
       } catch (err) {
@@ -45,11 +41,12 @@ const SignIn = () => {
 
           return;
         }
-        console.log(err);
+
         setErrors(["Oops. Something went wrong, please try again."]);
+        console.log(err);
       }
     },
-    [setSessionNounou, router]
+    [router, setSession]
   );
 
   const handleVisionOff = () => {
@@ -60,16 +57,16 @@ const SignIn = () => {
   };
 
   return (
-    <Dashboard>
-      <div className="flex min-h-full flex-1 flex-col justify-center items-center px-6 py-10 sm:py-20 lg:px-8 ">
+    <div>
+      <div className="h-full flex min-h-full flex-1 flex-col justify- items-center px-6 pt-20 lg:px-8 ">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-          <ImageSrc
+          {/* <ImageSrc
             src="/logo/logo-nounous.png"
             width="200"
             height={32}
             className="mx-auto h-20 w-auto"
             alt="logo-nounous"
-          />
+          /> */}
           <h2 className="my-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
             Sign in to your account
           </h2>
@@ -81,10 +78,10 @@ const SignIn = () => {
         <Formik
           initialValues={initialValues}
           onSubmit={handleSubmit}
-          validationSchema={validationSchemaSignIn}
+          // validationSchema={validationSchemaSignIn}
           className=" mt-10 sm:mx-auto sm:w-full sm:max-w-sm "
         >
-          <Form className="space-y-6  w-full sm:w-96  ">
+          <Form className="space-y-6  w-full sm:w-96 pb-20 ">
             <div>
               <label
                 htmlFor="email"
@@ -115,12 +112,12 @@ const SignIn = () => {
                   Password
                 </label>
                 <div className="text-sm">
-                  <a
-                    href="#"
+                  <Link
+                    href="/password-forget"
                     className="font-semibold text-indigo-600 hover:text-indigo-500"
                   >
                     Forgot password?
-                  </a>
+                  </Link>
                 </div>
               </div>
               <div className="mt-2 flex flex-col">
@@ -159,7 +156,7 @@ const SignIn = () => {
             <p className="mt-10 text-center text-sm text-gray-500">
               Not a member?{" "}
               <Link
-                href="/sign-up-nounous"
+                href="/sign-up"
                 className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
               >
                 créer un compte
@@ -167,8 +164,9 @@ const SignIn = () => {
             </p>
           </Form>
         </Formik>
+        {/* <FooterPage /> */}
       </div>
-    </Dashboard>
+    </div>
   );
 };
 

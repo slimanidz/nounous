@@ -47,46 +47,15 @@ const AppContextProvider = (props) => {
     setSession(localStorage.getItem("session_jwt"));
   }, [setSession]);
 
-  ///////////////////////////////////////////////
+ console.log(state)
 
-  const [nounouIdC, setNounouIdC] = useState(0);
-
-  const setNounouIdC1 = useCallback((nounouId) => {
-    setNounouIdC(nounouId);
-  }, []);
-
-  const [countComments, setCountComments] = useState(0);
-  const [comments, setComments] = useState([]);
-  const addComments = useCallback(
-    (...comments) => setComments((previous) => [...previous, ...comments]),
-    []
-  );
-
-  useEffect(() => {
-    (async () => {
-      const nounouId = nounouIdC;
-      const {
-        data: { result1, count },
-      } = await api.get(`/api/comments/${nounouId}`);
-
-      setComments(result1);
-      setCountComments(count);
-    })();
-  }, [addComments, nounouIdC]);
-
-  const [idContact, setIdContact] = useState(0);
   return (
     <AppContext.Provider
       {...props}
       value={{
         setSession,
         state,
-        setNounouIdC1,
-        nounouIdC,
-        addComments,
-        comments,
-        idContact,
-        setIdContact,
+       
       }}
     />
   );
