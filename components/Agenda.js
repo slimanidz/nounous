@@ -13,7 +13,6 @@ const Agenda = () => {
   const onChange = (date) => {
     setState(date);
   };
-  console.Log(state)
   const handleSubmit = ({ heur }) => {
     setheurs(heur);
   };
