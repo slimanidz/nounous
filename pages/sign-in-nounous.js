@@ -2,11 +2,15 @@ import React, { useCallback, useState } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import { useRouter } from "next/router.js";
 import { AxiosError } from "axios";
+// import Link from "@/components/Link"
 import { BiShowAlt, BiLowVision } from "react-icons/bi";
-import api from "../services/api";
-import Link from "next/link";
 
-import { useAppContext } from "../components/AppContext";
+import Link from "next/link";
+import api from "../services/api";
+import { useAppContextNounou } from "../components/AppContextNounou";
+import Dashboard from "../components/Dashboard";
+import ImageSrc from "../components/ImageSrc";
+import validationSchemaSignIn from "../components/validateurs/validationSchemaSignIn";
 
 const initialValues = {
   email: "",
@@ -15,7 +19,7 @@ const initialValues = {
 
 const SignIn = () => {
   const router = useRouter();
-  const { setSession } = useAppContext();
+  const { setSessionNounou } = useAppContextNounou();
   const [errors, setErrors] = useState([]);
   const [visible, setVisiblity] = useState(false);
 
@@ -28,11 +32,11 @@ const SignIn = () => {
           data: {
             result: [{ jwt }],
           },
-        } = await api.post("/api/sign-in", { email, password });
-        setSession(jwt);
+        } = await api.post("/api/sign-in-nounous", { email, password });
+        setSessionNounou(jwt);
+
         if (jwt) {
           router.push("/");
-          console.log("is gign-in");
           return;
         }
       } catch (err) {
@@ -41,12 +45,11 @@ const SignIn = () => {
 
           return;
         }
-
-        setErrors(["Oops. Something went wrong, please try again."]);
         console.log(err);
+        setErrors(["Oops. Something went wrong, please try again."]);
       }
     },
-    [router, setSession]
+    [setSessionNounou, router]
   );
 
   const handleVisionOff = () => {
@@ -57,16 +60,16 @@ const SignIn = () => {
   };
 
   return (
-    <div>
-      <div className="h-full flex min-h-full flex-1 flex-col justify- items-center px-6 pt-20 lg:px-8 ">
+    <Dashboard>
+      <div className="flex min-h-full flex-1 flex-col justify-center items-center px-6 py-10 sm:py-20 lg:px-8 ">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-          {/* <ImageSrc
+          <ImageSrc
             src="/logo/logo-nounous.png"
             width="200"
             height={32}
             className="mx-auto h-20 w-auto"
             alt="logo-nounous"
-          /> */}
+          />
           <h2 className="my-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
             Sign in to your account
           </h2>
@@ -78,10 +81,10 @@ const SignIn = () => {
         <Formik
           initialValues={initialValues}
           onSubmit={handleSubmit}
-          // validationSchema={validationSchemaSignIn}
+          validationSchema={validationSchemaSignIn}
           className=" mt-10 sm:mx-auto sm:w-full sm:max-w-sm "
         >
-          <Form className="space-y-6  w-full sm:w-96 pb-20 ">
+          <Form className="space-y-6  w-full sm:w-96  ">
             <div>
               <label
                 htmlFor="email"
@@ -112,12 +115,12 @@ const SignIn = () => {
                   Password
                 </label>
                 <div className="text-sm">
-                  <Link
-                    href="/password-forget"
+                  <a
+                    href="#"
                     className="font-semibold text-indigo-600 hover:text-indigo-500"
                   >
                     Forgot password?
-                  </Link>
+                  </a>
                 </div>
               </div>
               <div className="mt-2 flex flex-col">
@@ -156,7 +159,7 @@ const SignIn = () => {
             <p className="mt-10 text-center text-sm text-gray-500">
               Not a member?{" "}
               <Link
-                href="/sign-up"
+                href="/sign-up-nounous"
                 className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
               >
                 créer un compte
@@ -164,9 +167,8 @@ const SignIn = () => {
             </p>
           </Form>
         </Formik>
-        {/* <FooterPage /> */}
       </div>
-    </div>
+    </Dashboard>
   );
 };
 

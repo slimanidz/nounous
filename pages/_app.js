@@ -1,14 +1,14 @@
-
 import AppContextProvider from "../components/AppContext";
+import AppContextNounouProvider from "../components/AppContextNounou";
 import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }) {
   return (
-       <AppContextProvider>
-
+    <AppContextProvider>
+      <AppContextNounouProvider>
         <Component {...pageProps} />
-          </AppContextProvider>
-
+      </AppContextNounouProvider>
+    </AppContextProvider>
   );
 }
 

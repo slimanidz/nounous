@@ -1,8 +1,14 @@
 import React, { useCallback, useState } from "react";
-
 import { Formik, Field, Form, ErrorMessage } from "formik";
+import { useRouter } from "next/router.js";
+import { AxiosError } from "axios";
+
 import { BiShowAlt, BiLowVision } from "react-icons/bi";
+import Link from "next/link";
 import api from "../services/api";
+import Dashboard from "../components/Dashboard";
+import ImageSrc from "../components/ImageSrc";
+import validationSchemaUsers from "../components/validateurs/ValidatuerUsers";
 
 const initialValues = {
   username: "",
@@ -12,12 +18,18 @@ const initialValues = {
   confirmPassword: "",
   acceptTerms: false,
 };
-const AddUsers = () => {
+
+const SignUp = () => {
   const [openModal, setOpenModal] = useState(false);
   const [visible, setVisiblity] = useState(false);
   const [visible1, setVisiblity1] = useState(false);
-  
- const handleSubmit = useCallback(
+  const handleClick = () => {
+    setOpenModal(true);
+  };
+
+  const router = useRouter();
+
+  const handleSubmit = useCallback(
     async ({ email, username, telephone, password }) => {
       const {
         data: { result },
@@ -30,17 +42,15 @@ const AddUsers = () => {
 
       if (result) {
         // restform();
-        // router.push("/sign-in");
+        router.push("/sign-in");
 
         return;
       }
     },
 
-    []
- );
-  const handleClick = () => {
-    setOpenModal(true);
-  };
+    [router]
+  );
+
   const handleVisionOn = () => {
     setVisiblity(true);
   };
@@ -54,14 +64,43 @@ const AddUsers = () => {
   const handleVisionOff1 = () => {
     setVisiblity1(false);
   };
+
   return (
+    <Dashboard>
       <div className="flex min-h-full flex-1 flex-col justify-center items-center px-6 py-10 sm:py-20 lg:px-8 ">
-      Cree un compte
-      <Formik  initialValues={initialValues}
+        <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+          <ImageSrc
+            src="/logo/logo-nounous.png"
+            width="200"
+            height={32}
+            className="mx-auto h-20 w-auto"
+            alt="logo-nounous"
+          />
+          <h2 className="my-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+            Sign up
+          </h2>
+          <p className="mb-3 text-center text-red-500 font-bold leading-9 tracking-tight ">
+            {/* {errors} */}
+          </p>
+          <p className="-mt-5 mb-5 text-center text-sm text-gray-500">
+            Déjà membre?{" "}
+            <Link
+              className="hover:underline font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
+              href="/sign-in"
+            >
+              {" "}
+              se connecter
+            </Link>
+          </p>
+        </div>
+
+        <Formik
+          initialValues={initialValues}
           onSubmit={handleSubmit}
-          // validationSchema={validationSchemaUsers}
-          className=" mt-10 sm:mx-auto sm:w-full sm:max-w-sm ">
-        <Form className="space-y-3  w-full sm:w-96  ">
+          validationSchema={validationSchemaUsers}
+          className=" mt-10 sm:mx-auto sm:w-full sm:max-w-sm "
+        >
+          <Form className="space-y-3  w-full sm:w-96  ">
             <div>
               <label className="block text-sm font-medium leading-6 text-gray-900">
                 Email address
@@ -220,9 +259,10 @@ const AddUsers = () => {
               </button>
             </div>
           </Form>
-      </Formik>
-    </div>
-  )
-}
+        </Formik>
+      </div>
+    </Dashboard>
+  );
+};
 
-export default AddUsers;
+export default SignUp;
