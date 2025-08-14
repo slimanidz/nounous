@@ -220,9 +220,13 @@ const NounousGet = () => {
         {currentPosts.map((nounou) => (
           <li
             key={nounou.id}
-            className=" flex justify-between gap-x-6 p-5 sm:px-20"
+            className=" flex justify-between gap-x-6 p-5 sm:px-20 bg-red-40"
           >
-            <div className="flex items-center gap-x-4">
+            <button
+              onClick={handleClickServices}
+              data-id={nounou.id}
+              className="flex items-center gap-x-4 hover:scale-110  duration-200"
+            >
               <div>
                 {images.map((image) => (
                   <div key={image.imageUrl}>
@@ -240,14 +244,8 @@ const NounousGet = () => {
               </div>
 
               <div className="min-w-0 flex-auto">
-                <p className="text-sm font-semibold leading-6 text-gray-900">
-                  <button
-                    onClick={handleClickServices}
-                    data-id={nounou.id}
-                    className="hover:underline first-letter:uppercase hover:text-blue-500"
-                  >
-                    {nounou.username}
-                  </button>
+                <p className="text-sm font-semibold leading-6 text-gray-900 first-letter:uppercase">
+                  {nounou.username}
                 </p>
 
                 {/* ///////////// STARS ///////////// */}
@@ -258,7 +256,7 @@ const NounousGet = () => {
                   {nounou.localite.toUpperCase()}
                 </p>
               </div>
-            </div>
+            </button>
             <div className="flex items-center gap-x-6">
               <div className="hidden sm:flex sm:flex-col sm:items-end">
                 <p className="w-64 text-xs text-end leading-6 text-gray-900">
