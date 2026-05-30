@@ -46,6 +46,7 @@ const NounousGet = () => {
   const [images, setImages] = useState([]);
   const [open, setOpen] = useState(false);
   const n = 3;
+  console.log(images);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(10);
@@ -127,8 +128,8 @@ const NounousGet = () => {
 
     const servicefiltre = result1.map((row) =>
       Object.fromEntries(
-        Object.entries(row).filter(([field]) => !hiddenFields.includes(field))
-      )
+        Object.entries(row).filter(([field]) => !hiddenFields.includes(field)),
+      ),
     );
     setServices(servicefiltre);
     setOpen(true);
@@ -295,7 +296,7 @@ const NounousGet = () => {
                             active
                               ? "bg-gray-300 w-full rounded-md text-left"
                               : "",
-                            "block px-3 py-1 text-sm leading-6 text-gray-900"
+                            "block px-3 py-1 text-sm leading-6 text-gray-900",
                           )}
                           onClick={handleClickContact}
                           data-id={nounou.id}
@@ -312,7 +313,7 @@ const NounousGet = () => {
                             active
                               ? "bg-gray-300 w-full rounded-md text-left"
                               : "",
-                            "block px-3 py-1 text-sm leading-6 text-gray-900"
+                            "block px-3 py-1 text-sm leading-6 text-gray-900",
                           )}
                           onClick={handleClickComment}
                           data-id={nounou.id}
