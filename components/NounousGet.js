@@ -232,13 +232,20 @@ const NounousGet = () => {
                 {images.map((image) => (
                   <div key={image.imageUrl}>
                     {image.id === nounou.id && (
-                      <ImageSrc
-                        src={`${image.imageUrl}`}
-                        alt="image nounou"
-                        // width={180}
-                        // height={180}
-                        // className="h-12 md:h-20 w-12 md:w-20 flex-none rounded-full bg-gray-50"
+                      <img
+                        src={image.imageUrl}
+                        alt="test"
+                        onError={(e) =>
+                          console.log("Erreur image :", image.imageUrl)
+                        }
                       />
+                      // <ImageSrc
+                      //   src={`${image.imageUrl}`}
+                      //   alt="image nounou"
+                      //   // width={180}
+                      //   // height={180}
+                      //   // className="h-12 md:h-20 w-12 md:w-20 flex-none rounded-full bg-gray-50"
+                      // />
                     )}
                   </div>
                 ))}
