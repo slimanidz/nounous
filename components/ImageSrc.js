@@ -1,16 +1,7 @@
-import Image from "next/image";
+// import Image from "next/image";
 
 const ImageSrc = ({ src, alt, className }) => {
-  return (
-    <Image
-      src={src}
-      alt={alt}
-      width={180}
-      height={180}
-      unoptimized
-      className={className}
-    />
-  );
+  return <img src={src} alt={alt} className={className} />;
 };
 
 export default ImageSrc;
