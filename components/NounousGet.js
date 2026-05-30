@@ -235,9 +235,9 @@ const NounousGet = () => {
                       <ImageSrc
                         src={`${image.imageUrl}`}
                         alt="image nounou"
-                        width={180}
-                        height={180}
-                        className="h-12 md:h-20 w-12 md:w-20 flex-none rounded-full bg-gray-50"
+                        // width={180}
+                        // height={180}
+                        // className="h-12 md:h-20 w-12 md:w-20 flex-none rounded-full bg-gray-50"
                       />
                     )}
                   </div>
