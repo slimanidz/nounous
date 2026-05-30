@@ -3,14 +3,14 @@ require("dotenv").config();
 module.exports = {
   client: "pg",
   // pour vercel :
-  // connection: process.env.DB_URL,
+  connection: process.env.DB_URL,
 
   // Pour le local il faut mettre tous:
-  connection: {
-    user: process.env.DB_USER,
-    database: process.env.DB_DATABASE,
-    password: process.env.DB_PASSWORD,
-  },
+  // connection: {
+  //   user: process.env.DB_USER,
+  //   database: process.env.DB_DATABASE,
+  //   password: process.env.DB_PASSWORD,
+  // },
 
   migrations: {
     tableName: "knex_migrations",
