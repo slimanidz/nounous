@@ -1,16 +1,16 @@
 import Image from "next/image";
 
-const ImageSrc = (props) => {
-  const { src, width, height, alt, className } = props;
-
+const ImageSrc = ({ src, alt, className }) => {
   return (
     <Image
       src={src}
-      width={width}
-      height={height}
-      className={className}
       alt={alt}
+      width={180}
+      height={180}
+      unoptimized
+      className={className}
     />
   );
 };
+
 export default ImageSrc;
